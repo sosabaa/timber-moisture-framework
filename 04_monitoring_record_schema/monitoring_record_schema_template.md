@@ -1,0 +1,151 @@
+# Monitoring-record schema template
+
+This template supports Layers 4, 5, 6, and 8 of the framework: data and metadata capture, validation, exposure interpretation, and lifecycle integration. It defines the information needed to convert sensor readings into interpretable moisture-exposure records.
+
+The schema should be adapted to the selected sensor system, data platform, BIM model, building logbook, product passport, or other lifecycle information system.
+
+## Schema structure
+
+The monitoring-record schema separates static, semi-static, dynamic, derived, and event-based information. This prevents time-series measurements from being mixed with location and element metadata, while preserving the links needed for later interpretation.
+
+| Data table | Data type | Purpose | Main linking field |
+|---|---|---|---|
+| Location register | Static/contextual data | Defines the monitored risk location, building zone, assembly, timber element, and moisture-risk context. | Location ID |
+| Sensor installation register | Semi-static sensor metadata | Defines the installed sensor or sensor channel, including sensor type, measurement depth, calibration basis, and installation context. | Sensor ID / Installation ID |
+| Measurement time-series table | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings. | Observation ID / Sensor ID + Timestamp + Observed Property |
+| Validation and quality table | Derived/quality data | Stores data-quality checks, missing-data flags, implausible values, drift concerns, communication gaps, and redundancy agreement. | Observation ID or Sensor ID + Timestamp |
+| Exposure-interpretation table | Derived/event-summary data | Stores threshold exceedance, duration, moisture dose, drying behaviour, anomaly indicators, and confidence level. | Exposure Event ID / Location ID |
+| Lifecycle event and intervention log | Event-based data | Stores leakage events, inspection, maintenance, repair, sensor replacement, recalibration, and reuse-related assessment notes. | Event ID / Location ID |
+| Lifecycle integration register | Linkage data | Links the record to BIM objects, building logbooks, product passports, digital twins, or other lifecycle information systems. | Location ID / Element ID |
+
+| Identifier | Definition |
+|---|---|
+| Location ID | Identifies the monitored risk location, for example L-01. |
+| Sensor ID | Identifies the physical sensor or sensor channel. |
+| Installation ID | Identifies a specific installation of a sensor at a location. Useful if a sensor is replaced or recalibrated. |
+| Measurement ID | Identifies one timestamped observation. When a logger row contains several properties, use one observation ID per property and preserve the original logger-row ID as a source record ID. |
+| Exposure Event ID | Identifies a derived moisture event, such as a prolonged threshold exceedance. |
+| Intervention ID | Identifies an inspection, repair, maintenance action, recalibration, or sensor replacement. |
+
+## JSON-LD implementation
+
+The schema can be implemented in JSON-LD by treating each table as a linked resource type. Static location data, sensor installation metadata, dynamic time-series observations, validation records, interpreted exposure events, lifecycle events, and lifecycle integration records are stored as separate entities in an `@graph`. These entities are connected through persistent identifiers such as `Location ID`, `Sensor ID`, `Installation ID`, `Measurement ID`, `Exposure Event ID`, and `Event ID`.
+
+This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, interpreted exposure event, and lifecycle information system.
+
+For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A logger row containing MC, RH, and temperature therefore maps to three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
+
+## Location register
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Location ID | Required | L-01 | Links to risk classification, sensor deployment, and measurement records. |
+| Description | Required | Sink/dishwasher zone below plumbing and appliance connections | Short location description. |
+| Building zone | Required | Kitchen | Broad spatial or functional zone. |
+| Assembly/detail | Required | CLT floor below sink and dishwasher | Specific assembly or detail. |
+| Element ID | Required | CLT-FP-01 | Timber element, panel, beam, column, or BIM element ID. |
+| Element/material feature | Required | Panel surface, panel edge, local fastener areas, concealed regions beneath cabinetry | Specific feature being monitored. |
+| Moisture source or mechanism | Required | Leakage, repeated small leaks, cleaning water, trapped moisture beneath finishes | Expected moisture mechanism. |
+| Risk class | Required | High | Carried over from risk-location classification. |
+| Decision relevance | Required | High | Explains why the location matters for later decisions. |
+| Location notes | Optional | Near plumbing and appliance connection zone | Additional context. |
+
+## Sensor installation register
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Installation ID | Required | INST-L01-01 | Unique installation record. |
+| Location ID | Required | L-01 | Links sensor installation to the risk location. |
+| Sensor ID | Required | MC-L01-01 | Unique sensor or sensor channel ID. |
+| Sensor type | Required | MC sensor | Primary or supporting sensor type. |
+| Measurement principle | Optional | Resistance-based MC | Depends on sensor system. |
+| Sensor validation status | Optional | Validated / not assessed / requires review | Current validation state for the sensor or sensor output. |
+| Sensor validation record | Optional | VAL-L01-001 | Links the sensor to the validation record supporting the stated status. |
+| Measurement depth | Required | 20 mm | In JSON-LD, record as a QUDT quantity value such as `{"type": "QuantityValue", "numericValue": 20, "unitRef": "unit:MilliM"}`. |
+| Installation coordinates | Required | 57°46'34.8" N; 14°09'34.2" E | Global GPS-style coordinates for the installed sensor point. In JSON-LD, record latitude and longitude as compact WGS84 DMS strings. |
+| Sensor placement description | Required | Below sink/dishwasher connection zone, near panel edge | Descriptive placement. |
+| Calibration basis | Required where available | Manufacturer timber MC calibration | Needed for later interpretation. |
+| Correction method | Required where available | Temperature correction applied/not applied | Important for comparability. |
+| Installation date | Required | 2026-08-06T09:00:00.000+02:00 | Date of installation. |
+| Installation condition | Required | Installed after floor enclosure, before cabinetry | Construction/use context. |
+| Protection/access arrangement | Optional | Cable protected behind service access panel | Practical access and protection information. |
+| Sensor status | Required | Active/replaced/failed/removed | Supports long-term traceability. |
+
+## Measurement time-series table
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Measurement ID | Optional | M-L01-000001-MC | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
+| Source record ID | Optional | M-L01-000001 | Original logger-row identifier when one logger row generates several observations. |
+| Sensor ID | Required | MC-L01-01 | Links the observation to the installed sensor. |
+| Installation ID | Required | INST-L01-01 | Helps distinguish observations before and after replacement. |
+| Location ID | Required | L-01 | Links the observation to the monitored feature of interest. |
+| Observed property | Required | tmf:property/moisture-content | The property measured by this observation, such as moisture content, relative humidity, or temperature. |
+| Timestamp | Required | 2026-08-06T16:40:11.633+02:00 | Date and time of observation. |
+| Simple result | Required | 16.2 % | Human-readable SOSA simple result. |
+| Result quantity | Required | 16.2 unit:PERCENT | QUDT quantity value containing numeric value and unit reference. |
+| Data-quality flag | Optional | Usable/uncertain/invalid | Quality status for this observation, copied or summarized from a validation record where available. |
+| Quality assessment record | Optional | VAL-L01-001 | Links the observation to the validation record supporting the quality flag. |
+| Raw sensor output | Optional | Resistance value/device output | Retain where available. |
+| Sampling interval | Required | PT1H | Logging frequency as an ISO 8601 duration. |
+
+## Validation and quality table
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Validation ID | Required | VAL-L01-001 | Unique validation entry. |
+| Installation ID | Optional | INST-L01-01 | Identifies the installation context covered by the validation record. |
+| Timestamp or period | Required | 2026-08-07T16:40:11.633+02:00 or 2026-08-07T00:00:00.003+02:00 to 2026-08-08T16:40:11.633+02:00 | Can apply to one reading or a period. |
+| Data-quality flag | Required | Usable/uncertain/invalid | Overall quality status. |
+| Missing-data flag | Required | No gap detected | Data continuity check. |
+| Implausible-value flag | Required | No implausible value detected | Physical/sensor plausibility check. |
+| Drift or sensor-damage flag | Required | No drift suspected | Long-term reliability check. |
+| Communication flag | Required | Normal transmission | Battery/logging/transmission check. |
+| Redundancy agreement | Required where applicable | Shallow and deeper sensors show consistent trend | Comparison with duplicate, paired, or nearby sensors. |
+| Quality notes | Optional | Manual verification recommended after leakage report | Additional interpretation note. |
+
+## Exposure-interpretation table
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Exposure Event ID | Required | EXP-L01-001 | Unique interpreted moisture event. |
+| Location ID | Required | L-01 | Links event to risk location. |
+| Evidence sensor ID(s) | Required | MC-L01-01; MC-L01-02 | Sensors whose readings support the interpreted event. |
+| Evidence observation ID(s) | Required where applicable | M-L01-000001-MC | Observations used as evidence for the interpreted event. |
+| Event start | Required | 2026-08-07T12:00:00.000+02:00 | Start of interpreted event. |
+| Event end | Required where applicable | 2026-08-09T18:00:00.000+02:00 | End of interpreted event. |
+| Threshold exceedance | Required | MC above project-defined threshold | Thresholds are interpretation triggers, not standalone criteria. |
+| Exceedance duration | Required where applicable | 54 hours | Duration above threshold. |
+| Moisture dose | Optional | Repeated short exceedances | Use only where a dose metric is defined. |
+| Drying behaviour | Required where applicable | Delayed drying | Interpreted drying response. |
+| Anomaly indicator | Required | Localised anomaly compared with L-05 reference | Helps distinguish local wetting from background behaviour. |
+| Confidence or uncertainty | Required | Medium confidence due to complete data but limited redundancy | Interprets reliability of exposure event. |
+
+## Lifecycle event and intervention log
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Event ID | Required | EVT-L01-001 | Unique event or intervention entry. |
+| Location ID | Required | L-01 | Links event to risk location. |
+| Affected sensor ID | Optional | MC-L01-01 | Use where the event affects, inspects, replaces, or recalibrates a sensor. |
+| Event type | Required | Leakage / inspection / repair / maintenance / recalibration / replacement | Event category. |
+| Event period | Required where known | Start: 2026-08-08T19:00:00.000+02:00; End: 2026-08-08T21:00:00.000+02:00 | Time period of the event or intervention. In JSON-LD, record this as `eventPeriod.eventStart` and `eventPeriod.eventEnd`. For an instantaneous event, record `eventStart`; `eventEnd` may be omitted or set equal to `eventStart`, depending on the implementation. |
+| Event description | Required | Dishwasher leakage reported and inspected | Short description. |
+| Action taken | Optional | Area inspected; no targeted opening undertaken | Intervention record. |
+| Informed-by exposure event ID | Optional | EXP-L01-001 | Links intervention to the interpreted moisture event that informed it. |
+| Outcome | Optional | Continued monitoring recommended | Decision or outcome. |
+
+## Lifecycle integration register
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Integration ID | Required | LINK-L01-001 | Unique link record. |
+| Location ID | Required | L-01 | Links digital system to monitored location. |
+| Element ID | Required | CLT-FP-01 | Links to timber element or BIM object. |
+| Linked sensor ID(s) | Optional | MC-L01-01; MC-L01-02 | Sensor records retained in the lifecycle information system. |
+| Linked observation ID(s) | Optional | M-L01-000001-MC; M-L01-000001-RH | Observation records retained in the lifecycle information system. |
+| Linked exposure event ID | Optional | EXP-L01-001 | Interpreted exposure record retained in the lifecycle information system. |
+| Generated-by lifecycle event ID | Optional | EVT-L01-001 | Event record that generated or motivated the integration record. |
+| Linked lifecycle information system | Optional | BIM model / building logbook / product passport / digital twin | System where the record is stored or referenced. |
+| Digital object reference | Optional | BIM object CLT-FP-01 | Object or database reference. |
+| Decision use | Required | Maintenance, post-event assessment, future reuse-related assessment | Explains why the record is retained. |
+| Notes | Optional | Selected exposure indicators retained for future recovery assessment | Additional lifecycle context. |
+## Notes for use
+
+- Keep the `Location ID` consistent across the risk-location classification, sensor-deployment, and monitoring-record schema files.
+- Record both measured values and contextual metadata. A moisture reading without sensor depth, location, calibration basis, and data-quality information may be difficult to interpret later.
+- Treat MC thresholds as interpretation triggers rather than standalone decision criteria.
+- Preserve validation flags and uncertainty information, especially where the record may support later maintenance, repair, post-event assessment, durability evaluation, or reuse-related assessment.

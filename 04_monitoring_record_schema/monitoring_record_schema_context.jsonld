@@ -1,0 +1,199 @@
+{
+  "@context": {
+    "tmf": "https://sosabaa.github.io/timber-moisture-framework/vocab#",
+    "schema": "https://schema.org/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "bot": "https://w3id.org/bot#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "id": "@id",
+    "type": "@type",
+    "description": "schema:description",
+
+    "MoistureRiskLocation": "tmf:MoistureRiskLocation",
+    "TimberElement": "tmf:TimberElement",
+    "Sensor": "sosa:Sensor",
+    "SensorInstallation": "tmf:SensorInstallation",
+    "MeasurementRecord": "tmf:MeasurementRecord",
+    "ValidationRecord": "tmf:ValidationRecord",
+    "ExposureEvent": "tmf:ExposureEvent",
+    "LifecycleEvent": "tmf:LifecycleEvent",
+    "LifecycleIntegrationRecord": "tmf:LifecycleIntegrationRecord",
+
+    "FeatureOfInterest": "sosa:FeatureOfInterest",
+    "ObservableProperty": "sosa:ObservableProperty",
+    "Zone": "bot:Zone",
+    "Element": "bot:Element",
+    "Deployment": "sosa:Deployment",
+    "Observation": "sosa:Observation",
+    "Activity": "prov:Activity",
+    "Entity": "prov:Entity",
+    "QuantityValue": "qudt:QuantityValue",
+    "GeographicCoordinates": "schema:GeoCoordinates",
+
+    "locationId": "schema:identifier",
+    "sensorId": "schema:identifier",
+    "installationId": "schema:identifier",
+    "measurementId": "schema:identifier",
+    "sourceRecordId": "tmf:sourceRecordId",
+    "validationId": "schema:identifier",
+    "exposureEventId": "schema:identifier",
+    "eventId": "schema:identifier",
+    "integrationId": "schema:identifier",
+    "elementId": "schema:identifier",
+    "propertyId": "schema:identifier",
+
+    "location": {
+      "@id": "schema:location",
+      "@type": "@id"
+    },
+    "madeBySensor": {
+      "@id": "sosa:madeBySensor",
+      "@type": "@id"
+    },
+    "deployedSystem": {
+      "@id": "ssn:deployedSystem",
+      "@type": "@id"
+    },
+    "installation": {
+      "@id": "tmf:installation",
+      "@type": "@id"
+    },
+    "hasElement": {
+      "@id": "bot:hasElement",
+      "@type": "@id"
+    },
+    "observedProperty": {
+      "@id": "sosa:observedProperty",
+      "@type": "@id"
+    },
+    "resultQuantity": "sosa:hasResult",
+    "hasSimpleResult": "sosa:hasSimpleResult",
+    "measurementDepth": "tmf:measurementDepth",
+    "installationCoordinates": "tmf:installationCoordinates",
+    "coordinateReferenceSystem": "tmf:coordinateReferenceSystem",
+    "coordinateFormat": "tmf:coordinateFormat",
+    "latitude": "schema:latitude",
+    "longitude": "schema:longitude",
+    "numericValue": {
+      "@id": "qudt:numericValue",
+      "@type": "xsd:decimal"
+    },
+    "unitRef": {
+      "@id": "qudt:unit",
+      "@type": "@id"
+    },
+    "sensorValidationStatus": "tmf:sensorValidationStatus",
+    "sensorValidationRecord": {
+      "@id": "tmf:sensorValidationRecord",
+      "@type": "@id"
+    },
+    "qualityAssessmentRecord": {
+      "@id": "tmf:qualityAssessmentRecord",
+      "@type": "@id"
+    },
+    "evidenceSensor": {
+      "@id": "tmf:evidenceSensor",
+      "@type": "@id"
+    },
+    "evidenceObservation": {
+      "@id": "tmf:evidenceObservation",
+      "@type": "@id"
+    },
+    "affectedSensor": {
+      "@id": "tmf:affectedSensor",
+      "@type": "@id"
+    },
+    "linkedSensor": {
+      "@id": "tmf:linkedSensor",
+      "@type": "@id"
+    },
+    "linkedObservation": {
+      "@id": "tmf:linkedObservation",
+      "@type": "@id"
+    },
+    "informedByExposureEvent": {
+      "@id": "prov:wasInformedBy",
+      "@type": "@id"
+    },
+    "linkedExposureEvent": {
+      "@id": "tmf:linkedExposureEvent",
+      "@type": "@id"
+    },
+    "generatedByLifecycleEvent": {
+      "@id": "prov:wasGeneratedBy",
+      "@type": "@id"
+    },
+
+    "buildingZone": "tmf:buildingZone",
+    "assemblyDetail": "tmf:assemblyDetail",
+    "elementMaterialFeature": "tmf:elementMaterialFeature",
+    "moistureSourceOrMechanism": "tmf:moistureSourceOrMechanism",
+    "riskClass": "tmf:riskClass",
+    "decisionRelevance": "tmf:decisionRelevance",
+    "locationNotes": "tmf:locationNotes",
+
+    "sensorType": "tmf:sensorType",
+    "measurementPrinciple": "tmf:measurementPrinciple",
+    "sensorPlacementDescription": "tmf:sensorPlacementDescription",
+    "calibrationBasis": "tmf:calibrationBasis",
+    "correctionMethod": "tmf:correctionMethod",
+    "installationDate": {
+      "@id": "dcterms:date",
+      "@type": "xsd:dateTime"
+    },
+    "installationCondition": "tmf:installationCondition",
+    "protectionAccessArrangement": "tmf:protectionAccessArrangement",
+    "sensorStatus": "tmf:sensorStatus",
+
+    "timestamp": {
+      "@id": "sosa:resultTime",
+      "@type": "xsd:dateTime"
+    },
+    "rawSensorOutput": "tmf:rawSensorOutput",
+    "samplingInterval": {
+      "@id": "tmf:samplingInterval",
+      "@type": "xsd:duration"
+    },
+
+    "timestampOrPeriod": "tmf:timestampOrPeriod",
+    "dataQualityFlag": "tmf:dataQualityFlag",
+    "missingDataFlag": "tmf:missingDataFlag",
+    "implausibleValueFlag": "tmf:implausibleValueFlag",
+    "driftOrSensorDamageFlag": "tmf:driftOrSensorDamageFlag",
+    "communicationFlag": "tmf:communicationFlag",
+    "redundancyAgreement": "tmf:redundancyAgreement",
+    "qualityNotes": "tmf:qualityNotes",
+
+    "eventStart": {
+      "@id": "prov:startedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "eventEnd": {
+      "@id": "prov:endedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "thresholdExceedance": "tmf:thresholdExceedance",
+    "exceedanceDuration": "tmf:exceedanceDuration",
+    "moistureDose": "tmf:moistureDose",
+    "dryingBehaviour": "tmf:dryingBehaviour",
+    "anomalyIndicator": "tmf:anomalyIndicator",
+    "confidenceOrUncertainty": "tmf:confidenceOrUncertainty",
+
+    "eventType": "tmf:eventType",
+    "eventPeriod": "tmf:eventPeriod",
+    "eventDescription": "schema:description",
+    "actionTaken": "tmf:actionTaken",
+    "outcome": "tmf:outcome",
+
+    "linkedLifecycleInformationSystem": "tmf:linkedLifecycleInformationSystem",
+    "digitalObjectReference": "schema:identifier",
+    "decisionUse": "tmf:decisionUse",
+    "integrationNote": "tmf:integrationNote"
+  }
+}

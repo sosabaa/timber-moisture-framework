@@ -1,0 +1,243 @@
+{
+  "@context": "monitoring_record_schema_context.jsonld",
+  "@graph": [
+    {
+      "id": "tmf:location/L-01",
+      "type": ["MoistureRiskLocation", "FeatureOfInterest", "Zone"],
+      "locationId": "L-01",
+      "description": "Sink/dishwasher zone below plumbing and appliance connections",
+      "buildingZone": "Kitchen",
+      "assemblyDetail": "CLT floor below sink and dishwasher",
+      "hasElement": "tmf:element/CLT-FP-01",
+      "elementMaterialFeature": [
+        "Panel surface",
+        "Panel edge",
+        "Local fastener areas",
+        "Concealed regions beneath cabinetry"
+      ],
+      "moistureSourceOrMechanism": [
+        "Leakage",
+        "Repeated small leaks",
+        "Cleaning water",
+        "Trapped moisture beneath finishes"
+      ],
+      "riskClass": "High",
+      "decisionRelevance": "High",
+      "locationNotes": "Near plumbing and appliance connection zone"
+    },
+    {
+      "id": "tmf:element/CLT-FP-01",
+      "type": ["TimberElement", "Element"],
+      "elementId": "CLT-FP-01",
+      "description": "CLT floor panel associated with the kitchen sink/dishwasher zone"
+    },
+    {
+      "id": "tmf:property/moisture-content",
+      "type": "ObservableProperty",
+      "propertyId": "moisture-content",
+      "description": "Timber moisture content"
+    },
+    {
+      "id": "tmf:property/relative-humidity",
+      "type": "ObservableProperty",
+      "propertyId": "relative-humidity",
+      "description": "Relative humidity near the monitored location"
+    },
+    {
+      "id": "tmf:property/air-temperature",
+      "type": "ObservableProperty",
+      "propertyId": "air-temperature",
+      "description": "Air temperature near the monitored location"
+    },
+    {
+      "id": "tmf:sensor/MC-L01-01",
+      "type": [
+        "Sensor",
+        "tmf:MoistureContentSensor"
+      ],
+      "sensorId": "MC-L01-01",
+      "sensorType": "MC sensor with RH/T context channel",
+      "measurementPrinciple": "Resistance-based MC with supporting RH/T logger output",
+      "sensorValidationStatus": "Validated",
+      "sensorValidationRecord": "tmf:validation/VAL-L01-001"
+    },
+    {
+      "id": "tmf:sensor/MC-L01-02",
+      "type": [
+        "Sensor",
+        "tmf:MoistureContentSensor"
+      ],
+      "sensorId": "MC-L01-02",
+      "sensorType": "MC sensor",
+      "measurementPrinciple": "Resistance-based MC",
+      "sensorValidationStatus": "Not assessed in this example"
+    },
+    {
+      "id": "tmf:installation/INST-L01-01",
+      "type": ["SensorInstallation", "Deployment"],
+      "installationId": "INST-L01-01",
+      "location": "tmf:location/L-01",
+      "deployedSystem": "tmf:sensor/MC-L01-01",
+      "measurementDepth": {
+        "type": "QuantityValue",
+        "numericValue": 20,
+        "unitRef": "unit:MilliM"
+      },
+      "installationCoordinates": {
+        "type": "GeographicCoordinates",
+        "coordinateReferenceSystem": "WGS84",
+        "coordinateFormat": "DMS",
+        "latitude": "57°46'34.8\" N",
+        "longitude": "14°09'34.2\" E"
+      },
+      "sensorPlacementDescription": "Below sink/dishwasher connection zone, near panel edge",
+      "calibrationBasis": "Manufacturer timber MC calibration",
+      "correctionMethod": "Temperature correction applied/not applied",
+      "installationDate": "2026-08-06T09:00:00.000+02:00",
+      "installationCondition": "Installed after floor enclosure, before cabinetry",
+      "protectionAccessArrangement": "Cable protected behind service access panel",
+      "sensorStatus": "Active"
+    },
+    {
+      "id": "tmf:observation/M-L01-000001-MC",
+      "type": ["MeasurementRecord", "Observation"],
+      "measurementId": "M-L01-000001-MC",
+      "sourceRecordId": "M-L01-000001",
+      "madeBySensor": "tmf:sensor/MC-L01-01",
+      "installation": "tmf:installation/INST-L01-01",
+      "location": "tmf:location/L-01",
+      "observedProperty": "tmf:property/moisture-content",
+      "timestamp": "2026-08-06T16:40:11.633+02:00",
+      "hasSimpleResult": "16.2 %",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 16.2,
+        "unitRef": "unit:PERCENT"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
+      "rawSensorOutput": "Resistance value or device output where available",
+      "samplingInterval": "PT1H"
+    },
+    {
+      "id": "tmf:observation/M-L01-000001-RH",
+      "type": ["MeasurementRecord", "Observation"],
+      "measurementId": "M-L01-000001-RH",
+      "sourceRecordId": "M-L01-000001",
+      "madeBySensor": "tmf:sensor/MC-L01-01",
+      "installation": "tmf:installation/INST-L01-01",
+      "location": "tmf:location/L-01",
+      "observedProperty": "tmf:property/relative-humidity",
+      "timestamp": "2026-08-06T16:40:11.633+02:00",
+      "hasSimpleResult": "62.0 %",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 62.0,
+        "unitRef": "unit:PERCENT"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
+      "samplingInterval": "PT1H"
+    },
+    {
+      "id": "tmf:observation/M-L01-000001-T",
+      "type": ["MeasurementRecord", "Observation"],
+      "measurementId": "M-L01-000001-T",
+      "sourceRecordId": "M-L01-000001",
+      "madeBySensor": "tmf:sensor/MC-L01-01",
+      "installation": "tmf:installation/INST-L01-01",
+      "location": "tmf:location/L-01",
+      "observedProperty": "tmf:property/air-temperature",
+      "timestamp": "2026-08-06T16:40:11.633+02:00",
+      "hasSimpleResult": "21.4 degC",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 21.4,
+        "unitRef": "unit:DEG_C"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
+      "samplingInterval": "PT1H"
+    },
+    {
+      "id": "tmf:validation/VAL-L01-001",
+      "type": ["ValidationRecord", "Activity"],
+      "validationId": "VAL-L01-001",
+      "installation": "tmf:installation/INST-L01-01",
+      "timestampOrPeriod": "2026-08-07T00:00:00.003+02:00 to 2026-08-08T16:40:11.633+02:00",
+      "dataQualityFlag": "Usable",
+      "missingDataFlag": "No gap detected",
+      "implausibleValueFlag": "No implausible value detected",
+      "driftOrSensorDamageFlag": "No drift suspected",
+      "communicationFlag": "Normal transmission",
+      "redundancyAgreement": "Shallow and deeper sensors show consistent trend",
+      "qualityNotes": "Manual verification recommended after leakage report"
+    },
+    {
+      "id": "tmf:exposure-event/EXP-L01-001",
+      "type": ["ExposureEvent", "Activity"],
+      "exposureEventId": "EXP-L01-001",
+      "location": "tmf:location/L-01",
+      "evidenceSensor": [
+        "tmf:sensor/MC-L01-01",
+        "tmf:sensor/MC-L01-02"
+      ],
+      "evidenceObservation": "tmf:observation/M-L01-000001-MC",
+      "eventStart": "2026-08-07T12:00:00.000+02:00",
+      "eventEnd": "2026-08-09T18:00:00.000+02:00",
+      "thresholdExceedance": "MC above project-defined threshold",
+      "exceedanceDuration": "54 hours",
+      "moistureDose": "Repeated short exceedances",
+      "dryingBehaviour": "Delayed drying",
+      "anomalyIndicator": "Localised anomaly compared with L-05 reference",
+      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
+    },
+    {
+      "id": "tmf:lifecycle-event/EVT-L01-001",
+      "type": ["LifecycleEvent", "Activity"],
+      "eventId": "EVT-L01-001",
+      "location": "tmf:location/L-01",
+      "affectedSensor": "tmf:sensor/MC-L01-01",
+      "eventType": "Leakage and inspection",
+      "eventPeriod": {
+        "eventStart": "2026-08-08T19:00:00.000+02:00",
+        "eventEnd": "2026-08-08T21:00:00.000+02:00"
+      },
+      "eventDescription": "Dishwasher leakage reported and inspected",
+      "actionTaken": "Area inspected; no targeted opening undertaken",
+      "informedByExposureEvent": "tmf:exposure-event/EXP-L01-001",
+      "outcome": "Continued monitoring recommended"
+    },
+    {
+      "id": "tmf:lifecycle-integration/LINK-L01-001",
+      "type": ["LifecycleIntegrationRecord", "Entity"],
+      "integrationId": "LINK-L01-001",
+      "location": "tmf:location/L-01",
+      "hasElement": "tmf:element/CLT-FP-01",
+      "linkedSensor": [
+        "tmf:sensor/MC-L01-01",
+        "tmf:sensor/MC-L01-02"
+      ],
+      "linkedObservation": [
+        "tmf:observation/M-L01-000001-MC",
+        "tmf:observation/M-L01-000001-RH",
+        "tmf:observation/M-L01-000001-T"
+      ],
+      "linkedExposureEvent": "tmf:exposure-event/EXP-L01-001",
+      "generatedByLifecycleEvent": "tmf:lifecycle-event/EVT-L01-001",
+      "linkedLifecycleInformationSystem": [
+        "BIM model",
+        "Building logbook",
+        "Product passport",
+        "Digital twin"
+      ],
+      "digitalObjectReference": "BIM object CLT-FP-01",
+      "decisionUse": [
+        "Maintenance",
+        "Post-event assessment",
+        "Future reuse-related assessment"
+      ],
+      "integrationNote": "Selected exposure indicators retained for future recovery assessment"
+    }
+  ]
+}

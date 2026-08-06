@@ -1,0 +1,831 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sosabaa.github.io/timber-moisture-framework/schema/monitoring_record_schema.schema.json",
+  "title": "Timber Moisture Framework Monitoring Record JSON-LD",
+  "description": "Validation schema for the compacted JSON-LD monitoring-record graph used by the timber moisture framework. Measurement records are modeled as per-property SOSA observations with QUDT quantity values.",
+  "type": "object",
+  "required": [
+    "@context",
+    "@graph"
+  ],
+  "properties": {
+    "@context": {
+      "description": "Either an embedded JSON-LD context or a reference to monitoring_record_schema_context.jsonld.",
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "@graph": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/graphNode"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "graphNode": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/moistureRiskLocation"
+        },
+        {
+          "$ref": "#/$defs/timberElement"
+        },
+        {
+          "$ref": "#/$defs/observableProperty"
+        },
+        {
+          "$ref": "#/$defs/sensor"
+        },
+        {
+          "$ref": "#/$defs/sensorInstallation"
+        },
+        {
+          "$ref": "#/$defs/measurementRecord"
+        },
+        {
+          "$ref": "#/$defs/validationRecord"
+        },
+        {
+          "$ref": "#/$defs/exposureEvent"
+        },
+        {
+          "$ref": "#/$defs/lifecycleEvent"
+        },
+        {
+          "$ref": "#/$defs/lifecycleIntegrationRecord"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:.+"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "textOrTextArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/text"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "idOrIdArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/id"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      ]
+    },
+    "classMoistureRiskLocation": {
+      "oneOf": [
+        {
+          "const": "MoistureRiskLocation"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "MoistureRiskLocation"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classTimberElement": {
+      "oneOf": [
+        {
+          "const": "TimberElement"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "TimberElement"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classObservableProperty": {
+      "oneOf": [
+        {
+          "const": "ObservableProperty"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "ObservableProperty"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classSensor": {
+      "oneOf": [
+        {
+          "const": "Sensor"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "Sensor"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classSensorInstallation": {
+      "oneOf": [
+        {
+          "const": "SensorInstallation"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "SensorInstallation"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classMeasurementRecord": {
+      "oneOf": [
+        {
+          "const": "MeasurementRecord"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "MeasurementRecord"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classValidationRecord": {
+      "oneOf": [
+        {
+          "const": "ValidationRecord"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "ValidationRecord"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classExposureEvent": {
+      "oneOf": [
+        {
+          "const": "ExposureEvent"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "ExposureEvent"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classLifecycleEvent": {
+      "oneOf": [
+        {
+          "const": "LifecycleEvent"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "LifecycleEvent"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classLifecycleIntegrationRecord": {
+      "oneOf": [
+        {
+          "const": "LifecycleIntegrationRecord"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "LifecycleIntegrationRecord"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classQuantityValue": {
+      "oneOf": [
+        {
+          "const": "QuantityValue"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "QuantityValue"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classGeographicCoordinates": {
+      "oneOf": [
+        {
+          "const": "GeographicCoordinates"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "GeographicCoordinates"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "quantityValue": {
+      "type": "object",
+      "required": [
+        "type",
+        "numericValue",
+        "unitRef"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/classQuantityValue"
+        },
+        "numericValue": {
+          "type": "number"
+        },
+        "unitRef": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "additionalProperties": true
+    },
+    "geographicCoordinates": {
+      "type": "object",
+      "required": [
+        "type",
+        "coordinateReferenceSystem",
+        "coordinateFormat",
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/classGeographicCoordinates"
+        },
+        "coordinateReferenceSystem": {
+          "$ref": "#/$defs/text"
+        },
+        "coordinateFormat": {
+          "const": "DMS"
+        },
+        "latitude": {
+          "type": "string",
+          "pattern": "^\\d{1,2}°\\d{1,2}'\\d{1,2}(\\.\\d+)?\\\" [NS]$"
+        },
+        "longitude": {
+          "type": "string",
+          "pattern": "^\\d{1,3}°\\d{1,2}'\\d{1,2}(\\.\\d+)?\\\" [EW]$"
+        }
+      },
+      "additionalProperties": true
+    },
+    "moistureRiskLocation": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "locationId",
+        "description",
+        "riskClass"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classMoistureRiskLocation"
+        },
+        "locationId": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "buildingZone": {
+          "$ref": "#/$defs/text"
+        },
+        "assemblyDetail": {
+          "$ref": "#/$defs/text"
+        },
+        "hasElement": {
+          "$ref": "#/$defs/id"
+        },
+        "elementMaterialFeature": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
+        "moistureSourceOrMechanism": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
+        "riskClass": {
+          "enum": [
+            "Reference",
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ]
+        },
+        "decisionRelevance": {
+          "$ref": "#/$defs/text"
+        },
+        "locationNotes": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "timberElement": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "elementId"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classTimberElement"
+        },
+        "elementId": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "observableProperty": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "propertyId",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classObservableProperty"
+        },
+        "propertyId": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "sensor": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "sensorId",
+        "sensorType"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classSensor"
+        },
+        "sensorId": {
+          "$ref": "#/$defs/text"
+        },
+        "sensorType": {
+          "$ref": "#/$defs/text"
+        },
+        "measurementPrinciple": {
+          "$ref": "#/$defs/text"
+        },
+        "sensorValidationStatus": {
+          "$ref": "#/$defs/text"
+        },
+        "sensorValidationRecord": {
+          "$ref": "#/$defs/idOrIdArray"
+        }
+      },
+      "additionalProperties": true
+    },
+    "sensorInstallation": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "installationId",
+        "location",
+        "deployedSystem",
+        "measurementDepth",
+        "installationCoordinates",
+        "installationDate",
+        "sensorStatus"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classSensorInstallation"
+        },
+        "installationId": {
+          "$ref": "#/$defs/text"
+        },
+        "location": {
+          "$ref": "#/$defs/id"
+        },
+        "deployedSystem": {
+          "$ref": "#/$defs/id"
+        },
+        "measurementDepth": {
+          "$ref": "#/$defs/quantityValue"
+        },
+        "installationCoordinates": {
+          "$ref": "#/$defs/geographicCoordinates"
+        },
+        "sensorPlacementDescription": {
+          "$ref": "#/$defs/text"
+        },
+        "calibrationBasis": {
+          "$ref": "#/$defs/text"
+        },
+        "correctionMethod": {
+          "$ref": "#/$defs/text"
+        },
+        "installationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "installationCondition": {
+          "$ref": "#/$defs/text"
+        },
+        "protectionAccessArrangement": {
+          "$ref": "#/$defs/text"
+        },
+        "sensorStatus": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "measurementRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "measurementId",
+        "madeBySensor",
+        "installation",
+        "location",
+        "observedProperty",
+        "timestamp",
+        "hasSimpleResult",
+        "resultQuantity"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classMeasurementRecord"
+        },
+        "measurementId": {
+          "$ref": "#/$defs/text"
+        },
+        "sourceRecordId": {
+          "$ref": "#/$defs/text"
+        },
+        "madeBySensor": {
+          "$ref": "#/$defs/id"
+        },
+        "installation": {
+          "$ref": "#/$defs/id"
+        },
+        "location": {
+          "$ref": "#/$defs/id"
+        },
+        "observedProperty": {
+          "$ref": "#/$defs/id"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hasSimpleResult": {
+          "$ref": "#/$defs/text"
+        },
+        "resultQuantity": {
+          "$ref": "#/$defs/quantityValue"
+        },
+        "rawSensorOutput": {
+          "$ref": "#/$defs/text"
+        },
+        "samplingInterval": {
+          "$ref": "#/$defs/text"
+        },
+        "dataQualityFlag": {
+          "enum": [
+            "Usable",
+            "Uncertain",
+            "Invalid"
+          ]
+        },
+        "qualityAssessmentRecord": {
+          "$ref": "#/$defs/idOrIdArray"
+        }
+      },
+      "additionalProperties": true
+    },
+    "validationRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "validationId",
+        "timestampOrPeriod",
+        "dataQualityFlag"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classValidationRecord"
+        },
+        "validationId": {
+          "$ref": "#/$defs/text"
+        },
+        "installation": {
+          "$ref": "#/$defs/id"
+        },
+        "timestampOrPeriod": {
+          "$ref": "#/$defs/text"
+        },
+        "dataQualityFlag": {
+          "enum": [
+            "Usable",
+            "Uncertain",
+            "Invalid"
+          ]
+        },
+        "missingDataFlag": {
+          "$ref": "#/$defs/text"
+        },
+        "implausibleValueFlag": {
+          "$ref": "#/$defs/text"
+        },
+        "driftOrSensorDamageFlag": {
+          "$ref": "#/$defs/text"
+        },
+        "communicationFlag": {
+          "$ref": "#/$defs/text"
+        },
+        "redundancyAgreement": {
+          "$ref": "#/$defs/text"
+        },
+        "qualityNotes": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "exposureEvent": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "exposureEventId",
+        "location",
+        "eventStart",
+        "eventEnd"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classExposureEvent"
+        },
+        "exposureEventId": {
+          "$ref": "#/$defs/text"
+        },
+        "location": {
+          "$ref": "#/$defs/id"
+        },
+        "evidenceSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "evidenceObservation": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "eventStart": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "eventEnd": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "thresholdExceedance": {
+          "$ref": "#/$defs/text"
+        },
+        "exceedanceDuration": {
+          "$ref": "#/$defs/text"
+        },
+        "moistureDose": {
+          "$ref": "#/$defs/text"
+        },
+        "dryingBehaviour": {
+          "$ref": "#/$defs/text"
+        },
+        "anomalyIndicator": {
+          "$ref": "#/$defs/text"
+        },
+        "confidenceOrUncertainty": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "lifecycleEvent": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "eventId",
+        "location",
+        "eventType"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classLifecycleEvent"
+        },
+        "eventId": {
+          "$ref": "#/$defs/text"
+        },
+        "location": {
+          "$ref": "#/$defs/id"
+        },
+        "affectedSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "eventType": {
+          "$ref": "#/$defs/text"
+        },
+        "eventPeriod": {
+          "type": "object",
+          "properties": {
+            "eventStart": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "eventEnd": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": true
+        },
+        "eventDescription": {
+          "$ref": "#/$defs/text"
+        },
+        "actionTaken": {
+          "$ref": "#/$defs/text"
+        },
+        "informedByExposureEvent": {
+          "$ref": "#/$defs/id"
+        },
+        "outcome": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "lifecycleIntegrationRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "integrationId",
+        "location",
+        "decisionUse"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classLifecycleIntegrationRecord"
+        },
+        "integrationId": {
+          "$ref": "#/$defs/text"
+        },
+        "location": {
+          "$ref": "#/$defs/id"
+        },
+        "hasElement": {
+          "$ref": "#/$defs/id"
+        },
+        "linkedSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "linkedObservation": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "linkedExposureEvent": {
+          "$ref": "#/$defs/id"
+        },
+        "generatedByLifecycleEvent": {
+          "$ref": "#/$defs/id"
+        },
+        "linkedLifecycleInformationSystem": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
+        "digitalObjectReference": {
+          "$ref": "#/$defs/text"
+        },
+        "decisionUse": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
+        "integrationNote": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

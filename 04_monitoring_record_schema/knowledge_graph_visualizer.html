@@ -1,0 +1,1378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timber Moisture Knowledge Graph Visualizer</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f8;
+      --panel: #ffffff;
+      --panel-soft: #eef3f5;
+      --text: #172026;
+      --muted: #5d6972;
+      --line: #d7dee3;
+      --focus: #1f6feb;
+      --domain: #24776b;
+      --sensor: #9b5c19;
+      --observation: #3565a8;
+      --interpretation: #7f4a75;
+      --other: #5c6670;
+      --shadow: 0 10px 25px rgba(23, 32, 38, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    .file-button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 7px 12px;
+      white-space: nowrap;
+    }
+
+    button:hover,
+    .file-button:hover {
+      border-color: #9cacb7;
+    }
+
+    button:focus-visible,
+    .file-button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(31, 111, 235, 0.28);
+      outline-offset: 2px;
+    }
+
+    .primary {
+      background: #172026;
+      border-color: #172026;
+      color: #ffffff;
+    }
+
+    .app {
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) auto;
+      gap: 16px;
+      align-items: start;
+      margin: 0 auto 14px;
+      max-width: 1580px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .status {
+      align-self: center;
+      color: var(--muted);
+      min-width: 230px;
+      text-align: right;
+    }
+
+    .controls {
+      max-width: 1440px;
+      margin: 0 auto 16px;
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(260px, 0.8fr);
+      gap: 14px;
+    }
+
+    .control-band {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+    }
+
+    .button-row,
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .file-input {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .paste-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 8px;
+      margin-top: 10px;
+      align-items: stretch;
+    }
+
+    textarea {
+      min-height: 42px;
+      max-height: 130px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: #fbfcfd;
+      color: var(--text);
+    }
+
+    input[type="search"],
+    select {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fbfcfd;
+      color: var(--text);
+      padding: 7px 10px;
+    }
+
+    input[type="search"] {
+      flex: 1 1 220px;
+      min-width: 0;
+    }
+
+    select {
+      flex: 0 1 230px;
+      min-width: 160px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(80px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      background: var(--panel-soft);
+      border-radius: 6px;
+      padding: 8px 10px;
+      min-width: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .workspace {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 320px) minmax(300px, 380px);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .graph-wrap,
+    .inspector {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+
+    .graph-wrap {
+      min-height: 620px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .graph {
+      display: block;
+      width: 100%;
+      height: 620px;
+      background: #fbfcfd;
+      touch-action: none;
+    }
+
+    .legend {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-width: calc(100% - 24px);
+      pointer-events: none;
+    }
+
+    .legend-item {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 4px 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .inspector {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      max-height: 620px;
+    }
+
+    .inspector-head {
+      border-bottom: 1px solid var(--line);
+      padding: 13px 14px;
+    }
+
+    .inspector-head h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .inspector-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .inspector-body {
+      overflow: auto;
+      padding: 12px;
+    }
+
+    .node-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .node-list button {
+      justify-content: flex-start;
+      min-height: 0;
+      padding: 8px 9px;
+      white-space: normal;
+      text-align: left;
+    }
+
+    .node-list button[aria-pressed="true"] {
+      border-color: var(--focus);
+      box-shadow: inset 3px 0 0 var(--focus);
+    }
+
+    .node-pill {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+    }
+
+    .node-label {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .details {
+      padding: 12px;
+    }
+
+    .details dl {
+      display: grid;
+      grid-template-columns: minmax(90px, 0.45fr) minmax(0, 1fr);
+      gap: 7px 10px;
+      margin: 0;
+    }
+
+    .details dt {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .details dd {
+      margin: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    .nested-list {
+      display: grid;
+      gap: 3px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nested-dl {
+      display: grid;
+      grid-template-columns: minmax(80px, 0.42fr) minmax(0, 1fr);
+      gap: 4px 8px;
+      margin: 0;
+    }
+
+    .nested-dl dt {
+      color: var(--muted);
+    }
+
+    .nested-dl dd {
+      margin: 0;
+    }
+
+    .empty-state {
+      color: var(--muted);
+      padding: 8px 0;
+    }
+
+    .edge {
+      stroke: #9aa8b2;
+      stroke-width: 1.5;
+      marker-end: url(#arrow);
+    }
+
+    .edge.selected {
+      stroke: var(--focus);
+      stroke-width: 2.4;
+    }
+
+    .edge-label {
+      fill: #66737d;
+      font-size: 11px;
+      paint-order: stroke;
+      stroke: #fbfcfd;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+    .node circle {
+      stroke: #ffffff;
+      stroke-width: 2;
+      filter: drop-shadow(0 4px 8px rgba(23, 32, 38, 0.18));
+    }
+
+    .node text {
+      fill: #172026;
+      font-size: 12px;
+      text-anchor: middle;
+      paint-order: stroke;
+      stroke: #fbfcfd;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+    .node:hover circle,
+    .node.selected circle {
+      stroke: var(--focus);
+      stroke-width: 3;
+    }
+
+    .node.dimmed,
+    .edge.dimmed,
+    .edge-label.dimmed {
+      opacity: 0.25;
+    }
+
+    .node {
+      cursor: grab;
+    }
+
+    .node.dragging {
+      cursor: grabbing;
+    }
+
+    @media (max-width: 980px) {
+      .topbar,
+      .controls,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .status {
+        text-align: left;
+      }
+
+      .workspace {
+        gap: 12px;
+      }
+
+      .inspector {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 21px;
+      }
+
+      .paste-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .graph,
+      .graph-wrap {
+        min-height: 520px;
+      }
+
+      .graph {
+        height: 520px;
+      }
+
+      .details dl {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>Timber Moisture Knowledge Graph Visualizer</h1>
+        <p class="lead">Plot the JSON-LD monitoring record as linked locations, elements, sensors, observations, validation, exposure, and lifecycle records.</p>
+      </div>
+      <div class="status" id="status" role="status">Ready</div>
+    </header>
+
+    <section class="controls" aria-label="Graph controls">
+      <div class="control-band">
+        <div class="button-row">
+          <button class="primary" type="button" id="loadExampleButton">Load repository example</button>
+          <label class="file-button" for="fileInput" tabindex="0">Open JSON-LD file</label>
+          <input class="file-input" id="fileInput" type="file" accept=".json,.jsonld,application/json">
+        </div>
+        <div class="paste-row">
+          <textarea id="pasteInput" placeholder="Paste a JSON-LD graph here"></textarea>
+          <button type="button" id="plotPasteButton">Plot pasted JSON</button>
+        </div>
+      </div>
+
+      <div class="control-band">
+        <div class="filter-row">
+          <input id="searchInput" type="search" placeholder="Search nodes">
+          <select id="typeFilter" aria-label="Filter by type">
+            <option value="">All node types</option>
+          </select>
+          <button type="button" id="resetButton">Reset view</button>
+        </div>
+        <div class="stats" aria-label="Graph statistics">
+          <div class="stat"><strong id="nodeCount">0</strong><span>nodes</span></div>
+          <div class="stat"><strong id="edgeCount">0</strong><span>links</span></div>
+          <div class="stat"><strong id="typeCount">0</strong><span>types</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="graph-wrap">
+        <svg class="graph" id="graphSvg" role="img" aria-label="Knowledge graph plot"></svg>
+        <div class="legend" aria-hidden="true" id="legend"></div>
+      </div>
+
+      <aside class="inspector" aria-label="Node list">
+        <div class="inspector-head">
+          <h2>Nodes</h2>
+          <p>Select a graph node or use the search and type filters.</p>
+        </div>
+        <div class="inspector-body">
+          <div class="node-list" id="nodeList" aria-label="Nodes"></div>
+        </div>
+      </aside>
+
+      <aside class="inspector" aria-label="Selected node details">
+        <div class="inspector-head">
+          <h2 id="inspectorTitle">No node selected</h2>
+          <p id="inspectorSubtitle">Select a node in the graph or list.</p>
+        </div>
+        <div class="inspector-body details" id="details"></div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const refKeys = new Set([
+      "location",
+      "hasElement",
+      "madeBySensor",
+      "deployedSystem",
+      "installation",
+      "observedProperty",
+      "sensorValidationRecord",
+      "qualityAssessmentRecord",
+      "evidenceSensor",
+      "evidenceObservation",
+      "affectedSensor",
+      "linkedSensor",
+      "linkedObservation",
+      "informedByExposureEvent",
+      "linkedExposureEvent",
+      "generatedByLifecycleEvent"
+    ]);
+
+    const roleOrder = ["Domain Entities", "Sensor", "Observation", "Interpretation", "Other"];
+    const roleColors = {
+      "Domain Entities": "#24776b",
+      Sensor: "#9b5c19",
+      Observation: "#3565a8",
+      Interpretation: "#7f4a75",
+      Other: "#5c6670"
+    };
+
+    const fallbackGraph = {
+      "@context": "monitoring_record_schema_context.jsonld",
+      "@graph": [
+        {
+          id: "tmf:location/L-01",
+          type: ["MoistureRiskLocation", "FeatureOfInterest", "Zone"],
+          description: "Sink/dishwasher zone below plumbing and appliance connections",
+          hasElement: "tmf:element/CLT-FP-01",
+          riskClass: "High"
+        },
+        {
+          id: "tmf:element/CLT-FP-01",
+          type: ["TimberElement", "Element"],
+          description: "CLT floor panel associated with the kitchen sink/dishwasher zone"
+        },
+        {
+          id: "tmf:property/moisture-content",
+          type: "ObservableProperty",
+          description: "Timber moisture content"
+        },
+        {
+          id: "tmf:property/relative-humidity",
+          type: "ObservableProperty",
+          description: "Relative humidity near the monitored location"
+        },
+        {
+          id: "tmf:property/air-temperature",
+          type: "ObservableProperty",
+          description: "Air temperature near the monitored location"
+        },
+        {
+          id: "tmf:sensor/MC-L01-01",
+          type: ["Sensor", "tmf:MoistureContentSensor"],
+          sensorId: "MC-L01-01",
+          measurementPrinciple: "Resistance-based MC with supporting RH/T logger output",
+          sensorValidationStatus: "Validated",
+          sensorValidationRecord: "tmf:validation/VAL-L01-001"
+        },
+        {
+          id: "tmf:sensor/MC-L01-02",
+          type: ["Sensor", "tmf:MoistureContentSensor"],
+          sensorId: "MC-L01-02",
+          measurementPrinciple: "Resistance-based MC",
+          sensorValidationStatus: "Not assessed in this example"
+        },
+        {
+          id: "tmf:installation/INST-L01-01",
+          type: ["SensorInstallation", "Deployment"],
+          installationId: "INST-L01-01",
+          location: "tmf:location/L-01",
+          deployedSystem: "tmf:sensor/MC-L01-01",
+          measurementDepth: { type: "QuantityValue", numericValue: 20, unitRef: "unit:MilliM" },
+          installationCoordinates: {
+            type: "GeographicCoordinates",
+            coordinateReferenceSystem: "WGS84",
+            coordinateFormat: "DMS",
+            latitude: "57°46'34.8\" N",
+            longitude: "14°09'34.2\" E"
+          }
+        },
+        {
+          id: "tmf:observation/M-L01-000001-MC",
+          type: ["MeasurementRecord", "Observation"],
+          measurementId: "M-L01-000001-MC",
+          madeBySensor: "tmf:sensor/MC-L01-01",
+          installation: "tmf:installation/INST-L01-01",
+          location: "tmf:location/L-01",
+          observedProperty: "tmf:property/moisture-content",
+          hasSimpleResult: "16.2 %",
+          resultQuantity: { type: "QuantityValue", numericValue: 16.2, unitRef: "unit:PERCENT" },
+          dataQualityFlag: "Usable",
+          qualityAssessmentRecord: "tmf:validation/VAL-L01-001"
+        },
+        {
+          id: "tmf:observation/M-L01-000001-RH",
+          type: ["MeasurementRecord", "Observation"],
+          measurementId: "M-L01-000001-RH",
+          madeBySensor: "tmf:sensor/MC-L01-01",
+          installation: "tmf:installation/INST-L01-01",
+          location: "tmf:location/L-01",
+          observedProperty: "tmf:property/relative-humidity",
+          hasSimpleResult: "62.0 %",
+          resultQuantity: { type: "QuantityValue", numericValue: 62.0, unitRef: "unit:PERCENT" },
+          dataQualityFlag: "Usable",
+          qualityAssessmentRecord: "tmf:validation/VAL-L01-001"
+        },
+        {
+          id: "tmf:observation/M-L01-000001-T",
+          type: ["MeasurementRecord", "Observation"],
+          measurementId: "M-L01-000001-T",
+          madeBySensor: "tmf:sensor/MC-L01-01",
+          installation: "tmf:installation/INST-L01-01",
+          location: "tmf:location/L-01",
+          observedProperty: "tmf:property/air-temperature",
+          hasSimpleResult: "21.4 degC",
+          resultQuantity: { type: "QuantityValue", numericValue: 21.4, unitRef: "unit:DEG_C" },
+          dataQualityFlag: "Usable",
+          qualityAssessmentRecord: "tmf:validation/VAL-L01-001"
+        },
+        {
+          id: "tmf:validation/VAL-L01-001",
+          type: ["ValidationRecord", "Activity"],
+          installation: "tmf:installation/INST-L01-01",
+          dataQualityFlag: "Usable"
+        },
+        {
+          id: "tmf:exposure-event/EXP-L01-001",
+          type: ["ExposureEvent", "Activity"],
+          location: "tmf:location/L-01",
+          evidenceSensor: ["tmf:sensor/MC-L01-01", "tmf:sensor/MC-L01-02"],
+          evidenceObservation: "tmf:observation/M-L01-000001-MC",
+          thresholdExceedance: "MC above project-defined threshold"
+        },
+        {
+          id: "tmf:lifecycle-event/EVT-L01-001",
+          type: ["LifecycleEvent", "Activity"],
+          location: "tmf:location/L-01",
+          affectedSensor: "tmf:sensor/MC-L01-01",
+          informedByExposureEvent: "tmf:exposure-event/EXP-L01-001",
+          eventType: "Leakage and inspection"
+        },
+        {
+          id: "tmf:lifecycle-integration/LINK-L01-001",
+          type: ["LifecycleIntegrationRecord", "Entity"],
+          location: "tmf:location/L-01",
+          hasElement: "tmf:element/CLT-FP-01",
+          linkedSensor: ["tmf:sensor/MC-L01-01", "tmf:sensor/MC-L01-02"],
+          linkedObservation: [
+            "tmf:observation/M-L01-000001-MC",
+            "tmf:observation/M-L01-000001-RH",
+            "tmf:observation/M-L01-000001-T"
+          ],
+          linkedExposureEvent: "tmf:exposure-event/EXP-L01-001",
+          generatedByLifecycleEvent: "tmf:lifecycle-event/EVT-L01-001"
+        }
+      ]
+    };
+
+    const state = {
+      graphData: null,
+      nodes: [],
+      edges: [],
+      positions: new Map(),
+      drag: null,
+      selectedId: "",
+      query: "",
+      typeFilter: ""
+    };
+
+    const svg = document.getElementById("graphSvg");
+    const statusEl = document.getElementById("status");
+    const nodeCountEl = document.getElementById("nodeCount");
+    const edgeCountEl = document.getElementById("edgeCount");
+    const typeCountEl = document.getElementById("typeCount");
+    const searchInput = document.getElementById("searchInput");
+    const typeFilter = document.getElementById("typeFilter");
+    const nodeList = document.getElementById("nodeList");
+    const details = document.getElementById("details");
+    const inspectorTitle = document.getElementById("inspectorTitle");
+    const inspectorSubtitle = document.getElementById("inspectorSubtitle");
+
+    document.getElementById("loadExampleButton").addEventListener("click", loadRepositoryExample);
+    document.getElementById("plotPasteButton").addEventListener("click", plotPastedJson);
+    document.getElementById("resetButton").addEventListener("click", resetView);
+    document.getElementById("fileInput").addEventListener("change", loadFile);
+    searchInput.addEventListener("input", () => {
+      state.query = searchInput.value.trim().toLowerCase();
+      render();
+    });
+    typeFilter.addEventListener("change", () => {
+      state.typeFilter = typeFilter.value;
+      render();
+    });
+    document.addEventListener("pointermove", dragNode);
+    document.addEventListener("pointerup", endDrag);
+
+    if ("ResizeObserver" in window) {
+      const resizeObserver = new ResizeObserver(() => renderGraph());
+      resizeObserver.observe(svg);
+    } else {
+      window.addEventListener("resize", () => renderGraph());
+    }
+
+    function setStatus(message) {
+      statusEl.textContent = message;
+    }
+
+    async function loadRepositoryExample() {
+      try {
+        if (window.location.protocol === "file:") {
+          throw new Error("Browser file access cannot fetch adjacent JSON-LD files.");
+        }
+        const response = await fetch("monitoring_record_schema_example.jsonld", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const data = await response.json();
+        loadGraph(data, "Loaded monitoring_record_schema_example.jsonld");
+      } catch (error) {
+        loadGraph(fallbackGraph, "Loaded bundled fallback graph. Use file upload for the full local JSON-LD file.");
+      }
+    }
+
+    function loadFile(event) {
+      const file = event.target.files[0];
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          loadGraph(data, `Loaded ${file.name}`);
+        } catch (error) {
+          setStatus(`Could not parse ${file.name}: ${error.message}`);
+        }
+      };
+      reader.onerror = () => setStatus(`Could not read ${file.name}`);
+      reader.readAsText(file);
+    }
+
+    function plotPastedJson() {
+      const pasted = document.getElementById("pasteInput").value.trim();
+      if (!pasted) {
+        setStatus("Paste a JSON-LD graph first.");
+        return;
+      }
+      try {
+        loadGraph(JSON.parse(pasted), "Loaded pasted JSON-LD");
+      } catch (error) {
+        setStatus(`Could not parse pasted JSON: ${error.message}`);
+      }
+    }
+
+    function loadGraph(data, message) {
+      const graph = buildGraph(data);
+      state.graphData = data;
+      state.nodes = graph.nodes;
+      state.edges = graph.edges;
+      state.positions = new Map();
+      state.drag = null;
+      state.selectedId = state.nodes[0]?.id || "";
+      syncTypeFilterOptions();
+      setStatus(message);
+      render();
+    }
+
+    function resetView() {
+      searchInput.value = "";
+      typeFilter.value = "";
+      state.query = "";
+      state.typeFilter = "";
+      state.positions = new Map();
+      state.drag = null;
+      state.selectedId = state.nodes[0]?.id || "";
+      render();
+    }
+
+    function buildGraph(data) {
+      const graphArray = Array.isArray(data?.["@graph"]) ? data["@graph"] : Array.isArray(data) ? data : [];
+      const nodes = graphArray
+        .filter((item) => item && typeof item === "object" && getId(item))
+        .map((item) => {
+          const types = getTypes(item);
+          return {
+            id: getId(item),
+            raw: item,
+            types,
+            role: classifyRole(types),
+            label: getLabel(item),
+            subtitle: types.join(", ") || "Untyped node"
+          };
+        });
+
+      const idSet = new Set(nodes.map((node) => node.id));
+      const edges = [];
+
+      for (const node of nodes) {
+        for (const [key, value] of Object.entries(node.raw)) {
+          if (!refKeys.has(key)) {
+            continue;
+          }
+          for (const target of collectRefs(value, idSet)) {
+            edges.push({
+              id: `${node.id}|${key}|${target}`,
+              source: node.id,
+              target,
+              label: key
+            });
+          }
+        }
+      }
+
+      return { nodes, edges };
+    }
+
+    function getId(item) {
+      return item.id || item["@id"] || "";
+    }
+
+    function getTypes(item) {
+      const value = item.type || item["@type"] || [];
+      return Array.isArray(value) ? value.map(String) : [String(value)];
+    }
+
+    function classifyRole(types) {
+      const typeSet = new Set(types);
+      if (typeSet.has("MeasurementRecord") || typeSet.has("Observation")) {
+        return "Observation";
+      }
+      if (typeSet.has("Sensor") || typeSet.has("SensorInstallation") || typeSet.has("Deployment")) {
+        return "Sensor";
+      }
+      if (
+        typeSet.has("ValidationRecord") ||
+        typeSet.has("ExposureEvent") ||
+        typeSet.has("LifecycleEvent") ||
+        typeSet.has("LifecycleIntegrationRecord")
+      ) {
+        return "Interpretation";
+      }
+      if (
+        typeSet.has("MoistureRiskLocation") ||
+        typeSet.has("TimberElement") ||
+        typeSet.has("ObservableProperty") ||
+        typeSet.has("FeatureOfInterest") ||
+        typeSet.has("Zone") ||
+        typeSet.has("Element")
+      ) {
+        return "Domain Entities";
+      }
+      return "Other";
+    }
+
+    function getLabel(item) {
+      return (
+        item.sensorId ||
+        item.installationId ||
+        item.measurementId ||
+        item.validationId ||
+        item.exposureEventId ||
+        item.eventId ||
+        item.integrationId ||
+        item.locationId ||
+        item.elementId ||
+        item.propertyId ||
+        compactId(getId(item))
+      );
+    }
+
+    function compactId(id) {
+      return String(id).split(/[/:#]/).filter(Boolean).pop() || String(id);
+    }
+
+    function collectRefs(value, idSet) {
+      const refs = [];
+      const visit = (item) => {
+        if (Array.isArray(item)) {
+          item.forEach(visit);
+          return;
+        }
+        if (item && typeof item === "object") {
+          const id = getId(item);
+          if (id && idSet.has(id)) {
+            refs.push(id);
+          }
+          return;
+        }
+        if (typeof item === "string" && idSet.has(item)) {
+          refs.push(item);
+        }
+      };
+      visit(value);
+      return refs;
+    }
+
+    function syncTypeFilterOptions() {
+      const selected = state.typeFilter;
+      const types = Array.from(new Set(state.nodes.flatMap((node) => node.types))).sort();
+      typeFilter.replaceChildren(new Option("All node types", ""));
+      for (const type of types) {
+        typeFilter.appendChild(new Option(type, type));
+      }
+      typeFilter.value = types.includes(selected) ? selected : "";
+      state.typeFilter = typeFilter.value;
+    }
+
+    function getVisibleGraph() {
+      const visibleNodes = state.nodes.filter((node) => {
+        const haystack = JSON.stringify(node.raw).toLowerCase();
+        const matchesSearch = !state.query || haystack.includes(state.query);
+        const matchesType = !state.typeFilter || node.types.includes(state.typeFilter);
+        return matchesSearch && matchesType;
+      });
+      const visibleIds = new Set(visibleNodes.map((node) => node.id));
+      const visibleEdges = state.edges.filter((edge) => visibleIds.has(edge.source) && visibleIds.has(edge.target));
+      return { visibleNodes, visibleEdges, visibleIds };
+    }
+
+    function render() {
+      const typeCount = new Set(state.nodes.flatMap((node) => node.types)).size;
+      nodeCountEl.textContent = String(state.nodes.length);
+      edgeCountEl.textContent = String(state.edges.length);
+      typeCountEl.textContent = String(typeCount);
+      renderLegend();
+      renderNodeList();
+      renderInspector();
+      renderGraph();
+    }
+
+    function renderLegend() {
+      const legend = document.getElementById("legend");
+      legend.replaceChildren();
+      for (const role of roleOrder) {
+        const item = document.createElement("span");
+        item.className = "legend-item";
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        dot.style.background = roleColors[role];
+        item.append(dot, document.createTextNode(role));
+        legend.appendChild(item);
+      }
+    }
+
+    function renderNodeList() {
+      const { visibleNodes } = getVisibleGraph();
+      nodeList.replaceChildren();
+      if (!visibleNodes.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent = "No nodes match the current filters.";
+        nodeList.appendChild(empty);
+        return;
+      }
+
+      for (const node of visibleNodes) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.setAttribute("aria-pressed", String(node.id === state.selectedId));
+        button.addEventListener("click", () => selectNode(node.id));
+
+        const pill = document.createElement("span");
+        pill.className = "node-pill";
+        pill.style.background = roleColors[node.role];
+
+        const label = document.createElement("span");
+        label.className = "node-label";
+        label.textContent = `${node.label} - ${node.subtitle}`;
+
+        button.append(pill, label);
+        nodeList.appendChild(button);
+      }
+    }
+
+    function renderInspector() {
+      const node = state.nodes.find((item) => item.id === state.selectedId);
+      details.replaceChildren();
+      if (!node) {
+        inspectorTitle.textContent = "No node selected";
+        inspectorSubtitle.textContent = "Select a node in the graph or list.";
+        return;
+      }
+
+      inspectorTitle.textContent = node.label;
+      inspectorSubtitle.textContent = node.id;
+
+      const dl = document.createElement("dl");
+      for (const [key, value] of Object.entries(node.raw)) {
+        const dt = document.createElement("dt");
+        dt.textContent = key;
+        const dd = document.createElement("dd");
+        dd.appendChild(renderValue(value));
+        dl.append(dt, dd);
+      }
+      details.appendChild(dl);
+    }
+
+    function renderGraph() {
+      if (!state.nodes.length) {
+        svg.replaceChildren();
+        return;
+      }
+
+      const { visibleNodes, visibleEdges, visibleIds } = getVisibleGraph();
+      const rect = svg.getBoundingClientRect();
+      const width = Math.max(320, Math.floor(rect.width || svg.clientWidth || 900));
+      const height = Math.max(520, Math.floor(rect.height || svg.clientHeight || 620));
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.replaceChildren();
+
+      const defs = createSvg("defs");
+      const marker = createSvg("marker", {
+        id: "arrow",
+        markerWidth: "10",
+        markerHeight: "10",
+        refX: "8",
+        refY: "3",
+        orient: "auto",
+        markerUnits: "strokeWidth"
+      });
+      marker.appendChild(createSvg("path", { d: "M0,0 L0,6 L9,3 z", fill: "#9aa8b2" }));
+      defs.appendChild(marker);
+      svg.appendChild(defs);
+
+      const positions = layoutNodes(visibleNodes, width, height);
+      const selectedNeighbors = getSelectedNeighbors();
+
+      const edgeLayer = createSvg("g");
+      const labelLayer = createSvg("g");
+      const nodeLayer = createSvg("g");
+      svg.append(edgeLayer, labelLayer, nodeLayer);
+
+      for (const edge of visibleEdges) {
+        const source = positions.get(edge.source);
+        const target = positions.get(edge.target);
+        if (!source || !target) {
+          continue;
+        }
+        const selected = edge.source === state.selectedId || edge.target === state.selectedId;
+        const dimmed = state.selectedId && !selected && visibleIds.has(state.selectedId);
+        const line = createSvg("line", {
+          x1: source.x,
+          y1: source.y,
+          x2: target.x,
+          y2: target.y,
+          class: ["edge", selected ? "selected" : "", dimmed ? "dimmed" : ""].filter(Boolean).join(" ")
+        });
+        edgeLayer.appendChild(line);
+
+        if (selected || visibleEdges.length <= 24) {
+          const label = createSvg("text", {
+            x: (source.x + target.x) / 2,
+            y: (source.y + target.y) / 2 - 5,
+            class: ["edge-label", dimmed ? "dimmed" : ""].filter(Boolean).join(" ")
+          });
+          label.textContent = edge.label;
+          labelLayer.appendChild(label);
+        }
+      }
+
+      for (const node of visibleNodes) {
+        const point = positions.get(node.id);
+        if (!point) {
+          continue;
+        }
+        const selected = node.id === state.selectedId;
+        const connected = selectedNeighbors.has(node.id);
+        const dimmed = state.selectedId && !selected && !connected && visibleIds.has(state.selectedId);
+        const group = createSvg("g", {
+          class: [
+            "node",
+            selected ? "selected" : "",
+            dimmed ? "dimmed" : "",
+            state.drag?.id === node.id ? "dragging" : ""
+          ].filter(Boolean).join(" "),
+          tabindex: "0",
+          role: "button",
+          "aria-label": `${node.label}, ${node.subtitle}`,
+          transform: `translate(${point.x}, ${point.y})`
+        });
+        group.addEventListener("pointerdown", (event) => startDrag(event, node.id));
+        group.addEventListener("click", () => selectNode(node.id));
+        group.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectNode(node.id);
+          }
+        });
+
+        const radius = node.role === "Observation" ? 17 : 15;
+        group.appendChild(createSvg("circle", {
+          r: radius,
+          fill: roleColors[node.role]
+        }));
+
+        const text = createSvg("text", { y: radius + 15 });
+        text.textContent = shorten(node.label, 24);
+        group.appendChild(text);
+        nodeLayer.appendChild(group);
+      }
+    }
+
+    function layoutNodes(nodes, width, height) {
+      const positions = new Map();
+      const groups = new Map(roleOrder.map((role) => [role, []]));
+      for (const node of nodes) {
+        groups.get(node.role)?.push(node);
+      }
+
+      const populatedRoles = roleOrder.filter((role) => groups.get(role).length);
+      const marginX = width < 620 ? 64 : 90;
+      const marginY = 70;
+      const usableWidth = Math.max(1, width - marginX * 2);
+      const xStep = populatedRoles.length > 1 ? usableWidth / (populatedRoles.length - 1) : 0;
+
+      populatedRoles.forEach((role, roleIndex) => {
+        const group = groups.get(role);
+        const x = populatedRoles.length > 1 ? marginX + roleIndex * xStep : width / 2;
+        const usableHeight = Math.max(1, height - marginY * 2);
+        const yStep = group.length > 1 ? usableHeight / (group.length - 1) : 0;
+        group.forEach((node, index) => {
+          const y = group.length > 1 ? marginY + index * yStep : height / 2;
+          positions.set(node.id, { x, y });
+        });
+      });
+
+      relaxLayout(nodes, positions, width, height);
+      for (const [id, point] of positions) {
+        const saved = state.positions.get(id);
+        if (saved) {
+          positions.set(id, {
+            x: clamp(saved.x, 38, width - 38),
+            y: clamp(saved.y, 52, height - 52)
+          });
+        } else {
+          state.positions.set(id, point);
+        }
+      }
+      return positions;
+    }
+
+    function relaxLayout(nodes, positions, width, height) {
+      const edges = state.edges.filter((edge) => positions.has(edge.source) && positions.has(edge.target));
+      const idToNode = new Map(nodes.map((node) => [node.id, node]));
+      const minX = 38;
+      const maxX = width - 38;
+      const minY = 52;
+      const maxY = height - 52;
+
+      for (let iteration = 0; iteration < 35; iteration += 1) {
+        const next = new Map(Array.from(positions, ([id, point]) => [id, { ...point }]));
+
+        for (const edge of edges) {
+          const source = positions.get(edge.source);
+          const target = positions.get(edge.target);
+          const sourceNode = idToNode.get(edge.source);
+          const targetNode = idToNode.get(edge.target);
+          if (!source || !target || !sourceNode || !targetNode || sourceNode.role !== targetNode.role) {
+            continue;
+          }
+          const dy = target.y - source.y;
+          next.get(edge.source).y += dy * 0.018;
+          next.get(edge.target).y -= dy * 0.018;
+        }
+
+        for (let i = 0; i < nodes.length; i += 1) {
+          for (let j = i + 1; j < nodes.length; j += 1) {
+            const a = positions.get(nodes[i].id);
+            const b = positions.get(nodes[j].id);
+            if (!a || !b) {
+              continue;
+            }
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const distanceSquared = dx * dx + dy * dy || 1;
+            if (distanceSquared > 10000) {
+              continue;
+            }
+            const force = 120 / distanceSquared;
+            next.get(nodes[i].id).y -= Math.sign(dy || 1) * force;
+            next.get(nodes[j].id).y += Math.sign(dy || 1) * force;
+          }
+        }
+
+        for (const [id, point] of next) {
+          point.x = clamp(point.x, minX, maxX);
+          point.y = clamp(point.y, minY, maxY);
+          positions.set(id, point);
+        }
+      }
+    }
+
+    function getSelectedNeighbors() {
+      const neighbors = new Set([state.selectedId]);
+      for (const edge of state.edges) {
+        if (edge.source === state.selectedId) {
+          neighbors.add(edge.target);
+        }
+        if (edge.target === state.selectedId) {
+          neighbors.add(edge.source);
+        }
+      }
+      return neighbors;
+    }
+
+    function selectNode(id) {
+      state.selectedId = id;
+      render();
+    }
+
+    function startDrag(event, id) {
+      if (event.button !== 0 && event.pointerType !== "touch") {
+        return;
+      }
+      const point = getPointerPosition(event);
+      const current = state.positions.get(id) || point;
+      state.drag = {
+        id,
+        offsetX: point.x - current.x,
+        offsetY: point.y - current.y
+      };
+      state.selectedId = id;
+      event.preventDefault();
+      render();
+    }
+
+    function dragNode(event) {
+      if (!state.drag) {
+        return;
+      }
+      const point = getPointerPosition(event);
+      const rect = svg.getBoundingClientRect();
+      const width = Math.max(320, Math.floor(rect.width || svg.clientWidth || 900));
+      const height = Math.max(520, Math.floor(rect.height || svg.clientHeight || 620));
+      state.positions.set(state.drag.id, {
+        x: clamp(point.x - state.drag.offsetX, 38, width - 38),
+        y: clamp(point.y - state.drag.offsetY, 52, height - 52)
+      });
+      renderGraph();
+      renderNodeList();
+      renderInspector();
+    }
+
+    function endDrag() {
+      if (!state.drag) {
+        return;
+      }
+      state.drag = null;
+      renderGraph();
+    }
+
+    function getPointerPosition(event) {
+      const point = svg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      const matrix = svg.getScreenCTM();
+      if (!matrix) {
+        return { x: point.x, y: point.y };
+      }
+      const transformed = point.matrixTransform(matrix.inverse());
+      return { x: transformed.x, y: transformed.y };
+    }
+
+    function renderValue(value) {
+      if (value === null || value === undefined) {
+        return document.createTextNode("");
+      }
+      if (Array.isArray(value)) {
+        const list = document.createElement("ul");
+        list.className = "nested-list";
+        for (const item of value) {
+          const listItem = document.createElement("li");
+          listItem.appendChild(renderValue(item));
+          list.appendChild(listItem);
+        }
+        return list;
+      }
+      if (typeof value === "object") {
+        const nested = document.createElement("dl");
+        nested.className = "nested-dl";
+        for (const [key, nestedValue] of Object.entries(value)) {
+          const dt = document.createElement("dt");
+          dt.textContent = key;
+          const dd = document.createElement("dd");
+          dd.appendChild(renderValue(nestedValue));
+          nested.append(dt, dd);
+        }
+        return nested;
+      }
+      return document.createTextNode(String(value));
+    }
+
+    function shorten(value, length) {
+      const text = String(value);
+      return text.length > length ? `${text.slice(0, length - 1)}...` : text;
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function createSvg(name, attributes = {}) {
+      const element = document.createElementNS("http://www.w3.org/2000/svg", name);
+      for (const [key, value] of Object.entries(attributes)) {
+        element.setAttribute(key, value);
+      }
+      return element;
+    }
+
+    loadRepositoryExample();
+  </script>
+</body>
+</html>
