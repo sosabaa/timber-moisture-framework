@@ -116,12 +116,12 @@
       "sensorValidationRecord": "tmf:validation/VAL-L01-001"
     },
     {
-      "id": "tmf:sensor/MC-L01-02",
+      "id": "tmf:sensor/MC-L05-01",
       "type": [
         "Sensor",
         "tmf:MoistureContentSensor"
       ],
-      "sensorId": "MC-L01-02",
+      "sensorId": "MC-L05-01",
       "sensorType": "MC sensor",
       "measurementPrinciple": "Resistance-based MC",
       "sensorValidationStatus": "Not assessed"
@@ -152,9 +152,38 @@
       "correctionMethod": "Temperature correction applied/not applied",
       "installationDate": "2026-08-06T09:00:00.000+02:00",
       "installationCondition": "Installed after floor enclosure, before cabinetry",
-      "protectionAccessArrangement": "Cable protected behind service access panel",
+      "protectionAccessArrangement": "No protection",
       "sensorStatus": "Active"
     },
+    {
+      "id": "tmf:installation/INST-L05-01",
+      "type": [
+        "SensorInstallation",
+        "Deployment"
+      ],
+      "installationId": "INST-L05-01",
+      "location": "tmf:location/L-05",
+      "deployedSystem": "tmf:sensor/MC-L05-01",
+      "measurementDepth": {
+        "type": "QuantityValue",
+        "numericValue": 20,
+        "unitRef": "unit:MilliM"
+      },
+      "installationCoordinates": {
+        "type": "GeographicCoordinates",
+        "coordinateReferenceSystem": "WGS84",
+        "coordinateFormat": "DMS",
+        "latitude": "57°46'35.5\" N",
+        "longitude": "14°09'34.2\" E"
+      },
+      "sensorPlacementDescription": " Reference floor area away from appliance, plumbing, and junction risk zones",
+      "calibrationBasis": "Manufacturer timber MC calibration",
+      "correctionMethod": "Temperature correction applied/not applied",
+      "installationDate": "2026-08-06T09:00:00.000+02:00",
+      "installationCondition": "Installed after floor enclosure",
+      "protectionAccessArrangement": "Concealed installation",
+      "sensorStatus": "Active"
+    },    
     {
       "id": "tmf:monitoring-series/MS-L01-001",
       "type": [
@@ -332,7 +361,7 @@
       "location": "tmf:location/L-01",
       "evidenceSensor": [
         "tmf:sensor/MC-L01-01",
-        "tmf:sensor/MC-L01-02"
+        "tmf:sensor/MC-L05-01"
       ],
       "evidenceObservation": [
         "tmf:observation/M-L01-MC-20260807T130000000+0200",
@@ -377,7 +406,7 @@
       "hasElement": "tmf:element/CLT-FP-01",
       "linkedSensor": [
         "tmf:sensor/MC-L01-01",
-        "tmf:sensor/MC-L01-02"
+        "tmf:sensor/MC-L05-01"
       ],
       "linkedObservation": [
         "tmf:observation/M-L01-MC-20260807T130000000+0200",
