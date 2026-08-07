@@ -183,7 +183,7 @@
       "installationCondition": "Installed after floor enclosure",
       "protectionAccessArrangement": "Concealed installation",
       "sensorStatus": "Active"
-    },    
+    },
     {
       "id": "tmf:monitoring-series/MS-L01-001",
       "type": [
@@ -309,30 +309,9 @@
       "eventId": "EVT-L01-001",
       "location": "tmf:location/L-01",
       "affectedSensor": "tmf:sensor/MC-L01-01",
-      "eventType": [
-        "moisture-threshold-exceedance",
-        "leakage-detected",
-        "inspection"
-      ],
-      "eventPeriod": {
-        "eventStart": "2026-08-07T10:00:00.000Z",
-        "eventEnd": "2026-08-09T16:00:00.000Z"
-      },
-      "eventDescription": "Moisture anomaly associated with dishwasher leakage report and subsequent inspection.",
-      "actionTaken": "Area inspected; no targeted opening undertaken",
-      "outcome": "Continued monitoring recommended",
-      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json",
-      "evidenceSensor": [
-        "tmf:sensor/MC-L01-01",
-        "tmf:sensor/MC-L05-01"
-      ],
-      "evidenceObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
-      "thresholdExceedance": "MC above project-defined threshold",
-      "exceedanceDuration": "54 hours",
-      "moistureDose": "Repeated short exceedances",
-      "dryingBehaviour": "Delayed drying",
-      "anomalyIndicator": "Localised anomaly compared with L-05 reference",
-      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
+      "eventMonitoringSeries": "tmf:monitoring-series/MS-L01-001",
+      "eventValidationRecord": "tmf:validation/VAL-L01-001",
+      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json"
     },
     {
       "id": "tmf:lifecycle-integration/LINK-L01-001",

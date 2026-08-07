@@ -125,26 +125,30 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Quality notes | Optional | Manual verification recommended after leakage report | Additional interpretation note. |
 | Validation log | Optional | validation_log_VAL-L01-001.json | Linked JSON audit log containing target-specific checks for observations, sensors, and whole monitoring series. In JSON-LD, link this through `hasValidationLog`. |
 
-## Moisture-related lifecycle event log
+## Moisture-related lifecycle event register
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|
-| Event ID | Required | EVT-L01-001 | Unique event or intervention entry. |
-| Location ID | Required | L-01 | Links event to risk location. |
-| Affected sensor ID | Optional | MC-L01-01 | Use where the event affects, inspects, replaces, or recalibrates a sensor. |
+| Event ID | Required | EVT-L01-001 | Unique compact event record. |
+| Location ID | Required | L-01 | Links event record to risk location. |
+| Affected sensor ID(s) | Optional | MC-L01-01 | Sensor records associated with the event record. |
+| Event monitoring series ID(s) | Optional | MS-L01-001 | Monitoring series used by the event log. In JSON-LD, link this through `eventMonitoringSeries`. |
+| Event validation record ID(s) | Optional | VAL-L01-001 | Validation records used by the event log. In JSON-LD, link this through `eventValidationRecord`. |
+| Event log | Required where event details are retained | event_log_EVT-L01-001.json | Linked JSON file containing event type, time period, moisture interpretation, event timeline, inspection, action, and outcome entries. In JSON-LD, link this through `hasEventLog`. |
+
+## Event log file
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
 | Event type | Required | moisture-threshold-exceedance; leakage-detected; inspection | Event category or categories. |
-| Event period | Required where known | Start: 2026-08-07T10:00:00.000Z; End: 2026-08-09T16:00:00.000Z | Time period of the interpreted moisture condition, reported event, intervention, or combined lifecycle event. In JSON-LD, record this as `eventPeriod.eventStart` and `eventPeriod.eventEnd`. |
-| Event description | Required | Moisture anomaly associated with dishwasher leakage report and subsequent inspection | Short description. |
-| Evidence sensor ID(s) | Optional | MC-L01-01; MC-L01-02 | Sensors whose readings support the event interpretation. |
-| Evidence observation ID(s) or file URL | Optional | monitoring_timeseries_MS-L01-001.json | Observations or linked observation file used as event evidence. |
+| Event period | Required where known | Start: 2026-08-07T10:00:00.000Z; End: 2026-08-09T16:00:00.000Z | Time period of the interpreted moisture condition, reported event, intervention, or combined lifecycle event. |
+| Evidence observation file URL | Optional | monitoring_timeseries_MS-L01-001.json | Observations or linked observation file used as event evidence. |
 | Threshold exceedance | Optional | MC above project-defined threshold | Thresholds are interpretation triggers, not standalone criteria. |
 | Exceedance duration | Optional | 54 hours | Duration above threshold. |
 | Moisture dose | Optional | Repeated short exceedances | Use only where a dose metric is defined. |
 | Drying behaviour | Optional | Delayed drying | Interpreted drying response. |
 | Anomaly indicator | Optional | Localised anomaly compared with L-05 reference | Helps distinguish local wetting from background behaviour. |
 | Confidence or uncertainty | Optional | Medium confidence due to complete data but limited redundancy | Interprets reliability of the event interpretation. |
-| Action taken | Optional | Area inspected; no targeted opening undertaken | Intervention record. |
+| Event entries | Required where a timeline is retained | threshold exceedance; leakage detected; inspection; decision recorded | Chronological event log entries with timestamps, entry types, and descriptions. |
 | Outcome | Optional | Continued monitoring recommended | Decision or outcome. |
-| Event log | Optional | event_log_EVT-L01-001.json | Linked JSON file containing fuller moisture interpretation, event timeline, inspection, action, and outcome entries. In JSON-LD, link this through `hasEventLog`. |
 
 ## Lifecycle integration register
 | Field | Required/optional | Example entry | Notes |
