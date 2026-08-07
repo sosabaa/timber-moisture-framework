@@ -94,6 +94,23 @@
       "@id": "tmf:qualityAssessmentRecord",
       "@type": "@id"
     },
+    "validationTargetSensor": {
+      "@id": "tmf:validationTargetSensor",
+      "@type": "@id"
+    },
+    "validationTargetSeries": {
+      "@id": "tmf:validationTargetSeries",
+      "@type": "@id"
+    },
+    "validationTargetObservation": {
+      "@id": "tmf:validationTargetObservation",
+      "@type": "@id"
+    },
+    "validationPerformedAt": {
+      "@id": "tmf:validationPerformedAt",
+      "@type": "xsd:dateTime"
+    },
+    "validationBasis": "tmf:validationBasis",
     "evidenceSensor": {
       "@id": "tmf:evidenceSensor",
       "@type": "@id"
