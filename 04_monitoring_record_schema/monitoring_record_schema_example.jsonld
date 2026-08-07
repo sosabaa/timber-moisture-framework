@@ -207,6 +207,66 @@
       "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json"
     },
     {
+      "id": "tmf:observation/M-L01-MC-20250626T002555202Z",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-MC-20250626T002555202Z",
+      "sourceRecordId": "M-L01-20250626T002555202Z",
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001",
+      "observedProperty": "tmf:property/moisture-content",
+      "timestamp": "2025-06-26T00:25:55.202099Z",
+      "hasSimpleResult": "13.6 %",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 13.6,
+        "unitRef": "unit:PERCENT"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001"
+    },
+    {
+      "id": "tmf:observation/M-L01-RH-20250626T002555202Z",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-RH-20250626T002555202Z",
+      "sourceRecordId": "M-L01-20250626T002555202Z",
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001",
+      "observedProperty": "tmf:property/relative-humidity",
+      "timestamp": "2025-06-26T00:25:55.202099Z",
+      "hasSimpleResult": "66.0 %",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 66.0,
+        "unitRef": "unit:PERCENT"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001"
+    },
+    {
+      "id": "tmf:observation/M-L01-T-20250626T002555202Z",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-T-20250626T002555202Z",
+      "sourceRecordId": "M-L01-20250626T002555202Z",
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001",
+      "observedProperty": "tmf:property/air-temperature",
+      "timestamp": "2025-06-26T00:25:55.202099Z",
+      "hasSimpleResult": "20.2 degC",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 20.2,
+        "unitRef": "unit:DEG_C"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001"
+    },
+    {
       "id": "tmf:validation/VAL-L01-001",
       "type": [
         "ValidationRecord",
@@ -221,7 +281,8 @@
       "driftOrSensorDamageFlag": "No drift suspected",
       "communicationFlag": "Normal transmission",
       "redundancyAgreement": "Shallow and deeper sensors show consistent trend",
-      "qualityNotes": "Manual verification recommended after leakage report"
+      "qualityNotes": "Manual verification recommended after leakage report",
+      "hasValidationLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/validation_log_VAL-L01-001.json"
     },
     {
       "id": "tmf:exposure-event/EXP-L01-001",
@@ -243,7 +304,8 @@
       "moistureDose": "Repeated short exceedances",
       "dryingBehaviour": "Delayed drying",
       "anomalyIndicator": "Localised anomaly compared with L-05 reference",
-      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
+      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy",
+      "hasExposureLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/exposure_log_EXP-L01-001.json"
     },
     {
       "id": "tmf:lifecycle-event/EVT-L01-001",
@@ -262,7 +324,8 @@
       "eventDescription": "Dishwasher leakage reported and inspected",
       "actionTaken": "Area inspected; no targeted opening undertaken",
       "informedByExposureEvent": "tmf:exposure-event/EXP-L01-001",
-      "outcome": "Continued monitoring recommended"
+      "outcome": "Continued monitoring recommended",
+      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json"
     },
     {
       "id": "tmf:lifecycle-integration/LINK-L01-001",
@@ -278,12 +341,11 @@
         "tmf:sensor/MC-L05-01"
       ],
       "linkedExposureEvent": "tmf:exposure-event/EXP-L01-001",
+      "linkedValidationRecord": "tmf:validation/VAL-L01-001",
       "generatedByLifecycleEvent": "tmf:lifecycle-event/EVT-L01-001",
       "linkedLifecycleInformationSystem": [
         "BIM model",
-        "Building logbook",
-        "Product passport",
-        "Digital twin"
+        "Product passport"
       ],
       "digitalObjectReference": "BIM object CLT-FP-01",
       "decisionUse": [

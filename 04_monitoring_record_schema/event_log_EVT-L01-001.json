@@ -1,0 +1,29 @@
+{
+  "eventId": "EVT-L01-001",
+  "eventIri": "tmf:lifecycle-event/EVT-L01-001",
+  "location": "tmf:location/L-01",
+  "affectedSensor": "tmf:sensor/MC-L01-01",
+  "informedByExposureEvent": "tmf:exposure-event/EXP-L01-001",
+  "eventType": "Leakage and inspection",
+  "eventPeriod": {
+    "start": "2026-08-08T19:00:00.000+02:00",
+    "end": "2026-08-08T21:00:00.000+02:00"
+  },
+  "entries": [
+    {
+      "timestamp": "2026-08-08T19:00:00.000+02:00",
+      "entryType": "reported-event",
+      "description": "Dishwasher leakage reported."
+    },
+    {
+      "timestamp": "2026-08-08T20:00:00.000+02:00",
+      "entryType": "inspection",
+      "description": "Area inspected; no targeted opening undertaken."
+    },
+    {
+      "timestamp": "2026-08-08T21:00:00.000+02:00",
+      "entryType": "outcome",
+      "description": "Continued monitoring recommended."
+    }
+  ]
+}

@@ -669,6 +669,9 @@
         },
         "qualityNotes": {
           "$ref": "#/$defs/text"
+        },
+        "hasValidationLog": {
+          "$ref": "#/$defs/id"
         }
       },
       "additionalProperties": true
@@ -727,6 +730,9 @@
         },
         "confidenceOrUncertainty": {
           "$ref": "#/$defs/text"
+        },
+        "hasExposureLog": {
+          "$ref": "#/$defs/id"
         }
       },
       "additionalProperties": true
@@ -784,6 +790,9 @@
         },
         "outcome": {
           "$ref": "#/$defs/text"
+        },
+        "hasEventLog": {
+          "$ref": "#/$defs/id"
         }
       },
       "additionalProperties": true
@@ -821,6 +830,9 @@
         },
         "linkedExposureEvent": {
           "$ref": "#/$defs/id"
+        },
+        "linkedValidationRecord": {
+          "$ref": "#/$defs/idOrIdArray"
         },
         "generatedByLifecycleEvent": {
           "$ref": "#/$defs/id"

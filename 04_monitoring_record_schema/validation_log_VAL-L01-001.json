@@ -1,0 +1,40 @@
+{
+  "validationId": "VAL-L01-001",
+  "validationIri": "tmf:validation/VAL-L01-001",
+  "installation": "tmf:installation/INST-L01-01",
+  "sensor": "tmf:sensor/MC-L01-01",
+  "monitoringSeries": "tmf:monitoring-series/MS-L01-001",
+  "validationPeriod": {
+    "start": "2026-08-07T00:00:00.003+02:00",
+    "end": "2026-08-08T16:40:11.633+02:00"
+  },
+  "overallDataQualityFlag": "Usable",
+  "checks": [
+    {
+      "checkType": "missing-data",
+      "status": "pass",
+      "result": "No gap detected"
+    },
+    {
+      "checkType": "implausible-value",
+      "status": "pass",
+      "result": "No implausible value detected"
+    },
+    {
+      "checkType": "drift-or-sensor-damage",
+      "status": "pass",
+      "result": "No drift suspected"
+    },
+    {
+      "checkType": "communication",
+      "status": "pass",
+      "result": "Normal transmission"
+    },
+    {
+      "checkType": "redundancy-agreement",
+      "status": "review",
+      "result": "Shallow and deeper sensors show consistent trend"
+    }
+  ],
+  "qualityNotes": "Manual verification recommended after leakage report."
+}

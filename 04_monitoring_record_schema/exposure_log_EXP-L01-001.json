@@ -1,0 +1,35 @@
+{
+  "exposureEventId": "EXP-L01-001",
+  "exposureEventIri": "tmf:exposure-event/EXP-L01-001",
+  "location": "tmf:location/L-01",
+  "referenceLocation": "tmf:location/L-05",
+  "monitoringSeries": "tmf:monitoring-series/MS-L01-001",
+  "evidenceObservationDataFile": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
+  "eventPeriod": {
+    "start": "2026-08-07T12:00:00.000+02:00",
+    "end": "2026-08-09T18:00:00.000+02:00"
+  },
+  "indicators": [
+    {
+      "indicatorType": "threshold-exceedance",
+      "result": "MC above project-defined threshold"
+    },
+    {
+      "indicatorType": "exceedance-duration",
+      "result": "54 hours"
+    },
+    {
+      "indicatorType": "moisture-dose",
+      "result": "Repeated short exceedances"
+    },
+    {
+      "indicatorType": "drying-behaviour",
+      "result": "Delayed drying"
+    },
+    {
+      "indicatorType": "reference-location-comparison",
+      "result": "Localised anomaly compared with L-05 reference"
+    }
+  ],
+  "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy."
+}
