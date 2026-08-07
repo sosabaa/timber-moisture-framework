@@ -10,7 +10,7 @@ This example shows how a simple logger export can be mapped into the compacted J
 
 ## Mapping pattern
 
-Each CSV row is retained as a source logger record and expanded into one observation per property. The generated observation ID uses the pattern `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T130000000+0200`.
+Each CSV row is retained as a source logger record and expanded into one observation per property. The generated observation ID uses the pattern `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T110000000Z`.
 
 - `logger_mc_percent` becomes an MC observation with `observedProperty` set to `tmf:property/moisture-content`.
 - `logger_rh_percent` becomes an RH observation with `observedProperty` set to `tmf:property/relative-humidity`.
@@ -75,8 +75,8 @@ The parent time-series node links the observations into the whole monitoring rec
   "location": "tmf:location/L-01",
   "installation": "tmf:installation/INST-L01-01",
   "madeBySensor": "tmf:sensor/MC-L01-01",
-  "seriesStart": "2026-08-07T13:00:00.000+02:00",
-  "seriesEnd": "2026-08-07T14:00:00.000+02:00",
+  "seriesStart": "2026-08-07T11:00:00.000Z",
+  "seriesEnd": "2026-08-07T12:00:00.000Z",
   "samplingInterval": "PT1H",
   "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json"
 }
