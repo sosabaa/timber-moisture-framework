@@ -3,6 +3,12 @@
   "$id": "https://sosabaa.github.io/timber-moisture-framework/schema/monitoring_record_schema.schema.json",
   "title": "Timber Moisture Framework Monitoring Record JSON-LD",
   "description": "Validation schema for the compacted JSON-LD monitoring-record graph used by the timber moisture framework. Measurement records are modeled as per-property SOSA observations with QUDT quantity values.",
+  "lifecycleContext": {
+    "$ref": "#/$defs/text"
+    },
+  "monitoringPurpose": {
+    "$ref": "#/$defs/textOrTextArray"
+    },
   "type": "object",
   "required": [
     "@context",
