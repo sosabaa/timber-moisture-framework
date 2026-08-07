@@ -348,30 +348,7 @@
     .details dd {
       margin: 0;
       overflow-wrap: anywhere;
-      white-space: normal;
-    }
-
-    .nested-list {
-      display: grid;
-      gap: 3px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nested-dl {
-      display: grid;
-      grid-template-columns: minmax(80px, 0.42fr) minmax(0, 1fr);
-      gap: 4px 8px;
-      margin: 0;
-    }
-
-    .nested-dl dt {
-      color: var(--muted);
-    }
-
-    .nested-dl dd {
-      margin: 0;
+      white-space: pre-wrap;
     }
 
     .empty-state {
@@ -1054,7 +1031,7 @@
         const dt = document.createElement("dt");
         dt.textContent = key;
         const dd = document.createElement("dd");
-        dd.appendChild(renderValue(value));
+        dd.textContent = formatValue(value);
         dl.append(dt, dd);
       }
       details.appendChild(dl);
@@ -1326,33 +1303,14 @@
       return { x: transformed.x, y: transformed.y };
     }
 
-    function renderValue(value) {
+    function formatValue(value) {
       if (value === null || value === undefined) {
-        return document.createTextNode("");
-      }
-      if (Array.isArray(value)) {
-        const list = document.createElement("ul");
-        list.className = "nested-list";
-        for (const item of value) {
-          const listItem = document.createElement("li");
-          listItem.appendChild(renderValue(item));
-          list.appendChild(listItem);
-        }
-        return list;
+        return "";
       }
       if (typeof value === "object") {
-        const nested = document.createElement("dl");
-        nested.className = "nested-dl";
-        for (const [key, nestedValue] of Object.entries(value)) {
-          const dt = document.createElement("dt");
-          dt.textContent = key;
-          const dd = document.createElement("dd");
-          dd.appendChild(renderValue(nestedValue));
-          nested.append(dt, dd);
-        }
-        return nested;
+        return JSON.stringify(value, null, 2);
       }
-      return document.createTextNode(String(value));
+      return String(value);
     }
 
     function shorten(value, length) {
