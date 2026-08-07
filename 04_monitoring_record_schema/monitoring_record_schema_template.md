@@ -112,6 +112,11 @@ The compact graph may include one representative MC, RH, and temperature observa
 |---|---|---|---|
 | Validation ID | Required | VAL-L01-001 | Unique validation entry. |
 | Installation ID | Optional | INST-L01-01 | Identifies the installation context covered by the validation record. |
+| Validation target observation ID(s) | Optional | M-L01-MC-20250626T002555202Z | Observation records assessed by the validation record. In JSON-LD, link these through `validationTargetObservation`. |
+| Validation target sensor ID(s) | Optional | MC-L01-01 | Sensor records assessed by the validation record. In JSON-LD, link these through `validationTargetSensor`. |
+| Validation target series ID(s) | Optional | MS-L01-001 | Whole monitoring series assessed by the validation record. In JSON-LD, link these through `validationTargetSeries`. |
+| Validation performed at | Optional | 2026-08-08T16:40:11.633+02:00 | Time at which the validation assessment was carried out. In JSON-LD, record as `validationPerformedAt`. |
+| Validation basis | Optional | Unit consistency; plausibility range; drift review | What the target was checked against. Use this to distinguish observation checks, sensor checks, and whole-series checks. |
 | Timestamp or period | Required | 2026-08-07T16:40:11.633+02:00 or 2026-08-07T00:00:00.003+02:00 to 2026-08-08T16:40:11.633+02:00 | Can apply to one reading or a period. |
 | Data-quality flag | Required | Usable/uncertain/invalid | Overall quality status. |
 | Missing-data flag | Required | No gap detected | Data continuity check. |
@@ -120,7 +125,7 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Communication flag | Required | Normal transmission | Battery/logging/transmission check. |
 | Redundancy agreement | Required where applicable | Shallow and deeper sensors show consistent trend | Comparison with duplicate, paired, or nearby sensors. |
 | Quality notes | Optional | Manual verification recommended after leakage report | Additional interpretation note. |
-| Validation log | Optional | validation_log_VAL-L01-001.json | Linked JSON file containing the fuller validation checks. In JSON-LD, link this through `hasValidationLog`. |
+| Validation log | Optional | validation_log_VAL-L01-001.json | Linked JSON audit log containing target-specific checks for observations, sensors, and whole monitoring series. In JSON-LD, link this through `hasValidationLog`. |
 
 ## Exposure-interpretation table
 | Field | Required/optional | Example entry | Notes |

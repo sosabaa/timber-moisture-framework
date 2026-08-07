@@ -567,6 +567,9 @@
       "hasObservation",
       "sensorValidationRecord",
       "qualityAssessmentRecord",
+      "validationTargetSensor",
+      "validationTargetSeries",
+      "validationTargetObservation",
       "evidenceSensor",
       "evidenceObservation",
       "affectedSensor",
@@ -835,6 +838,21 @@
                       ],
                       "validationId": "VAL-L01-001",
                       "installation": "tmf:installation/INST-L01-01",
+                      "validationTargetSensor": "tmf:sensor/MC-L01-01",
+                      "validationTargetSeries": "tmf:monitoring-series/MS-L01-001",
+                      "validationTargetObservation": [
+                            "tmf:observation/M-L01-MC-20250626T002555202Z",
+                            "tmf:observation/M-L01-RH-20250626T002555202Z",
+                            "tmf:observation/M-L01-T-20250626T002555202Z"
+                      ],
+                      "validationPerformedAt": "2026-08-08T16:40:11.633+02:00",
+                      "validationBasis": [
+                            "Sensor installation record",
+                            "Manufacturer calibration basis",
+                            "Project plausibility ranges",
+                            "Reference-location comparison",
+                            "Whole-series continuity and drift review"
+                      ],
                       "timestampOrPeriod": "2026-08-07T00:00:00.003+02:00 to 2026-08-08T16:40:11.633+02:00",
                       "dataQualityFlag": "Usable",
                       "missingDataFlag": "No gap detected",

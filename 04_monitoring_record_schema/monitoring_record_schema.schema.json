@@ -642,6 +642,22 @@
         "installation": {
           "$ref": "#/$defs/id"
         },
+        "validationTargetSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "validationTargetSeries": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "validationTargetObservation": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "validationPerformedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validationBasis": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
         "timestampOrPeriod": {
           "$ref": "#/$defs/text"
         },
