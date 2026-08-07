@@ -351,6 +351,29 @@
       white-space: normal;
     }
 
+    .nested-list {
+      display: grid;
+      gap: 3px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nested-dl {
+      display: grid;
+      grid-template-columns: minmax(80px, 0.42fr) minmax(0, 1fr);
+      gap: 4px 8px;
+      margin: 0;
+    }
+
+    .nested-dl dt {
+      color: var(--muted);
+    }
+
+    .nested-dl dd {
+      margin: 0;
+    }
+    
     .empty-state {
       color: var(--muted);
       padding: 8px 0;
