@@ -15,7 +15,8 @@ The template is intended to be used after the risk-location classification and s
   Example linked monitoring record for the CLT kitchen-floor application.
 
 - `knowledge_graph_visualizer.html`
-  Static browser visualizer for plotting the JSON-LD example or another compacted monitoring-record graph.
+  Static browser visualizer for plotting the repository JSON-LD example or a user-supplied compacted monitoring-record graph.
+https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/knowledge_graph_visualizer.html
 
 - `monitoring_record_schema.schema.json`  
   JSON Schema for checking the compacted JSON-LD graph structure, required identifiers, links, timestamps, SOSA observation fields, and QUDT quantity values.
