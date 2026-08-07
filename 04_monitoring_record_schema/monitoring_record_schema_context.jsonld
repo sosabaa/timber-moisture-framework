@@ -21,8 +21,8 @@
     "SensorInstallation": "tmf:SensorInstallation",
     "MeasurementRecord": "tmf:MeasurementRecord",
     "ValidationRecord": "tmf:ValidationRecord",
-    "ExposureEvent": "tmf:ExposureEvent",
     "LifecycleEvent": "tmf:LifecycleEvent",
+    "MoistureRelatedEvent": "tmf:MoistureRelatedEvent",
     "LifecycleIntegrationRecord": "tmf:LifecycleIntegrationRecord",
     "FeatureOfInterest": "sosa:FeatureOfInterest",
     "ObservableProperty": "sosa:ObservableProperty",
@@ -40,7 +40,6 @@
     "measurementId": "schema:identifier",
     "sourceRecordId": "tmf:sourceRecordId",
     "validationId": "schema:identifier",
-    "exposureEventId": "schema:identifier",
     "eventId": "schema:identifier",
     "integrationId": "schema:identifier",
     "elementId": "schema:identifier",
@@ -131,12 +130,8 @@
       "@id": "tmf:linkedObservation",
       "@type": "@id"
     },
-    "informedByExposureEvent": {
-      "@id": "prov:wasInformedBy",
-      "@type": "@id"
-    },
-    "linkedExposureEvent": {
-      "@id": "tmf:linkedExposureEvent",
+    "linkedEvent": {
+      "@id": "tmf:linkedEvent",
       "@type": "@id"
     },
     "linkedValidationRecord": {
@@ -237,10 +232,6 @@
     },
     "hasValidationLog": {
       "@id": "tmf:hasValidationLog",
-      "@type": "@id"
-    },
-    "hasExposureLog": {
-      "@id": "tmf:hasExposureLog",
       "@type": "@id"
     },
     "hasEventLog": {

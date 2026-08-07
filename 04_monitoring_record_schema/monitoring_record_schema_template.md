@@ -1,6 +1,6 @@
 # Monitoring-record schema template
 
-This template supports Layers 4, 5, 6, and 8 of the framework: data and metadata capture, validation, exposure interpretation, and lifecycle integration. It defines the information needed to convert sensor readings into interpretable moisture-exposure records.
+This template supports Layers 4, 5, 6, and 8 of the framework: data and metadata capture, validation, moisture-event interpretation, and lifecycle integration. It defines the information needed to convert sensor readings into interpretable moisture-related event records.
 
 The schema should be adapted to the selected sensor system, data platform, BIM model, building logbook, product passport, or other lifecycle information system.
 
@@ -15,8 +15,7 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 | Monitoring time-series register | Dynamic dataset metadata | Defines the whole time-series record for a location, sensor installation, observed properties, time span, sampling interval, and linked observation data file. | Series ID |
 | Observation data file | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings outside the compact JSON-LD graph. | Observation file URL / Observation ID |
 | Validation log | Derived/quality data | Stores data-quality checks, missing-data flags, implausible values, drift concerns, communication gaps, and redundancy agreement in a linked JSON file. | Validation log URL / Validation ID |
-| Exposure log | Derived/event-summary data | Stores threshold exceedance, duration, moisture dose, drying behaviour, anomaly indicators, and confidence level in a linked JSON file. | Exposure log URL / Exposure Event ID |
-| Lifecycle event log | Event-based data | Stores leakage events, inspection, maintenance, repair, sensor replacement, recalibration, and reuse-related assessment notes in a linked JSON file. | Event log URL / Event ID |
+| Moisture-related event log | Event-based and interpretation data | Stores threshold exceedance, duration, moisture dose, drying behaviour, anomaly indicators, leakage reports, inspection, maintenance, repair, sensor replacement, recalibration, and reuse-related assessment notes in a linked JSON file. | Event log URL / Event ID |
 | Lifecycle integration register | Linkage data | Links the record to BIM objects, building logbooks, product passports, digital twins, or other lifecycle information systems. | Location ID / Element ID |
 
 | Identifier | Definition |
@@ -26,20 +25,19 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 | Installation ID | Identifies a specific installation of a sensor at a location. Useful if a sensor is replaced or recalibrated. |
 | Series ID | Identifies the whole monitoring time series for a location, sensor installation, and period. |
 | Measurement ID | Identifies one timestamped per-property observation. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T130000000+0200`. When a logger row contains several properties, use one observation ID per property and preserve the original logger-row ID as a source record ID. |
-| Exposure Event ID | Identifies a derived moisture event, such as a prolonged threshold exceedance. |
-| Intervention ID | Identifies an inspection, repair, maintenance action, recalibration, or sensor replacement. |
+| Event ID | Identifies a moisture-related event, such as a threshold exceedance, leakage, inspection, repair, maintenance action, recalibration, or sensor replacement. |
 
 ## JSON-LD implementation
 
-The schema can be implemented in JSON-LD by treating each table as a linked resource type. Static location data, sensor installation metadata, dynamic time-series observations, validation records, interpreted exposure events, lifecycle events, and lifecycle integration records are stored as separate entities in an `@graph`. These entities are connected through persistent identifiers such as `Location ID`, `Sensor ID`, `Installation ID`, `Measurement ID`, `Exposure Event ID`, and `Event ID`.
+The schema can be implemented in JSON-LD by treating each table as a linked resource type. Static location data, sensor installation metadata, dynamic time-series observations, validation records, moisture-related lifecycle events, and lifecycle integration records are stored as separate entities in an `@graph`. These entities are connected through persistent identifiers such as `Location ID`, `Sensor ID`, `Installation ID`, `Measurement ID`, and `Event ID`.
 
-This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, interpreted exposure event, and lifecycle information system.
+This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, moisture-related event, and lifecycle information system.
 
 The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data file through `hasObservation`. This keeps the knowledge graph compact while the detailed time-series values remain in a linked JSON file.
 
 For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A logger row containing MC, RH, and temperature therefore maps to three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
 
-The compact graph may include one representative MC, RH, and temperature observation to show the SOSA pattern, while the full time series remains in the linked observation data file. Validation, exposure interpretation, and lifecycle-event details can follow the same compact-plus-linked-file pattern through `hasValidationLog`, `hasExposureLog`, and `hasEventLog`.
+The compact graph may include one representative MC, RH, and temperature observation to show the SOSA pattern, while the full time series remains in the linked observation data file. Validation and moisture-related event details can follow the same compact-plus-linked-file pattern through `hasValidationLog` and `hasEventLog`.
 
 ## Location register
 | Field | Required/optional | Example entry | Notes |
@@ -127,36 +125,26 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Quality notes | Optional | Manual verification recommended after leakage report | Additional interpretation note. |
 | Validation log | Optional | validation_log_VAL-L01-001.json | Linked JSON audit log containing target-specific checks for observations, sensors, and whole monitoring series. In JSON-LD, link this through `hasValidationLog`. |
 
-## Exposure-interpretation table
-| Field | Required/optional | Example entry | Notes |
-|---|---|---|---|
-| Exposure Event ID | Required | EXP-L01-001 | Unique interpreted moisture event. |
-| Location ID | Required | L-01 | Links event to risk location. |
-| Evidence sensor ID(s) | Required | MC-L01-01; MC-L01-02 | Sensors whose readings support the interpreted event. |
-| Evidence observation ID(s) | Required where applicable | M-L01-000001-MC | Observations used as evidence for the interpreted event. |
-| Event start | Required | 2026-08-07T12:00:00.000+02:00 | Start of interpreted event. |
-| Event end | Required where applicable | 2026-08-09T18:00:00.000+02:00 | End of interpreted event. |
-| Threshold exceedance | Required | MC above project-defined threshold | Thresholds are interpretation triggers, not standalone criteria. |
-| Exceedance duration | Required where applicable | 54 hours | Duration above threshold. |
-| Moisture dose | Optional | Repeated short exceedances | Use only where a dose metric is defined. |
-| Drying behaviour | Required where applicable | Delayed drying | Interpreted drying response. |
-| Anomaly indicator | Required | Localised anomaly compared with L-05 reference | Helps distinguish local wetting from background behaviour. |
-| Confidence or uncertainty | Required | Medium confidence due to complete data but limited redundancy | Interprets reliability of exposure event. |
-| Exposure log | Optional | exposure_log_EXP-L01-001.json | Linked JSON file containing fuller exposure indicators and interpretation notes. In JSON-LD, link this through `hasExposureLog`. |
-
-## Lifecycle event and intervention log
+## Moisture-related lifecycle event log
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|
 | Event ID | Required | EVT-L01-001 | Unique event or intervention entry. |
 | Location ID | Required | L-01 | Links event to risk location. |
 | Affected sensor ID | Optional | MC-L01-01 | Use where the event affects, inspects, replaces, or recalibrates a sensor. |
-| Event type | Required | Leakage / inspection / repair / maintenance / recalibration / replacement | Event category. |
-| Event period | Required where known | Start: 2026-08-08T19:00:00.000+02:00; End: 2026-08-08T21:00:00.000+02:00 | Time period of the event or intervention. In JSON-LD, record this as `eventPeriod.eventStart` and `eventPeriod.eventEnd`. For an instantaneous event, record `eventStart`; `eventEnd` may be omitted or set equal to `eventStart`, depending on the implementation. |
-| Event description | Required | Dishwasher leakage reported and inspected | Short description. |
+| Event type | Required | moisture-threshold-exceedance; leakage-detected; inspection | Event category or categories. |
+| Event period | Required where known | Start: 2026-08-07T12:00:00.000+02:00; End: 2026-08-09T18:00:00.000+02:00 | Time period of the interpreted moisture condition, reported event, intervention, or combined lifecycle event. In JSON-LD, record this as `eventPeriod.eventStart` and `eventPeriod.eventEnd`. |
+| Event description | Required | Moisture anomaly associated with dishwasher leakage report and subsequent inspection | Short description. |
+| Evidence sensor ID(s) | Optional | MC-L01-01; MC-L01-02 | Sensors whose readings support the event interpretation. |
+| Evidence observation ID(s) or file URL | Optional | monitoring_timeseries_MS-L01-001.json | Observations or linked observation file used as event evidence. |
+| Threshold exceedance | Optional | MC above project-defined threshold | Thresholds are interpretation triggers, not standalone criteria. |
+| Exceedance duration | Optional | 54 hours | Duration above threshold. |
+| Moisture dose | Optional | Repeated short exceedances | Use only where a dose metric is defined. |
+| Drying behaviour | Optional | Delayed drying | Interpreted drying response. |
+| Anomaly indicator | Optional | Localised anomaly compared with L-05 reference | Helps distinguish local wetting from background behaviour. |
+| Confidence or uncertainty | Optional | Medium confidence due to complete data but limited redundancy | Interprets reliability of the event interpretation. |
 | Action taken | Optional | Area inspected; no targeted opening undertaken | Intervention record. |
-| Informed-by exposure event ID | Optional | EXP-L01-001 | Links intervention to the interpreted moisture event that informed it. |
 | Outcome | Optional | Continued monitoring recommended | Decision or outcome. |
-| Event log | Optional | event_log_EVT-L01-001.json | Linked JSON file containing fuller event or intervention entries. In JSON-LD, link this through `hasEventLog`. |
+| Event log | Optional | event_log_EVT-L01-001.json | Linked JSON file containing fuller moisture interpretation, event timeline, inspection, action, and outcome entries. In JSON-LD, link this through `hasEventLog`. |
 
 ## Lifecycle integration register
 | Field | Required/optional | Example entry | Notes |
@@ -168,12 +156,12 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Linked monitoring series ID(s) | Optional | MS-L01-001 | Whole time-series records retained in the lifecycle information system. |
 | Linked observation ID(s) | Optional | M-L01-MC-20260807T130000000+0200; M-L01-RH-20260807T130000000+0200 | Observation records retained in the lifecycle information system. |
 | Linked validation record ID(s) | Optional | VAL-L01-001 | Validation records retained in the lifecycle information system. |
-| Linked exposure event ID | Optional | EXP-L01-001 | Interpreted exposure record retained in the lifecycle information system. |
+| Linked event ID | Optional | EVT-L01-001 | Moisture-related event retained in the lifecycle information system. |
 | Generated-by lifecycle event ID | Optional | EVT-L01-001 | Event record that generated or motivated the integration record. |
 | Linked lifecycle information system | Optional | BIM model / product passport | System where the record is stored or referenced. |
 | Digital object reference | Optional | BIM object CLT-FP-01 | Object or database reference. |
 | Decision use | Required | Maintenance, post-event assessment, future reuse-related assessment | Explains why the record is retained. |
-| Notes | Optional | Selected exposure indicators retained for future recovery assessment | Additional lifecycle context. |
+| Notes | Optional | Selected event indicators retained for future recovery assessment | Additional lifecycle context. |
 ## Notes for use
 
 - Keep the `Location ID` consistent across the risk-location classification, sensor-deployment, and monitoring-record schema files.

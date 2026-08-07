@@ -300,47 +300,39 @@
       "hasValidationLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/validation_log_VAL-L01-001.json"
     },
     {
-      "id": "tmf:exposure-event/EXP-L01-001",
-      "type": [
-        "ExposureEvent",
-        "Activity"
-      ],
-      "exposureEventId": "EXP-L01-001",
-      "location": "tmf:location/L-01",
-      "evidenceSensor": [
-        "tmf:sensor/MC-L01-01",
-        "tmf:sensor/MC-L05-01"
-      ],
-      "evidenceObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
-      "eventStart": "2026-08-07T12:00:00.000+02:00",
-      "eventEnd": "2026-08-09T18:00:00.000+02:00",
-      "thresholdExceedance": "MC above project-defined threshold",
-      "exceedanceDuration": "54 hours",
-      "moistureDose": "Repeated short exceedances",
-      "dryingBehaviour": "Delayed drying",
-      "anomalyIndicator": "Localised anomaly compared with L-05 reference",
-      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy",
-      "hasExposureLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/exposure_log_EXP-L01-001.json"
-    },
-    {
       "id": "tmf:lifecycle-event/EVT-L01-001",
       "type": [
         "LifecycleEvent",
+        "MoistureRelatedEvent",
         "Activity"
       ],
       "eventId": "EVT-L01-001",
       "location": "tmf:location/L-01",
       "affectedSensor": "tmf:sensor/MC-L01-01",
-      "eventType": "Leakage and inspection",
+      "eventType": [
+        "moisture-threshold-exceedance",
+        "leakage-detected",
+        "inspection"
+      ],
       "eventPeriod": {
-        "eventStart": "2026-08-08T19:00:00.000+02:00",
-        "eventEnd": "2026-08-08T21:00:00.000+02:00"
+        "eventStart": "2026-08-07T12:00:00.000+02:00",
+        "eventEnd": "2026-08-09T18:00:00.000+02:00"
       },
-      "eventDescription": "Dishwasher leakage reported and inspected",
+      "eventDescription": "Moisture anomaly associated with dishwasher leakage report and subsequent inspection.",
       "actionTaken": "Area inspected; no targeted opening undertaken",
-      "informedByExposureEvent": "tmf:exposure-event/EXP-L01-001",
       "outcome": "Continued monitoring recommended",
-      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json"
+      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json",
+      "evidenceSensor": [
+        "tmf:sensor/MC-L01-01",
+        "tmf:sensor/MC-L05-01"
+      ],
+      "evidenceObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
+      "thresholdExceedance": "MC above project-defined threshold",
+      "exceedanceDuration": "54 hours",
+      "moistureDose": "Repeated short exceedances",
+      "dryingBehaviour": "Delayed drying",
+      "anomalyIndicator": "Localised anomaly compared with L-05 reference",
+      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
     },
     {
       "id": "tmf:lifecycle-integration/LINK-L01-001",
@@ -355,7 +347,6 @@
         "tmf:sensor/MC-L01-01",
         "tmf:sensor/MC-L05-01"
       ],
-      "linkedExposureEvent": "tmf:exposure-event/EXP-L01-001",
       "linkedValidationRecord": "tmf:validation/VAL-L01-001",
       "generatedByLifecycleEvent": "tmf:lifecycle-event/EVT-L01-001",
       "linkedLifecycleInformationSystem": [
@@ -368,8 +359,9 @@
         "Post-event assessment",
         "Future reuse-related assessment"
       ],
-      "integrationNote": "Selected exposure indicators retained for future recovery assessment",
-      "linkedMonitoringSeries": "tmf:monitoring-series/MS-L01-001"
+      "integrationNote": "Selected event, validation, and monitoring-series indicators retained for future recovery assessment",
+      "linkedMonitoringSeries": "tmf:monitoring-series/MS-L01-001",
+      "linkedEvent": "tmf:lifecycle-event/EVT-L01-001"
     }
   ]
 }
