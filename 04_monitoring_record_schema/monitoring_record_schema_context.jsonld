@@ -122,6 +122,10 @@
       "@id": "tmf:linkedExposureEvent",
       "@type": "@id"
     },
+    "linkedValidationRecord": {
+      "@id": "tmf:linkedValidationRecord",
+      "@type": "@id"
+    },
     "generatedByLifecycleEvent": {
       "@id": "prov:wasGeneratedBy",
       "@type": "@id"
@@ -212,6 +216,18 @@
     },
     "partOfSeries": {
       "@id": "schema:isPartOf",
+      "@type": "@id"
+    },
+    "hasValidationLog": {
+      "@id": "tmf:hasValidationLog",
+      "@type": "@id"
+    },
+    "hasExposureLog": {
+      "@id": "tmf:hasExposureLog",
+      "@type": "@id"
+    },
+    "hasEventLog": {
+      "@id": "tmf:hasEventLog",
       "@type": "@id"
     }
   }

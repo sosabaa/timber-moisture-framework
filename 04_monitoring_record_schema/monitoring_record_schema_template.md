@@ -14,9 +14,9 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 | Sensor installation register | Semi-static sensor metadata | Defines the installed sensor or sensor channel, including sensor type, measurement depth, calibration basis, and installation context. | Sensor ID / Installation ID |
 | Monitoring time-series register | Dynamic dataset metadata | Defines the whole time-series record for a location, sensor installation, observed properties, time span, sampling interval, and linked observation data file. | Series ID |
 | Observation data file | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings outside the compact JSON-LD graph. | Observation file URL / Observation ID |
-| Validation and quality table | Derived/quality data | Stores data-quality checks, missing-data flags, implausible values, drift concerns, communication gaps, and redundancy agreement. | Observation ID or Sensor ID + Timestamp |
-| Exposure-interpretation table | Derived/event-summary data | Stores threshold exceedance, duration, moisture dose, drying behaviour, anomaly indicators, and confidence level. | Exposure Event ID / Location ID |
-| Lifecycle event and intervention log | Event-based data | Stores leakage events, inspection, maintenance, repair, sensor replacement, recalibration, and reuse-related assessment notes. | Event ID / Location ID |
+| Validation log | Derived/quality data | Stores data-quality checks, missing-data flags, implausible values, drift concerns, communication gaps, and redundancy agreement in a linked JSON file. | Validation log URL / Validation ID |
+| Exposure log | Derived/event-summary data | Stores threshold exceedance, duration, moisture dose, drying behaviour, anomaly indicators, and confidence level in a linked JSON file. | Exposure log URL / Exposure Event ID |
+| Lifecycle event log | Event-based data | Stores leakage events, inspection, maintenance, repair, sensor replacement, recalibration, and reuse-related assessment notes in a linked JSON file. | Event log URL / Event ID |
 | Lifecycle integration register | Linkage data | Links the record to BIM objects, building logbooks, product passports, digital twins, or other lifecycle information systems. | Location ID / Element ID |
 
 | Identifier | Definition |
@@ -38,6 +38,8 @@ This structure prevents hourly measurements from repeating static metadata while
 The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data file through `hasObservation`. This keeps the knowledge graph compact while the detailed time-series values remain in a linked JSON file.
 
 For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A logger row containing MC, RH, and temperature therefore maps to three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
+
+The compact graph may include one representative MC, RH, and temperature observation to show the SOSA pattern, while the full time series remains in the linked observation data file. Validation, exposure interpretation, and lifecycle-event details can follow the same compact-plus-linked-file pattern through `hasValidationLog`, `hasExposureLog`, and `hasEventLog`.
 
 ## Location register
 | Field | Required/optional | Example entry | Notes |
@@ -118,6 +120,7 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Communication flag | Required | Normal transmission | Battery/logging/transmission check. |
 | Redundancy agreement | Required where applicable | Shallow and deeper sensors show consistent trend | Comparison with duplicate, paired, or nearby sensors. |
 | Quality notes | Optional | Manual verification recommended after leakage report | Additional interpretation note. |
+| Validation log | Optional | validation_log_VAL-L01-001.json | Linked JSON file containing the fuller validation checks. In JSON-LD, link this through `hasValidationLog`. |
 
 ## Exposure-interpretation table
 | Field | Required/optional | Example entry | Notes |
@@ -134,6 +137,7 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Drying behaviour | Required where applicable | Delayed drying | Interpreted drying response. |
 | Anomaly indicator | Required | Localised anomaly compared with L-05 reference | Helps distinguish local wetting from background behaviour. |
 | Confidence or uncertainty | Required | Medium confidence due to complete data but limited redundancy | Interprets reliability of exposure event. |
+| Exposure log | Optional | exposure_log_EXP-L01-001.json | Linked JSON file containing fuller exposure indicators and interpretation notes. In JSON-LD, link this through `hasExposureLog`. |
 
 ## Lifecycle event and intervention log
 | Field | Required/optional | Example entry | Notes |
@@ -147,6 +151,7 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Action taken | Optional | Area inspected; no targeted opening undertaken | Intervention record. |
 | Informed-by exposure event ID | Optional | EXP-L01-001 | Links intervention to the interpreted moisture event that informed it. |
 | Outcome | Optional | Continued monitoring recommended | Decision or outcome. |
+| Event log | Optional | event_log_EVT-L01-001.json | Linked JSON file containing fuller event or intervention entries. In JSON-LD, link this through `hasEventLog`. |
 
 ## Lifecycle integration register
 | Field | Required/optional | Example entry | Notes |
@@ -157,9 +162,10 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Linked sensor ID(s) | Optional | MC-L01-01; MC-L01-02 | Sensor records retained in the lifecycle information system. |
 | Linked monitoring series ID(s) | Optional | MS-L01-001 | Whole time-series records retained in the lifecycle information system. |
 | Linked observation ID(s) | Optional | M-L01-MC-20260807T130000000+0200; M-L01-RH-20260807T130000000+0200 | Observation records retained in the lifecycle information system. |
+| Linked validation record ID(s) | Optional | VAL-L01-001 | Validation records retained in the lifecycle information system. |
 | Linked exposure event ID | Optional | EXP-L01-001 | Interpreted exposure record retained in the lifecycle information system. |
 | Generated-by lifecycle event ID | Optional | EVT-L01-001 | Event record that generated or motivated the integration record. |
-| Linked lifecycle information system | Optional | BIM model / building logbook / product passport / digital twin | System where the record is stored or referenced. |
+| Linked lifecycle information system | Optional | BIM model / product passport | System where the record is stored or referenced. |
 | Digital object reference | Optional | BIM object CLT-FP-01 | Object or database reference. |
 | Decision use | Required | Maintenance, post-event assessment, future reuse-related assessment | Explains why the record is retained. |
 | Notes | Optional | Selected exposure indicators retained for future recovery assessment | Additional lifecycle context. |
