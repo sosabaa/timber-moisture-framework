@@ -35,7 +35,7 @@ The schema can be implemented in JSON-LD by treating each table as a linked reso
 
 This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, interpreted exposure event, and lifecycle information system.
 
-The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the location, sensor installation, observed properties, start and end time, sampling interval, and links to the individual observations through `hasObservation`.
+The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the individual observations through `hasObservation`.
 
 For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A logger row containing MC, RH, and temperature therefore maps to three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
 
@@ -95,9 +95,7 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 |---|---|---|---|
 | Measurement ID | Optional | M-L01-MC-20260807T130000000+0200 | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
 | Source record ID | Optional | M-L01-20260807T130000000+0200 | Original logger-row identifier when one logger row generates several observations. |
-| Sensor ID | Required | MC-L01-01 | Links the observation to the installed sensor. |
-| Installation ID | Required | INST-L01-01 | Helps distinguish observations before and after replacement. |
-| Location ID | Required | L-01 | Links the observation to the monitored feature of interest. |
+| Part of series | Required | MS-L01-001 | Links the observation to the parent monitoring time series that carries the shared sensor, installation, location, and sampling metadata. |
 | Observed property | Required | tmf:property/moisture-content | The property measured by this observation, such as moisture content, relative humidity, or temperature. |
 | Timestamp | Required | 2026-08-06T16:40:11.633+02:00 | Date and time of observation. |
 | Simple result | Required | 16.2 % | Human-readable SOSA simple result. |

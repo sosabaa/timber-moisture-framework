@@ -557,9 +557,7 @@
         "id",
         "type",
         "measurementId",
-        "madeBySensor",
-        "installation",
-        "location",
+        "partOfSeries",
         "observedProperty",
         "timestamp",
         "hasSimpleResult",
@@ -615,6 +613,9 @@
         },
         "qualityAssessmentRecord": {
           "$ref": "#/$defs/idOrIdArray"
+        },
+        "partOfSeries": {
+          "$ref": "#/$defs/id"
         }
       },
       "additionalProperties": true
