@@ -27,7 +27,7 @@
     },
     {
       "id": "tmf:location/L-05",
-      "type": ["ReferenceLocation", "FeatureOfInterest", "Zone"],
+      "type": ["MoistureRiskLocation", "ReferenceLocation", "FeatureOfInterest", "Zone"],
       "locationId": "L-05",
       "description": "Reference floor area away from appliance, plumbing, and junction risk zones",
       "buildingZone": "Kitchen",
@@ -35,7 +35,7 @@
       "hasElement": "tmf:element/CLT-FP-02",
       "elementMaterialFeature": [
         "Panel surface",
-        "Local fastener areas",
+        "Local fastener areas"
       ],
       "moistureSourceOrMechanism": [
         "Cleaning water",
