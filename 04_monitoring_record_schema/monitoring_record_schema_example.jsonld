@@ -191,7 +191,7 @@
         "Dataset"
       ],
       "seriesId": "MS-L01-001",
-      "seriesDescription": "Hourly monitoring time series for the L-01 sink/dishwasher zone, expanded into per-property SOSA observations.",
+      "seriesDescription": "Two-day maximum one-sensor monitoring time series for the L-01 sink/dishwasher zone. Detailed per-property observations are stored in the linked JSON file.",
       "location": "tmf:location/L-01",
       "referenceLocation": "tmf:location/L-05",
       "installation": "tmf:installation/INST-L01-01",
@@ -201,138 +201,20 @@
         "tmf:property/relative-humidity",
         "tmf:property/air-temperature"
       ],
-      "seriesStart": "2026-08-07T13:00:00.000+02:00",
-      "seriesEnd": "2026-08-07T14:00:00.000+02:00",
+      "seriesStart": "2025-06-26T00:25:55.202099Z",
+      "seriesEnd": "2025-06-27T23:46:50.857321Z",
       "samplingInterval": "PT1H",
-      "hasObservation": [
-        "tmf:observation/M-L01-MC-20260807T130000000+0200",
-        "tmf:observation/M-L01-RH-20260807T130000000+0200",
-        "tmf:observation/M-L01-T-20260807T130000000+0200",
-        "tmf:observation/M-L01-MC-20260807T140000000+0200",
-        "tmf:observation/M-L01-RH-20260807T140000000+0200",
-        "tmf:observation/M-L01-T-20260807T140000000+0200"
-      ]
+      "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json"
     },
     {
-      "id": "tmf:observation/M-L01-MC-20260807T130000000+0200",
+      "id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
       "type": [
-        "MeasurementRecord",
-        "Observation"
+        "ObservationDataFile",
+        "DigitalDocument"
       ],
-      "measurementId": "M-L01-MC-20260807T130000000+0200",
-      "sourceRecordId": "M-L01-20260807T130000000+0200",
-      "observedProperty": "tmf:property/moisture-content",
-      "timestamp": "2026-08-07T13:00:00.000+02:00",
-      "hasSimpleResult": "16.2 %",
-      "resultQuantity": {
-        "type": "QuantityValue",
-        "numericValue": 16.2,
-        "unitRef": "unit:PERCENT"
-      },
-      "dataQualityFlag": "Usable",
-      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "rawSensorOutput": "Resistance value or device output where available",
-      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
-    },
-    {
-      "id": "tmf:observation/M-L01-RH-20260807T130000000+0200",
-      "type": [
-        "MeasurementRecord",
-        "Observation"
-      ],
-      "measurementId": "M-L01-RH-20260807T130000000+0200",
-      "sourceRecordId": "M-L01-20260807T130000000+0200",
-      "observedProperty": "tmf:property/relative-humidity",
-      "timestamp": "2026-08-07T13:00:00.000+02:00",
-      "hasSimpleResult": "62.0 %",
-      "resultQuantity": {
-        "type": "QuantityValue",
-        "numericValue": 62.0,
-        "unitRef": "unit:PERCENT"
-      },
-      "dataQualityFlag": "Usable",
-      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
-    },
-    {
-      "id": "tmf:observation/M-L01-T-20260807T130000000+0200",
-      "type": [
-        "MeasurementRecord",
-        "Observation"
-      ],
-      "measurementId": "M-L01-T-20260807T130000000+0200",
-      "sourceRecordId": "M-L01-20260807T130000000+0200",
-      "observedProperty": "tmf:property/air-temperature",
-      "timestamp": "2026-08-07T13:00:00.000+02:00",
-      "hasSimpleResult": "21.4 degC",
-      "resultQuantity": {
-        "type": "QuantityValue",
-        "numericValue": 21.4,
-        "unitRef": "unit:DEG_C"
-      },
-      "dataQualityFlag": "Usable",
-      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
-    },
-    {
-      "id": "tmf:observation/M-L01-MC-20260807T140000000+0200",
-      "type": [
-        "MeasurementRecord",
-        "Observation"
-      ],
-      "measurementId": "M-L01-MC-20260807T140000000+0200",
-      "sourceRecordId": "M-L01-20260807T140000000+0200",
-      "observedProperty": "tmf:property/moisture-content",
-      "timestamp": "2026-08-07T14:00:00.000+02:00",
-      "hasSimpleResult": "17.1 %",
-      "resultQuantity": {
-        "type": "QuantityValue",
-        "numericValue": 17.1,
-        "unitRef": "unit:PERCENT"
-      },
-      "dataQualityFlag": "Usable",
-      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
-    },
-    {
-      "id": "tmf:observation/M-L01-RH-20260807T140000000+0200",
-      "type": [
-        "MeasurementRecord",
-        "Observation"
-      ],
-      "measurementId": "M-L01-RH-20260807T140000000+0200",
-      "sourceRecordId": "M-L01-20260807T140000000+0200",
-      "observedProperty": "tmf:property/relative-humidity",
-      "timestamp": "2026-08-07T14:00:00.000+02:00",
-      "hasSimpleResult": "64.0 %",
-      "resultQuantity": {
-        "type": "QuantityValue",
-        "numericValue": 64.0,
-        "unitRef": "unit:PERCENT"
-      },
-      "dataQualityFlag": "Usable",
-      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
-    },
-    {
-      "id": "tmf:observation/M-L01-T-20260807T140000000+0200",
-      "type": [
-        "MeasurementRecord",
-        "Observation"
-      ],
-      "measurementId": "M-L01-T-20260807T140000000+0200",
-      "sourceRecordId": "M-L01-20260807T140000000+0200",
-      "observedProperty": "tmf:property/air-temperature",
-      "timestamp": "2026-08-07T14:00:00.000+02:00",
-      "hasSimpleResult": "21.6 degC",
-      "resultQuantity": {
-        "type": "QuantityValue",
-        "numericValue": 21.6,
-        "unitRef": "unit:DEG_C"
-      },
-      "dataQualityFlag": "Usable",
-      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
+      "fileName": "monitoring_timeseries_MS-L01-001.json",
+      "encodingFormat": "application/json",
+      "description": "External JSON file containing per-property observations for monitoring series MS-L01-001."
     },
     {
       "id": "tmf:validation/VAL-L01-001",
@@ -363,10 +245,7 @@
         "tmf:sensor/MC-L01-01",
         "tmf:sensor/MC-L05-01"
       ],
-      "evidenceObservation": [
-        "tmf:observation/M-L01-MC-20260807T130000000+0200",
-        "tmf:observation/M-L01-MC-20260807T140000000+0200"
-      ],
+      "evidenceObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
       "eventStart": "2026-08-07T12:00:00.000+02:00",
       "eventEnd": "2026-08-09T18:00:00.000+02:00",
       "thresholdExceedance": "MC above project-defined threshold",
@@ -374,7 +253,8 @@
       "moistureDose": "Repeated short exceedances",
       "dryingBehaviour": "Delayed drying",
       "anomalyIndicator": "Localised anomaly compared with L-05 reference",
-      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
+      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy",
+      "evidenceMonitoringSeries": "tmf:monitoring-series/MS-L01-001"
     },
     {
       "id": "tmf:lifecycle-event/EVT-L01-001",
@@ -407,14 +287,6 @@
       "linkedSensor": [
         "tmf:sensor/MC-L01-01",
         "tmf:sensor/MC-L05-01"
-      ],
-      "linkedObservation": [
-        "tmf:observation/M-L01-MC-20260807T130000000+0200",
-        "tmf:observation/M-L01-RH-20260807T130000000+0200",
-        "tmf:observation/M-L01-T-20260807T130000000+0200",
-        "tmf:observation/M-L01-MC-20260807T140000000+0200",
-        "tmf:observation/M-L01-RH-20260807T140000000+0200",
-        "tmf:observation/M-L01-T-20260807T140000000+0200"
       ],
       "linkedExposureEvent": "tmf:exposure-event/EXP-L01-001",
       "generatedByLifecycleEvent": "tmf:lifecycle-event/EVT-L01-001",

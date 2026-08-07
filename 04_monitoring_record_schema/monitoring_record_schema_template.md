@@ -12,8 +12,8 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 |---|---|---|---|
 | Location register | Static/contextual data | Defines the monitored risk location, building zone, assembly, timber element, and moisture-risk context. | Location ID |
 | Sensor installation register | Semi-static sensor metadata | Defines the installed sensor or sensor channel, including sensor type, measurement depth, calibration basis, and installation context. | Sensor ID / Installation ID |
-| Monitoring time-series register | Dynamic dataset metadata | Defines the whole time-series record for a location, sensor installation, observed properties, time span, sampling interval, and linked observations. | Series ID |
-| Measurement observation table | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings. | Observation ID / Sensor ID + Timestamp + Observed Property |
+| Monitoring time-series register | Dynamic dataset metadata | Defines the whole time-series record for a location, sensor installation, observed properties, time span, sampling interval, and linked observation data file. | Series ID |
+| Observation data file | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings outside the compact JSON-LD graph. | Observation file URL / Observation ID |
 | Validation and quality table | Derived/quality data | Stores data-quality checks, missing-data flags, implausible values, drift concerns, communication gaps, and redundancy agreement. | Observation ID or Sensor ID + Timestamp |
 | Exposure-interpretation table | Derived/event-summary data | Stores threshold exceedance, duration, moisture dose, drying behaviour, anomaly indicators, and confidence level. | Exposure Event ID / Location ID |
 | Lifecycle event and intervention log | Event-based data | Stores leakage events, inspection, maintenance, repair, sensor replacement, recalibration, and reuse-related assessment notes. | Event ID / Location ID |
@@ -35,7 +35,7 @@ The schema can be implemented in JSON-LD by treating each table as a linked reso
 
 This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, interpreted exposure event, and lifecycle information system.
 
-The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the individual observations through `hasObservation`.
+The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data file through `hasObservation`. This keeps the knowledge graph compact while the detailed time-series values remain in a linked JSON file.
 
 For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A logger row containing MC, RH, and temperature therefore maps to three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
 
@@ -88,14 +88,14 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Series start | Required | 2026-08-07T13:00:00.000+02:00 | First timestamp represented in the time series. |
 | Series end | Required | 2026-08-07T14:00:00.000+02:00 | Last timestamp represented in the time series. |
 | Sampling interval | Required | PT1H | Logging frequency as an ISO 8601 duration. |
-| Observation IDs | Required | M-L01-MC-20260807T130000000+0200 | Per-property observations contained in the time series. |
+| Observation data file | Required | monitoring_timeseries_MS-L01-001.json | File containing the per-property observations for the time series. In JSON-LD, link this through `hasObservation`. |
 
-## Measurement observation table
+## Observation data file
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|
 | Measurement ID | Optional | M-L01-MC-20260807T130000000+0200 | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
 | Source record ID | Optional | M-L01-20260807T130000000+0200 | Original logger-row identifier when one logger row generates several observations. |
-| Part of series | Required | MS-L01-001 | Links the observation to the parent monitoring time series that carries the shared sensor, installation, location, and sampling metadata. |
+| Sensor ID | Required | MC-L01-01 | Sensor or channel producing the observation. |
 | Observed property | Required | tmf:property/moisture-content | The property measured by this observation, such as moisture content, relative humidity, or temperature. |
 | Timestamp | Required | 2026-08-06T16:40:11.633+02:00 | Date and time of observation. |
 | Simple result | Required | 16.2 % | Human-readable SOSA simple result. |
