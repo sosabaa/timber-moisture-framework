@@ -11,7 +11,7 @@
         "Maintenance",
         "Post-event assessment",
         "Future reuse-related evidence"
-      ]      
+      ],      
       "buildingZone": "Kitchen",
       "assemblyDetail": "CLT floor below sink and dishwasher",
       "hasElement": "tmf:element/CLT-FP-01",
@@ -41,7 +41,7 @@
         "Maintenance",
         "Post-event assessment",
         "Future reuse-related evidence"
-      ]      
+      ],      
       "buildingZone": "Kitchen",
       "assemblyDetail": "Open CLT floor area outside main moisture-risk zones.",
       "hasElement": "tmf:element/CLT-FP-02",
