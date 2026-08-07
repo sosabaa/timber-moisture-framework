@@ -70,7 +70,7 @@
       "sensorId": "MC-L01-02",
       "sensorType": "MC sensor",
       "measurementPrinciple": "Resistance-based MC",
-      "sensorValidationStatus": "Not assessed in this example"
+      "sensorValidationStatus": "Not assessed"
     },
     {
       "id": "tmf:installation/INST-L01-01",
