@@ -679,8 +679,7 @@
         "id",
         "type",
         "eventId",
-        "location",
-        "eventType"
+        "location"
       ],
       "properties": {
         "id": {
@@ -698,55 +697,11 @@
         "affectedSensor": {
           "$ref": "#/$defs/idOrIdArray"
         },
-        "eventType": {
-          "$ref": "#/$defs/textOrTextArray"
-        },
-        "eventPeriod": {
-          "type": "object",
-          "properties": {
-            "eventStart": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "eventEnd": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          "additionalProperties": true
-        },
-        "eventDescription": {
-          "$ref": "#/$defs/text"
-        },
-        "actionTaken": {
-          "$ref": "#/$defs/text"
-        },
-        "evidenceSensor": {
+        "eventMonitoringSeries": {
           "$ref": "#/$defs/idOrIdArray"
         },
-        "evidenceObservation": {
+        "eventValidationRecord": {
           "$ref": "#/$defs/idOrIdArray"
-        },
-        "thresholdExceedance": {
-          "$ref": "#/$defs/text"
-        },
-        "exceedanceDuration": {
-          "$ref": "#/$defs/text"
-        },
-        "moistureDose": {
-          "$ref": "#/$defs/text"
-        },
-        "dryingBehaviour": {
-          "$ref": "#/$defs/text"
-        },
-        "anomalyIndicator": {
-          "$ref": "#/$defs/text"
-        },
-        "confidenceOrUncertainty": {
-          "$ref": "#/$defs/text"
-        },
-        "outcome": {
-          "$ref": "#/$defs/text"
         },
         "hasEventLog": {
           "$ref": "#/$defs/id"

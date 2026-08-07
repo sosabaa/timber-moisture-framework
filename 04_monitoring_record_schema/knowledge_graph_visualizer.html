@@ -572,6 +572,8 @@
       "validationTargetObservation",
       "evidenceSensor",
       "evidenceObservation",
+      "eventMonitoringSeries",
+      "eventValidationRecord",
       "affectedSensor",
       "linkedSensor",
       "linkedObservation",
@@ -708,12 +710,12 @@
                       "sensorValidationRecord": "tmf:validation/VAL-L01-001"
                 },
                 {
-                      "id": "tmf:sensor/MC-L01-02",
+                      "id": "tmf:sensor/MC-L05-01",
                       "type": [
                             "Sensor",
                             "tmf:MoistureContentSensor"
                       ],
-                      "sensorId": "MC-L01-02",
+                      "sensorId": "MC-L05-01",
                       "sensorType": "MC sensor",
                       "measurementPrinciple": "Resistance-based MC",
                       "sensorValidationStatus": "Not assessed"
@@ -744,7 +746,36 @@
                       "correctionMethod": "Temperature correction applied/not applied",
                       "installationDate": "2026-08-06T07:00:00.000Z",
                       "installationCondition": "Installed after floor enclosure, before cabinetry",
-                      "protectionAccessArrangement": "Cable protected behind service access panel",
+                      "protectionAccessArrangement": "No protection",
+                      "sensorStatus": "Active"
+                },
+                {
+                      "id": "tmf:installation/INST-L05-01",
+                      "type": [
+                            "SensorInstallation",
+                            "Deployment"
+                      ],
+                      "installationId": "INST-L05-01",
+                      "location": "tmf:location/L-05",
+                      "deployedSystem": "tmf:sensor/MC-L05-01",
+                      "measurementDepth": {
+                            "type": "QuantityValue",
+                            "numericValue": 20,
+                            "unitRef": "unit:MilliM"
+                      },
+                      "installationCoordinates": {
+                            "type": "GeographicCoordinates",
+                            "coordinateReferenceSystem": "WGS84",
+                            "coordinateFormat": "DMS",
+                            "latitude": "57°46'35.5\" N",
+                            "longitude": "14°09'34.2\" E"
+                      },
+                      "sensorPlacementDescription": " Reference floor area away from appliance, plumbing, and junction risk zones",
+                      "calibrationBasis": "Manufacturer timber MC calibration",
+                      "correctionMethod": "Temperature correction applied/not applied",
+                      "installationDate": "2026-08-06T07:00:00.000Z",
+                      "installationCondition": "Installed after floor enclosure",
+                      "protectionAccessArrangement": "Concealed installation",
                       "sensorStatus": "Active"
                 },
                 {
@@ -872,30 +903,9 @@
                       "eventId": "EVT-L01-001",
                       "location": "tmf:location/L-01",
                       "affectedSensor": "tmf:sensor/MC-L01-01",
-                      "eventType": [
-                            "moisture-threshold-exceedance",
-                            "leakage-detected",
-                            "inspection"
-                      ],
-                      "eventPeriod": {
-                            "eventStart": "2026-08-07T10:00:00.000Z",
-                            "eventEnd": "2026-08-09T16:00:00.000Z"
-                      },
-                      "eventDescription": "Moisture anomaly associated with dishwasher leakage report and subsequent inspection.",
-                      "actionTaken": "Area inspected; no targeted opening undertaken",
-                      "outcome": "Continued monitoring recommended",
-                      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json",
-                      "evidenceSensor": [
-                            "tmf:sensor/MC-L01-01",
-                            "tmf:sensor/MC-L01-02"
-                      ],
-                      "evidenceObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
-                      "thresholdExceedance": "MC above project-defined threshold",
-                      "exceedanceDuration": "54 hours",
-                      "moistureDose": "Repeated short exceedances",
-                      "dryingBehaviour": "Delayed drying",
-                      "anomalyIndicator": "Localised anomaly compared with L-05 reference",
-                      "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
+                      "eventMonitoringSeries": "tmf:monitoring-series/MS-L01-001",
+                      "eventValidationRecord": "tmf:validation/VAL-L01-001",
+                      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json"
                 },
                 {
                       "id": "tmf:lifecycle-integration/LINK-L01-001",
@@ -908,7 +918,7 @@
                       "hasElement": "tmf:element/CLT-FP-01",
                       "linkedSensor": [
                             "tmf:sensor/MC-L01-01",
-                            "tmf:sensor/MC-L01-02"
+                            "tmf:sensor/MC-L05-01"
                       ],
                       "linkedValidationRecord": "tmf:validation/VAL-L01-001",
                       "generatedByLifecycleEvent": "tmf:lifecycle-event/EVT-L01-001",

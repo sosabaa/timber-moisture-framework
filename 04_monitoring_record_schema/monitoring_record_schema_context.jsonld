@@ -118,6 +118,14 @@
       "@id": "tmf:evidenceObservation",
       "@type": "@id"
     },
+    "eventMonitoringSeries": {
+      "@id": "tmf:eventMonitoringSeries",
+      "@type": "@id"
+    },
+    "eventValidationRecord": {
+      "@id": "tmf:eventValidationRecord",
+      "@type": "@id"
+    },
     "affectedSensor": {
       "@id": "tmf:affectedSensor",
       "@type": "@id"
