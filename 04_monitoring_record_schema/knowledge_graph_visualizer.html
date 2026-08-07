@@ -1054,7 +1054,7 @@
         const dt = document.createElement("dt");
         dt.textContent = key;
         const dd = document.createElement("dd");
-        dd.textContent = formatValue(value);
+        dd.appendChild(renderValue(value));
         dl.append(dt, dd);
       }
       details.appendChild(dl);
@@ -1326,7 +1326,7 @@
       return { x: transformed.x, y: transformed.y };
     }
 
-    function formatValue(value) {
+    function renderValue(value) {
       if (value === null || value === undefined) {
         return "";
       }
