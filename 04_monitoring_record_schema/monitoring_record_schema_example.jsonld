@@ -26,11 +26,37 @@
       "locationNotes": "Near plumbing and appliance connection zone"
     },
     {
+      "id": "tmf:location/L-05",
+      "type": ["ReferenceLocation", "FeatureOfInterest", "Zone"],
+      "locationId": "L-05",
+      "description": "Reference floor area away from appliance, plumbing, and junction risk zones",
+      "buildingZone": "Kitchen",
+      "assemblyDetail": "Open CLT floor area outside main moisture-risk zones.",
+      "hasElement": "tmf:element/CLT-FP-02",
+      "elementMaterialFeature": [
+        "Panel surface",
+        "Local fastener areas",
+      ],
+      "moistureSourceOrMechanism": [
+        "Cleaning water",
+        "Trapped moisture beneath finishes"
+      ],
+      "riskClass": "Reference",
+      "decisionRelevance": "Reference baseline for interpreting localised wetting",
+      "locationNotes": "Open area in the kitchen"
+    },    
+    {
       "id": "tmf:element/CLT-FP-01",
       "type": ["TimberElement", "Element"],
       "elementId": "CLT-FP-01",
       "description": "CLT floor panel associated with the kitchen sink/dishwasher zone"
     },
+    {
+      "id": "tmf:element/CLT-FP-02",
+      "type": ["TimberElement", "Element"],
+      "elementId": "CLT-FP-02",
+      "description": "CLT floor panel associated with the reference zone"
+    },    
     {
       "id": "tmf:property/moisture-content",
       "type": "ObservableProperty",
