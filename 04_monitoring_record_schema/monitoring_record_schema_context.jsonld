@@ -209,6 +209,10 @@
     "linkedMonitoringSeries": {
       "@id": "tmf:linkedMonitoringSeries",
       "@type": "@id"
+    },
+    "partOfSeries": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
     }
   }
 }

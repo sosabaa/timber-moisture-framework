@@ -192,9 +192,6 @@
       ],
       "measurementId": "M-L01-MC-20260807T130000000+0200",
       "sourceRecordId": "M-L01-20260807T130000000+0200",
-      "madeBySensor": "tmf:sensor/MC-L01-01",
-      "installation": "tmf:installation/INST-L01-01",
-      "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/moisture-content",
       "timestamp": "2026-08-07T13:00:00.000+02:00",
       "hasSimpleResult": "16.2 %",
@@ -205,8 +202,8 @@
       },
       "dataQualityFlag": "Usable",
       "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "samplingInterval": "PT1H",
-      "rawSensorOutput": "Resistance value or device output where available"
+      "rawSensorOutput": "Resistance value or device output where available",
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
     },
     {
       "id": "tmf:observation/M-L01-RH-20260807T130000000+0200",
@@ -216,9 +213,6 @@
       ],
       "measurementId": "M-L01-RH-20260807T130000000+0200",
       "sourceRecordId": "M-L01-20260807T130000000+0200",
-      "madeBySensor": "tmf:sensor/MC-L01-01",
-      "installation": "tmf:installation/INST-L01-01",
-      "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/relative-humidity",
       "timestamp": "2026-08-07T13:00:00.000+02:00",
       "hasSimpleResult": "62.0 %",
@@ -229,7 +223,7 @@
       },
       "dataQualityFlag": "Usable",
       "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "samplingInterval": "PT1H"
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
     },
     {
       "id": "tmf:observation/M-L01-T-20260807T130000000+0200",
@@ -239,9 +233,6 @@
       ],
       "measurementId": "M-L01-T-20260807T130000000+0200",
       "sourceRecordId": "M-L01-20260807T130000000+0200",
-      "madeBySensor": "tmf:sensor/MC-L01-01",
-      "installation": "tmf:installation/INST-L01-01",
-      "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/air-temperature",
       "timestamp": "2026-08-07T13:00:00.000+02:00",
       "hasSimpleResult": "21.4 degC",
@@ -252,7 +243,7 @@
       },
       "dataQualityFlag": "Usable",
       "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "samplingInterval": "PT1H"
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
     },
     {
       "id": "tmf:observation/M-L01-MC-20260807T140000000+0200",
@@ -262,9 +253,6 @@
       ],
       "measurementId": "M-L01-MC-20260807T140000000+0200",
       "sourceRecordId": "M-L01-20260807T140000000+0200",
-      "madeBySensor": "tmf:sensor/MC-L01-01",
-      "installation": "tmf:installation/INST-L01-01",
-      "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/moisture-content",
       "timestamp": "2026-08-07T14:00:00.000+02:00",
       "hasSimpleResult": "17.1 %",
@@ -275,7 +263,7 @@
       },
       "dataQualityFlag": "Usable",
       "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "samplingInterval": "PT1H"
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
     },
     {
       "id": "tmf:observation/M-L01-RH-20260807T140000000+0200",
@@ -285,9 +273,6 @@
       ],
       "measurementId": "M-L01-RH-20260807T140000000+0200",
       "sourceRecordId": "M-L01-20260807T140000000+0200",
-      "madeBySensor": "tmf:sensor/MC-L01-01",
-      "installation": "tmf:installation/INST-L01-01",
-      "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/relative-humidity",
       "timestamp": "2026-08-07T14:00:00.000+02:00",
       "hasSimpleResult": "64.0 %",
@@ -298,7 +283,7 @@
       },
       "dataQualityFlag": "Usable",
       "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "samplingInterval": "PT1H"
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
     },
     {
       "id": "tmf:observation/M-L01-T-20260807T140000000+0200",
@@ -308,9 +293,6 @@
       ],
       "measurementId": "M-L01-T-20260807T140000000+0200",
       "sourceRecordId": "M-L01-20260807T140000000+0200",
-      "madeBySensor": "tmf:sensor/MC-L01-01",
-      "installation": "tmf:installation/INST-L01-01",
-      "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/air-temperature",
       "timestamp": "2026-08-07T14:00:00.000+02:00",
       "hasSimpleResult": "21.6 degC",
@@ -321,7 +303,7 @@
       },
       "dataQualityFlag": "Usable",
       "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "samplingInterval": "PT1H"
+      "partOfSeries": "tmf:monitoring-series/MS-L01-001"
     },
     {
       "id": "tmf:validation/VAL-L01-001",

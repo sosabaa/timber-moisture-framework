@@ -16,7 +16,7 @@ Each CSV row is retained as a source logger record and expanded into one observa
 - `logger_rh_percent` becomes an RH observation with `observedProperty` set to `tmf:property/relative-humidity`.
 - `logger_temperature_c` becomes a temperature observation with `observedProperty` set to `tmf:property/air-temperature`.
 
-The generated observations share the same sensor, installation, location, timestamp, source record ID, and sampling interval. Each observation uses `madeBySensor` for the SOSA sensor link and carries both a simple SOSA result string and a QUDT `QuantityValue` with an explicit unit reference.
+The generated observations share the same parent time series, timestamp, source record ID, and data-quality context. The parent `MonitoringTimeSeries` carries the shared sensor, installation, location, reference location, observed-property set, and sampling interval. Each observation links back to that parent with `partOfSeries` and carries the property-specific timestamp, `observedProperty`, simple SOSA result string, and QUDT `QuantityValue`.
 
 The whole logger export or selected time-series window is represented by a parent `MonitoringTimeSeries` node. It stores the series start and end time, sampling interval, observed properties, sensor installation, and `hasObservation` links to the generated per-property observations.
 
@@ -53,9 +53,7 @@ The first CSV row maps to three observation nodes like this:
     "type": ["MeasurementRecord", "Observation"],
     "measurementId": "M-L01-MC-20260807T130000000+0200",
     "sourceRecordId": "M-L01-20260807T130000000+0200",
-    "madeBySensor": "tmf:sensor/MC-L01-01",
-    "installation": "tmf:installation/INST-L01-01",
-    "location": "tmf:location/L-01",
+    "partOfSeries": "tmf:monitoring-series/MS-L01-001",
     "observedProperty": "tmf:property/moisture-content",
     "timestamp": "2026-08-07T13:00:00.000+02:00",
     "hasSimpleResult": "16.2 %",
@@ -71,9 +69,7 @@ The first CSV row maps to three observation nodes like this:
     "type": ["MeasurementRecord", "Observation"],
     "measurementId": "M-L01-RH-20260807T130000000+0200",
     "sourceRecordId": "M-L01-20260807T130000000+0200",
-    "madeBySensor": "tmf:sensor/MC-L01-01",
-    "installation": "tmf:installation/INST-L01-01",
-    "location": "tmf:location/L-01",
+    "partOfSeries": "tmf:monitoring-series/MS-L01-001",
     "observedProperty": "tmf:property/relative-humidity",
     "timestamp": "2026-08-07T13:00:00.000+02:00",
     "hasSimpleResult": "62.0 %",
@@ -89,9 +85,7 @@ The first CSV row maps to three observation nodes like this:
     "type": ["MeasurementRecord", "Observation"],
     "measurementId": "M-L01-T-20260807T130000000+0200",
     "sourceRecordId": "M-L01-20260807T130000000+0200",
-    "madeBySensor": "tmf:sensor/MC-L01-01",
-    "installation": "tmf:installation/INST-L01-01",
-    "location": "tmf:location/L-01",
+    "partOfSeries": "tmf:monitoring-series/MS-L01-001",
     "observedProperty": "tmf:property/air-temperature",
     "timestamp": "2026-08-07T13:00:00.000+02:00",
     "hasSimpleResult": "21.4 degC",
