@@ -14,6 +14,8 @@
     "id": "@id",
     "type": "@type",
     "description": "schema:description",
+    "lifecycleContext": "tmf:lifecycleContext",
+    "monitoringPurpose": "tmf:monitoringPurpose",
 
     "MoistureRiskLocation": "tmf:MoistureRiskLocation",
     "TimberElement": "tmf:TimberElement",
