@@ -1330,10 +1330,15 @@
       if (value === null || value === undefined) {
         return "";
       }
-      if (typeof value === "object") {
-        return JSON.stringify(value, null, 2);
-      }
-      return String(value);
+      if (Array.isArray(value)) {
+        const list = document.createElement("ul");
+        list.className = "nested-list";
+        for (const item of value) {
+          const listItem = document.createElement("li");
+          listItem.appendChild(renderValue(item));
+          list.appendChild(listItem);
+        }
+        return list;
     }
 
     function shorten(value, length) {
