@@ -3,7 +3,11 @@
   "@graph": [
     {
       "id": "tmf:location/L-01",
-      "type": ["MoistureRiskLocation", "FeatureOfInterest", "Zone"],
+      "type": [
+        "MoistureRiskLocation",
+        "FeatureOfInterest",
+        "Zone"
+      ],
       "locationId": "L-01",
       "description": "Sink/dishwasher zone below plumbing and appliance connections",
       "lifecycleContext": "Operational monitoring",
@@ -11,7 +15,7 @@
         "Maintenance",
         "Post-event assessment",
         "Future reuse-related evidence"
-      ],      
+      ],
       "buildingZone": "Kitchen",
       "assemblyDetail": "CLT floor below sink and dishwasher",
       "hasElement": "tmf:element/CLT-FP-01",
@@ -29,11 +33,17 @@
       ],
       "riskClass": "High",
       "decisionRelevance": "High",
-      "locationNotes": "Near plumbing and appliance connection zone"
+      "locationNotes": "Near plumbing and appliance connection zone",
+      "referenceLocation": "tmf:location/L-05"
     },
     {
       "id": "tmf:location/L-05",
-      "type": ["MoistureRiskLocation", "ReferenceLocation", "FeatureOfInterest", "Zone"],
+      "type": [
+        "MoistureRiskLocation",
+        "ReferenceLocation",
+        "FeatureOfInterest",
+        "Zone"
+      ],
       "locationId": "L-05",
       "description": "Reference floor area away from appliance, plumbing, and junction risk zones",
       "lifecycleContext": "Operational monitoring",
@@ -41,7 +51,7 @@
         "Maintenance",
         "Post-event assessment",
         "Future reuse-related evidence"
-      ],      
+      ],
       "buildingZone": "Kitchen",
       "assemblyDetail": "Open CLT floor area outside main moisture-risk zones.",
       "hasElement": "tmf:element/CLT-FP-02",
@@ -56,19 +66,25 @@
       "riskClass": "Reference",
       "decisionRelevance": "Reference baseline for interpreting localised wetting",
       "locationNotes": "Open area in the kitchen"
-    },    
+    },
     {
       "id": "tmf:element/CLT-FP-01",
-      "type": ["TimberElement", "Element"],
+      "type": [
+        "TimberElement",
+        "Element"
+      ],
       "elementId": "CLT-FP-01",
       "description": "CLT floor panel associated with the kitchen sink/dishwasher zone"
     },
     {
       "id": "tmf:element/CLT-FP-02",
-      "type": ["TimberElement", "Element"],
+      "type": [
+        "TimberElement",
+        "Element"
+      ],
       "elementId": "CLT-FP-02",
       "description": "CLT floor panel associated with the reference zone"
-    },    
+    },
     {
       "id": "tmf:property/moisture-content",
       "type": "ObservableProperty",
@@ -112,7 +128,10 @@
     },
     {
       "id": "tmf:installation/INST-L01-01",
-      "type": ["SensorInstallation", "Deployment"],
+      "type": [
+        "SensorInstallation",
+        "Deployment"
+      ],
       "installationId": "INST-L01-01",
       "location": "tmf:location/L-01",
       "deployedSystem": "tmf:sensor/MC-L01-01",
@@ -137,15 +156,47 @@
       "sensorStatus": "Active"
     },
     {
-      "id": "tmf:observation/M-L01-000001-MC",
-      "type": ["MeasurementRecord", "Observation"],
-      "measurementId": "M-L01-000001-MC",
-      "sourceRecordId": "M-L01-000001",
+      "id": "tmf:monitoring-series/MS-L01-001",
+      "type": [
+        "MonitoringTimeSeries",
+        "Dataset"
+      ],
+      "seriesId": "MS-L01-001",
+      "seriesDescription": "Hourly monitoring time series for the L-01 sink/dishwasher zone, expanded into per-property SOSA observations.",
+      "location": "tmf:location/L-01",
+      "referenceLocation": "tmf:location/L-05",
+      "installation": "tmf:installation/INST-L01-01",
+      "madeBySensor": "tmf:sensor/MC-L01-01",
+      "observedProperty": [
+        "tmf:property/moisture-content",
+        "tmf:property/relative-humidity",
+        "tmf:property/air-temperature"
+      ],
+      "seriesStart": "2026-08-07T13:00:00.000+02:00",
+      "seriesEnd": "2026-08-07T14:00:00.000+02:00",
+      "samplingInterval": "PT1H",
+      "hasObservation": [
+        "tmf:observation/M-L01-MC-20260807T130000000+0200",
+        "tmf:observation/M-L01-RH-20260807T130000000+0200",
+        "tmf:observation/M-L01-T-20260807T130000000+0200",
+        "tmf:observation/M-L01-MC-20260807T140000000+0200",
+        "tmf:observation/M-L01-RH-20260807T140000000+0200",
+        "tmf:observation/M-L01-T-20260807T140000000+0200"
+      ]
+    },
+    {
+      "id": "tmf:observation/M-L01-MC-20260807T130000000+0200",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-MC-20260807T130000000+0200",
+      "sourceRecordId": "M-L01-20260807T130000000+0200",
       "madeBySensor": "tmf:sensor/MC-L01-01",
       "installation": "tmf:installation/INST-L01-01",
       "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/moisture-content",
-      "timestamp": "2026-08-06T16:40:11.633+02:00",
+      "timestamp": "2026-08-07T13:00:00.000+02:00",
       "hasSimpleResult": "16.2 %",
       "resultQuantity": {
         "type": "QuantityValue",
@@ -154,19 +205,22 @@
       },
       "dataQualityFlag": "Usable",
       "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
-      "rawSensorOutput": "Resistance value or device output where available",
-      "samplingInterval": "PT1H"
+      "samplingInterval": "PT1H",
+      "rawSensorOutput": "Resistance value or device output where available"
     },
     {
-      "id": "tmf:observation/M-L01-000001-RH",
-      "type": ["MeasurementRecord", "Observation"],
-      "measurementId": "M-L01-000001-RH",
-      "sourceRecordId": "M-L01-000001",
+      "id": "tmf:observation/M-L01-RH-20260807T130000000+0200",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-RH-20260807T130000000+0200",
+      "sourceRecordId": "M-L01-20260807T130000000+0200",
       "madeBySensor": "tmf:sensor/MC-L01-01",
       "installation": "tmf:installation/INST-L01-01",
       "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/relative-humidity",
-      "timestamp": "2026-08-06T16:40:11.633+02:00",
+      "timestamp": "2026-08-07T13:00:00.000+02:00",
       "hasSimpleResult": "62.0 %",
       "resultQuantity": {
         "type": "QuantityValue",
@@ -178,15 +232,18 @@
       "samplingInterval": "PT1H"
     },
     {
-      "id": "tmf:observation/M-L01-000001-T",
-      "type": ["MeasurementRecord", "Observation"],
-      "measurementId": "M-L01-000001-T",
-      "sourceRecordId": "M-L01-000001",
+      "id": "tmf:observation/M-L01-T-20260807T130000000+0200",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-T-20260807T130000000+0200",
+      "sourceRecordId": "M-L01-20260807T130000000+0200",
       "madeBySensor": "tmf:sensor/MC-L01-01",
       "installation": "tmf:installation/INST-L01-01",
       "location": "tmf:location/L-01",
       "observedProperty": "tmf:property/air-temperature",
-      "timestamp": "2026-08-06T16:40:11.633+02:00",
+      "timestamp": "2026-08-07T13:00:00.000+02:00",
       "hasSimpleResult": "21.4 degC",
       "resultQuantity": {
         "type": "QuantityValue",
@@ -198,8 +255,80 @@
       "samplingInterval": "PT1H"
     },
     {
+      "id": "tmf:observation/M-L01-MC-20260807T140000000+0200",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-MC-20260807T140000000+0200",
+      "sourceRecordId": "M-L01-20260807T140000000+0200",
+      "madeBySensor": "tmf:sensor/MC-L01-01",
+      "installation": "tmf:installation/INST-L01-01",
+      "location": "tmf:location/L-01",
+      "observedProperty": "tmf:property/moisture-content",
+      "timestamp": "2026-08-07T14:00:00.000+02:00",
+      "hasSimpleResult": "17.1 %",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 17.1,
+        "unitRef": "unit:PERCENT"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
+      "samplingInterval": "PT1H"
+    },
+    {
+      "id": "tmf:observation/M-L01-RH-20260807T140000000+0200",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-RH-20260807T140000000+0200",
+      "sourceRecordId": "M-L01-20260807T140000000+0200",
+      "madeBySensor": "tmf:sensor/MC-L01-01",
+      "installation": "tmf:installation/INST-L01-01",
+      "location": "tmf:location/L-01",
+      "observedProperty": "tmf:property/relative-humidity",
+      "timestamp": "2026-08-07T14:00:00.000+02:00",
+      "hasSimpleResult": "64.0 %",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 64.0,
+        "unitRef": "unit:PERCENT"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
+      "samplingInterval": "PT1H"
+    },
+    {
+      "id": "tmf:observation/M-L01-T-20260807T140000000+0200",
+      "type": [
+        "MeasurementRecord",
+        "Observation"
+      ],
+      "measurementId": "M-L01-T-20260807T140000000+0200",
+      "sourceRecordId": "M-L01-20260807T140000000+0200",
+      "madeBySensor": "tmf:sensor/MC-L01-01",
+      "installation": "tmf:installation/INST-L01-01",
+      "location": "tmf:location/L-01",
+      "observedProperty": "tmf:property/air-temperature",
+      "timestamp": "2026-08-07T14:00:00.000+02:00",
+      "hasSimpleResult": "21.6 degC",
+      "resultQuantity": {
+        "type": "QuantityValue",
+        "numericValue": 21.6,
+        "unitRef": "unit:DEG_C"
+      },
+      "dataQualityFlag": "Usable",
+      "qualityAssessmentRecord": "tmf:validation/VAL-L01-001",
+      "samplingInterval": "PT1H"
+    },
+    {
       "id": "tmf:validation/VAL-L01-001",
-      "type": ["ValidationRecord", "Activity"],
+      "type": [
+        "ValidationRecord",
+        "Activity"
+      ],
       "validationId": "VAL-L01-001",
       "installation": "tmf:installation/INST-L01-01",
       "timestampOrPeriod": "2026-08-07T00:00:00.003+02:00 to 2026-08-08T16:40:11.633+02:00",
@@ -213,14 +342,20 @@
     },
     {
       "id": "tmf:exposure-event/EXP-L01-001",
-      "type": ["ExposureEvent", "Activity"],
+      "type": [
+        "ExposureEvent",
+        "Activity"
+      ],
       "exposureEventId": "EXP-L01-001",
       "location": "tmf:location/L-01",
       "evidenceSensor": [
         "tmf:sensor/MC-L01-01",
         "tmf:sensor/MC-L01-02"
       ],
-      "evidenceObservation": "tmf:observation/M-L01-000001-MC",
+      "evidenceObservation": [
+        "tmf:observation/M-L01-MC-20260807T130000000+0200",
+        "tmf:observation/M-L01-MC-20260807T140000000+0200"
+      ],
       "eventStart": "2026-08-07T12:00:00.000+02:00",
       "eventEnd": "2026-08-09T18:00:00.000+02:00",
       "thresholdExceedance": "MC above project-defined threshold",
@@ -232,7 +367,10 @@
     },
     {
       "id": "tmf:lifecycle-event/EVT-L01-001",
-      "type": ["LifecycleEvent", "Activity"],
+      "type": [
+        "LifecycleEvent",
+        "Activity"
+      ],
       "eventId": "EVT-L01-001",
       "location": "tmf:location/L-01",
       "affectedSensor": "tmf:sensor/MC-L01-01",
@@ -248,7 +386,10 @@
     },
     {
       "id": "tmf:lifecycle-integration/LINK-L01-001",
-      "type": ["LifecycleIntegrationRecord", "Entity"],
+      "type": [
+        "LifecycleIntegrationRecord",
+        "Entity"
+      ],
       "integrationId": "LINK-L01-001",
       "location": "tmf:location/L-01",
       "hasElement": "tmf:element/CLT-FP-01",
@@ -257,9 +398,12 @@
         "tmf:sensor/MC-L01-02"
       ],
       "linkedObservation": [
-        "tmf:observation/M-L01-000001-MC",
-        "tmf:observation/M-L01-000001-RH",
-        "tmf:observation/M-L01-000001-T"
+        "tmf:observation/M-L01-MC-20260807T130000000+0200",
+        "tmf:observation/M-L01-RH-20260807T130000000+0200",
+        "tmf:observation/M-L01-T-20260807T130000000+0200",
+        "tmf:observation/M-L01-MC-20260807T140000000+0200",
+        "tmf:observation/M-L01-RH-20260807T140000000+0200",
+        "tmf:observation/M-L01-T-20260807T140000000+0200"
       ],
       "linkedExposureEvent": "tmf:exposure-event/EXP-L01-001",
       "generatedByLifecycleEvent": "tmf:lifecycle-event/EVT-L01-001",
@@ -275,7 +419,8 @@
         "Post-event assessment",
         "Future reuse-related assessment"
       ],
-      "integrationNote": "Selected exposure indicators retained for future recovery assessment"
+      "integrationNote": "Selected exposure indicators retained for future recovery assessment",
+      "linkedMonitoringSeries": "tmf:monitoring-series/MS-L01-001"
     }
   ]
 }

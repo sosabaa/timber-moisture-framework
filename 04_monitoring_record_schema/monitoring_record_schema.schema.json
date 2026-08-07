@@ -3,12 +3,6 @@
   "$id": "https://sosabaa.github.io/timber-moisture-framework/schema/monitoring_record_schema.schema.json",
   "title": "Timber Moisture Framework Monitoring Record JSON-LD",
   "description": "Validation schema for the compacted JSON-LD monitoring-record graph used by the timber moisture framework. Measurement records are modeled as per-property SOSA observations with QUDT quantity values.",
-  "lifecycleContext": {
-    "$ref": "#/$defs/text"
-    },
-  "monitoringPurpose": {
-    "$ref": "#/$defs/textOrTextArray"
-    },
   "type": "object",
   "required": [
     "@context",
@@ -53,6 +47,9 @@
         },
         {
           "$ref": "#/$defs/sensorInstallation"
+        },
+        {
+          "$ref": "#/$defs/monitoringTimeSeries"
         },
         {
           "$ref": "#/$defs/measurementRecord"
@@ -401,6 +398,15 @@
         },
         "locationNotes": {
           "$ref": "#/$defs/text"
+        },
+        "lifecycleContext": {
+          "$ref": "#/$defs/text"
+        },
+        "monitoringPurpose": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
+        "referenceLocation": {
+          "$ref": "#/$defs/idOrIdArray"
         }
       },
       "additionalProperties": true
@@ -829,6 +835,101 @@
         },
         "integrationNote": {
           "$ref": "#/$defs/text"
+        },
+        "linkedMonitoringSeries": {
+          "$ref": "#/$defs/idOrIdArray"
+        }
+      },
+      "additionalProperties": true
+    },
+    "classMonitoringTimeSeries": {
+      "oneOf": [
+        {
+          "const": "MonitoringTimeSeries"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "MonitoringTimeSeries"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "classDataset": {
+      "oneOf": [
+        {
+          "const": "Dataset"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "Dataset"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "monitoringTimeSeries": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "seriesId",
+        "location",
+        "installation",
+        "madeBySensor",
+        "observedProperty",
+        "seriesStart",
+        "seriesEnd",
+        "samplingInterval",
+        "hasObservation"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classMonitoringTimeSeries"
+        },
+        "seriesId": {
+          "$ref": "#/$defs/text"
+        },
+        "seriesDescription": {
+          "$ref": "#/$defs/text"
+        },
+        "location": {
+          "$ref": "#/$defs/id"
+        },
+        "referenceLocation": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "installation": {
+          "$ref": "#/$defs/id"
+        },
+        "madeBySensor": {
+          "$ref": "#/$defs/id"
+        },
+        "observedProperty": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "seriesStart": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "seriesEnd": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "samplingInterval": {
+          "$ref": "#/$defs/text"
+        },
+        "hasObservation": {
+          "$ref": "#/$defs/idOrIdArray"
         }
       },
       "additionalProperties": true

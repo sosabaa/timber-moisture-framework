@@ -12,7 +12,8 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 |---|---|---|---|
 | Location register | Static/contextual data | Defines the monitored risk location, building zone, assembly, timber element, and moisture-risk context. | Location ID |
 | Sensor installation register | Semi-static sensor metadata | Defines the installed sensor or sensor channel, including sensor type, measurement depth, calibration basis, and installation context. | Sensor ID / Installation ID |
-| Measurement time-series table | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings. | Observation ID / Sensor ID + Timestamp + Observed Property |
+| Monitoring time-series register | Dynamic dataset metadata | Defines the whole time-series record for a location, sensor installation, observed properties, time span, sampling interval, and linked observations. | Series ID |
+| Measurement observation table | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings. | Observation ID / Sensor ID + Timestamp + Observed Property |
 | Validation and quality table | Derived/quality data | Stores data-quality checks, missing-data flags, implausible values, drift concerns, communication gaps, and redundancy agreement. | Observation ID or Sensor ID + Timestamp |
 | Exposure-interpretation table | Derived/event-summary data | Stores threshold exceedance, duration, moisture dose, drying behaviour, anomaly indicators, and confidence level. | Exposure Event ID / Location ID |
 | Lifecycle event and intervention log | Event-based data | Stores leakage events, inspection, maintenance, repair, sensor replacement, recalibration, and reuse-related assessment notes. | Event ID / Location ID |
@@ -23,7 +24,8 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 | Location ID | Identifies the monitored risk location, for example L-01. |
 | Sensor ID | Identifies the physical sensor or sensor channel. |
 | Installation ID | Identifies a specific installation of a sensor at a location. Useful if a sensor is replaced or recalibrated. |
-| Measurement ID | Identifies one timestamped observation. When a logger row contains several properties, use one observation ID per property and preserve the original logger-row ID as a source record ID. |
+| Series ID | Identifies the whole monitoring time series for a location, sensor installation, and period. |
+| Measurement ID | Identifies one timestamped per-property observation. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T130000000+0200`. When a logger row contains several properties, use one observation ID per property and preserve the original logger-row ID as a source record ID. |
 | Exposure Event ID | Identifies a derived moisture event, such as a prolonged threshold exceedance. |
 | Intervention ID | Identifies an inspection, repair, maintenance action, recalibration, or sensor replacement. |
 
@@ -33,6 +35,8 @@ The schema can be implemented in JSON-LD by treating each table as a linked reso
 
 This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, interpreted exposure event, and lifecycle information system.
 
+The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the location, sensor installation, observed properties, start and end time, sampling interval, and links to the individual observations through `hasObservation`.
+
 For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A logger row containing MC, RH, and temperature therefore maps to three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
 
 ## Location register
@@ -40,6 +44,8 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 |---|---|---|---|
 | Location ID | Required | L-01 | Links to risk classification, sensor deployment, and measurement records. |
 | Description | Required | Sink/dishwasher zone below plumbing and appliance connections | Short location description. |
+| Lifecycle context | Optional | Operational monitoring | Lifecycle stage or context for which monitoring is initiated. |
+| Monitoring purpose | Optional | Maintenance; post-event assessment; future reuse-related evidence | Purpose of monitoring this location. |
 | Building zone | Required | Kitchen | Broad spatial or functional zone. |
 | Assembly/detail | Required | CLT floor below sink and dishwasher | Specific assembly or detail. |
 | Element ID | Required | CLT-FP-01 | Timber element, panel, beam, column, or BIM element ID. |
@@ -47,6 +53,7 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Moisture source or mechanism | Required | Leakage, repeated small leaks, cleaning water, trapped moisture beneath finishes | Expected moisture mechanism. |
 | Risk class | Required | High | Carried over from risk-location classification. |
 | Decision relevance | Required | High | Explains why the location matters for later decisions. |
+| Reference location ID | Optional | L-05 | Baseline or reference location used to interpret whether moisture behaviour is local or general. |
 | Location notes | Optional | Near plumbing and appliance connection zone | Additional context. |
 
 ## Sensor installation register
@@ -69,11 +76,25 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Protection/access arrangement | Optional | Cable protected behind service access panel | Practical access and protection information. |
 | Sensor status | Required | Active/replaced/failed/removed | Supports long-term traceability. |
 
-## Measurement time-series table
+## Monitoring time-series register
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|
-| Measurement ID | Optional | M-L01-000001-MC | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
-| Source record ID | Optional | M-L01-000001 | Original logger-row identifier when one logger row generates several observations. |
+| Series ID | Required | MS-L01-001 | Identifies the whole time-series dataset. |
+| Location ID | Required | L-01 | Links the time series to the monitored risk location. |
+| Reference location ID | Optional | L-05 | Links the time series to a baseline/reference location where relevant. |
+| Installation ID | Required | INST-L01-01 | Links the time series to the sensor installation. |
+| Sensor ID | Required | MC-L01-01 | Sensor or channel producing the time series. |
+| Observed properties | Required | moisture content; relative humidity; air temperature | Properties contained in the time series. |
+| Series start | Required | 2026-08-07T13:00:00.000+02:00 | First timestamp represented in the time series. |
+| Series end | Required | 2026-08-07T14:00:00.000+02:00 | Last timestamp represented in the time series. |
+| Sampling interval | Required | PT1H | Logging frequency as an ISO 8601 duration. |
+| Observation IDs | Required | M-L01-MC-20260807T130000000+0200 | Per-property observations contained in the time series. |
+
+## Measurement observation table
+| Field | Required/optional | Example entry | Notes |
+|---|---|---|---|
+| Measurement ID | Optional | M-L01-MC-20260807T130000000+0200 | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
+| Source record ID | Optional | M-L01-20260807T130000000+0200 | Original logger-row identifier when one logger row generates several observations. |
 | Sensor ID | Required | MC-L01-01 | Links the observation to the installed sensor. |
 | Installation ID | Required | INST-L01-01 | Helps distinguish observations before and after replacement. |
 | Location ID | Required | L-01 | Links the observation to the monitored feature of interest. |
@@ -136,7 +157,8 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 | Location ID | Required | L-01 | Links digital system to monitored location. |
 | Element ID | Required | CLT-FP-01 | Links to timber element or BIM object. |
 | Linked sensor ID(s) | Optional | MC-L01-01; MC-L01-02 | Sensor records retained in the lifecycle information system. |
-| Linked observation ID(s) | Optional | M-L01-000001-MC; M-L01-000001-RH | Observation records retained in the lifecycle information system. |
+| Linked monitoring series ID(s) | Optional | MS-L01-001 | Whole time-series records retained in the lifecycle information system. |
+| Linked observation ID(s) | Optional | M-L01-MC-20260807T130000000+0200; M-L01-RH-20260807T130000000+0200 | Observation records retained in the lifecycle information system. |
 | Linked exposure event ID | Optional | EXP-L01-001 | Interpreted exposure record retained in the lifecycle information system. |
 | Generated-by lifecycle event ID | Optional | EVT-L01-001 | Event record that generated or motivated the integration record. |
 | Linked lifecycle information system | Optional | BIM model / building logbook / product passport / digital twin | System where the record is stored or referenced. |

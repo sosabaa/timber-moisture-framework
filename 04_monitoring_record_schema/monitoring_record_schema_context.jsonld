@@ -10,13 +10,11 @@
     "qudt": "http://qudt.org/schema/qudt/",
     "unit": "http://qudt.org/vocab/unit/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-
     "id": "@id",
     "type": "@type",
     "description": "schema:description",
     "lifecycleContext": "tmf:lifecycleContext",
     "monitoringPurpose": "tmf:monitoringPurpose",
-
     "MoistureRiskLocation": "tmf:MoistureRiskLocation",
     "TimberElement": "tmf:TimberElement",
     "Sensor": "sosa:Sensor",
@@ -26,7 +24,6 @@
     "ExposureEvent": "tmf:ExposureEvent",
     "LifecycleEvent": "tmf:LifecycleEvent",
     "LifecycleIntegrationRecord": "tmf:LifecycleIntegrationRecord",
-
     "FeatureOfInterest": "sosa:FeatureOfInterest",
     "ObservableProperty": "sosa:ObservableProperty",
     "Zone": "bot:Zone",
@@ -37,7 +34,6 @@
     "Entity": "prov:Entity",
     "QuantityValue": "qudt:QuantityValue",
     "GeographicCoordinates": "schema:GeoCoordinates",
-
     "locationId": "schema:identifier",
     "sensorId": "schema:identifier",
     "installationId": "schema:identifier",
@@ -49,7 +45,6 @@
     "integrationId": "schema:identifier",
     "elementId": "schema:identifier",
     "propertyId": "schema:identifier",
-
     "location": {
       "@id": "schema:location",
       "@type": "@id"
@@ -131,7 +126,6 @@
       "@id": "prov:wasGeneratedBy",
       "@type": "@id"
     },
-
     "buildingZone": "tmf:buildingZone",
     "assemblyDetail": "tmf:assemblyDetail",
     "elementMaterialFeature": "tmf:elementMaterialFeature",
@@ -139,7 +133,6 @@
     "riskClass": "tmf:riskClass",
     "decisionRelevance": "tmf:decisionRelevance",
     "locationNotes": "tmf:locationNotes",
-
     "sensorType": "tmf:sensorType",
     "measurementPrinciple": "tmf:measurementPrinciple",
     "sensorPlacementDescription": "tmf:sensorPlacementDescription",
@@ -152,7 +145,6 @@
     "installationCondition": "tmf:installationCondition",
     "protectionAccessArrangement": "tmf:protectionAccessArrangement",
     "sensorStatus": "tmf:sensorStatus",
-
     "timestamp": {
       "@id": "sosa:resultTime",
       "@type": "xsd:dateTime"
@@ -162,7 +154,6 @@
       "@id": "tmf:samplingInterval",
       "@type": "xsd:duration"
     },
-
     "timestampOrPeriod": "tmf:timestampOrPeriod",
     "dataQualityFlag": "tmf:dataQualityFlag",
     "missingDataFlag": "tmf:missingDataFlag",
@@ -171,7 +162,6 @@
     "communicationFlag": "tmf:communicationFlag",
     "redundancyAgreement": "tmf:redundancyAgreement",
     "qualityNotes": "tmf:qualityNotes",
-
     "eventStart": {
       "@id": "prov:startedAtTime",
       "@type": "xsd:dateTime"
@@ -186,16 +176,39 @@
     "dryingBehaviour": "tmf:dryingBehaviour",
     "anomalyIndicator": "tmf:anomalyIndicator",
     "confidenceOrUncertainty": "tmf:confidenceOrUncertainty",
-
     "eventType": "tmf:eventType",
     "eventPeriod": "tmf:eventPeriod",
     "eventDescription": "schema:description",
     "actionTaken": "tmf:actionTaken",
     "outcome": "tmf:outcome",
-
     "linkedLifecycleInformationSystem": "tmf:linkedLifecycleInformationSystem",
     "digitalObjectReference": "schema:identifier",
     "decisionUse": "tmf:decisionUse",
-    "integrationNote": "tmf:integrationNote"
+    "integrationNote": "tmf:integrationNote",
+    "ReferenceLocation": "tmf:ReferenceLocation",
+    "MonitoringTimeSeries": "tmf:MonitoringTimeSeries",
+    "Dataset": "schema:Dataset",
+    "seriesId": "schema:identifier",
+    "seriesDescription": "schema:description",
+    "referenceLocation": {
+      "@id": "tmf:referenceLocation",
+      "@type": "@id"
+    },
+    "hasObservation": {
+      "@id": "sosa:hasMember",
+      "@type": "@id"
+    },
+    "seriesStart": {
+      "@id": "tmf:seriesStart",
+      "@type": "xsd:dateTime"
+    },
+    "seriesEnd": {
+      "@id": "tmf:seriesEnd",
+      "@type": "xsd:dateTime"
+    },
+    "linkedMonitoringSeries": {
+      "@id": "tmf:linkedMonitoringSeries",
+      "@type": "@id"
+    }
   }
 }

@@ -10,13 +10,15 @@ This example shows how a simple logger export can be mapped into the compacted J
 
 ## Mapping pattern
 
-Each CSV row is retained as a source logger record and expanded into one observation per property:
+Each CSV row is retained as a source logger record and expanded into one observation per property. The generated observation ID uses the pattern `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T130000000+0200`.
 
 - `logger_mc_percent` becomes an MC observation with `observedProperty` set to `tmf:property/moisture-content`.
 - `logger_rh_percent` becomes an RH observation with `observedProperty` set to `tmf:property/relative-humidity`.
 - `logger_temperature_c` becomes a temperature observation with `observedProperty` set to `tmf:property/air-temperature`.
 
 The generated observations share the same sensor, installation, location, timestamp, source record ID, and sampling interval. Each observation uses `madeBySensor` for the SOSA sensor link and carries both a simple SOSA result string and a QUDT `QuantityValue` with an explicit unit reference.
+
+The whole logger export or selected time-series window is represented by a parent `MonitoringTimeSeries` node. It stores the series start and end time, sampling interval, observed properties, sensor installation, and `hasObservation` links to the generated per-property observations.
 
 ## Column mapping
 
@@ -31,7 +33,7 @@ The generated observations share the same sensor, installation, location, timest
 | `location_id` | `location` | Expanded as `tmf:location/{location_id}`. |
 | `installation_id` | `installation` | Expanded as `tmf:installation/{installation_id}`. |
 | `sensor_id` | `madeBySensor` | Expanded as `tmf:sensor/{sensor_id}` for generated observations. The installation record uses the same sensor ID as `deployedSystem`. |
-| `source_record_id` | `sourceRecordId` | Preserves the original logger-row identifier shared by the generated observations. |
+| `source_record_id` | `sourceRecordId` | Preserves the original logger-row identifier shared by the generated observations. A timestamp-based source ID can be used where the logger does not provide a stable row ID. |
 | `jsonld_mc_observation_id` | `id` and `measurementId` | Identifier for the generated MC observation. |
 | `jsonld_rh_observation_id` | `id` and `measurementId` | Identifier for the generated RH observation. |
 | `jsonld_temperature_observation_id` | `id` and `measurementId` | Identifier for the generated temperature observation. |
@@ -47,10 +49,10 @@ The first CSV row maps to three observation nodes like this:
 ```json
 [
   {
-    "id": "tmf:observation/M-L01-000001-MC",
+    "id": "tmf:observation/M-L01-MC-20260807T130000000+0200",
     "type": ["MeasurementRecord", "Observation"],
-    "measurementId": "M-L01-000001-MC",
-    "sourceRecordId": "M-L01-000001",
+    "measurementId": "M-L01-MC-20260807T130000000+0200",
+    "sourceRecordId": "M-L01-20260807T130000000+0200",
     "madeBySensor": "tmf:sensor/MC-L01-01",
     "installation": "tmf:installation/INST-L01-01",
     "location": "tmf:location/L-01",
@@ -65,10 +67,10 @@ The first CSV row maps to three observation nodes like this:
     "samplingInterval": "PT1H"
   },
   {
-    "id": "tmf:observation/M-L01-000001-RH",
+    "id": "tmf:observation/M-L01-RH-20260807T130000000+0200",
     "type": ["MeasurementRecord", "Observation"],
-    "measurementId": "M-L01-000001-RH",
-    "sourceRecordId": "M-L01-000001",
+    "measurementId": "M-L01-RH-20260807T130000000+0200",
+    "sourceRecordId": "M-L01-20260807T130000000+0200",
     "madeBySensor": "tmf:sensor/MC-L01-01",
     "installation": "tmf:installation/INST-L01-01",
     "location": "tmf:location/L-01",
@@ -83,10 +85,10 @@ The first CSV row maps to three observation nodes like this:
     "samplingInterval": "PT1H"
   },
   {
-    "id": "tmf:observation/M-L01-000001-T",
+    "id": "tmf:observation/M-L01-T-20260807T130000000+0200",
     "type": ["MeasurementRecord", "Observation"],
-    "measurementId": "M-L01-000001-T",
-    "sourceRecordId": "M-L01-000001",
+    "measurementId": "M-L01-T-20260807T130000000+0200",
+    "sourceRecordId": "M-L01-20260807T130000000+0200",
     "madeBySensor": "tmf:sensor/MC-L01-01",
     "installation": "tmf:installation/INST-L01-01",
     "location": "tmf:location/L-01",
@@ -101,6 +103,30 @@ The first CSV row maps to three observation nodes like this:
     "samplingInterval": "PT1H"
   }
 ]
+```
+
+The parent time-series node links the observations into the whole monitoring record:
+
+```json
+{
+  "id": "tmf:monitoring-series/MS-L01-001",
+  "type": ["MonitoringTimeSeries", "Dataset"],
+  "seriesId": "MS-L01-001",
+  "location": "tmf:location/L-01",
+  "installation": "tmf:installation/INST-L01-01",
+  "madeBySensor": "tmf:sensor/MC-L01-01",
+  "seriesStart": "2026-08-07T13:00:00.000+02:00",
+  "seriesEnd": "2026-08-07T14:00:00.000+02:00",
+  "samplingInterval": "PT1H",
+  "hasObservation": [
+    "tmf:observation/M-L01-MC-20260807T130000000+0200",
+    "tmf:observation/M-L01-RH-20260807T130000000+0200",
+    "tmf:observation/M-L01-T-20260807T130000000+0200",
+    "tmf:observation/M-L01-MC-20260807T140000000+0200",
+    "tmf:observation/M-L01-RH-20260807T140000000+0200",
+    "tmf:observation/M-L01-T-20260807T140000000+0200"
+  ]
+}
 ```
 
 Static `Location`, `Sensor`, `SensorInstallation`, and `ObservableProperty` nodes should be stored once and linked from each observation by persistent IDs. Validation outcomes such as missing data, drift, implausible values, and communication gaps should be stored as separate `ValidationRecord` nodes. Sensors can link to the relevant validation record using `sensorValidationRecord`, while observations can carry `dataQualityFlag` and link to the supporting record using `qualityAssessmentRecord`.
