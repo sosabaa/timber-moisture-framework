@@ -1328,7 +1328,7 @@
 
     function renderValue(value) {
       if (value === null || value === undefined) {
-        return "";
+        return document.createTextNode("");
       }
       if (Array.isArray(value)) {
         const list = document.createElement("ul");
@@ -1339,6 +1339,20 @@
           list.appendChild(listItem);
         }
         return list;
+      }
+      if (typeof value === "object") {
+        const nested = document.createElement("dl");
+        nested.className = "nested-dl";
+        for (const [key, nestedValue] of Object.entries(value)) {
+          const dt = document.createElement("dt");
+          dt.textContent = key;
+          const dd = document.createElement("dd");
+          dd.appendChild(renderValue(nestedValue));
+          nested.append(dt, dd);
+        }
+        return nested;
+      }
+      return document.createTextNode(String(value));
     }
 
     function shorten(value, length) {
