@@ -13,8 +13,8 @@
   "validationRecord": "tmf:validation/VAL-L01-001",
   "evidenceObservationDataFile": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
   "eventPeriod": {
-    "start": "2026-08-07T12:00:00.000+02:00",
-    "end": "2026-08-09T18:00:00.000+02:00"
+    "start": "2026-08-07T10:00:00.000Z",
+    "end": "2026-08-09T16:00:00.000Z"
   },
   "moistureInterpretation": {
     "thresholdExceedance": "MC above project-defined threshold",
@@ -48,22 +48,22 @@
   ],
   "eventEntries": [
     {
-      "timestamp": "2026-08-07T12:00:00.000+02:00",
+      "timestamp": "2026-08-07T10:00:00.000Z",
       "entryType": "moisture-threshold-exceedance",
       "description": "Monitoring series indicates MC above the project-defined threshold."
     },
     {
-      "timestamp": "2026-08-08T19:00:00.000+02:00",
+      "timestamp": "2026-08-08T17:00:00.000Z",
       "entryType": "leakage-detected",
       "description": "Dishwasher leakage reported."
     },
     {
-      "timestamp": "2026-08-08T20:00:00.000+02:00",
+      "timestamp": "2026-08-08T18:00:00.000Z",
       "entryType": "inspection",
       "description": "Area inspected; no targeted opening undertaken."
     },
     {
-      "timestamp": "2026-08-08T21:00:00.000+02:00",
+      "timestamp": "2026-08-08T19:00:00.000Z",
       "entryType": "decision-recorded",
       "description": "Continued monitoring recommended."
     }

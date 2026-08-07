@@ -1,10 +1,10 @@
 {
   "validationId": "VAL-L01-001",
   "validationIri": "tmf:validation/VAL-L01-001",
-  "validationPerformedAt": "2026-08-08T16:40:11.633+02:00",
+  "validationPerformedAt": "2026-08-08T14:40:11.633Z",
   "validationPeriod": {
-    "start": "2026-08-07T00:00:00.003+02:00",
-    "end": "2026-08-08T16:40:11.633+02:00"
+    "start": "2026-08-06T22:00:00.003Z",
+    "end": "2026-08-08T14:40:11.633Z"
   },
   "validationTargets": {
     "observations": [
@@ -29,7 +29,7 @@
       "targetProperty": "tmf:property/moisture-content",
       "sourceRecordId": "M-L01-20250626T002555202Z",
       "observationTimestamp": "2025-06-26T00:25:55.202099Z",
-      "validationPerformedAt": "2026-08-08T16:40:11.633+02:00",
+      "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "unit:PERCENT for moisture-content observations",
         "project-defined plausible timber MC range",
@@ -66,7 +66,7 @@
       "targetProperty": "tmf:property/relative-humidity",
       "sourceRecordId": "M-L01-20250626T002555202Z",
       "observationTimestamp": "2025-06-26T00:25:55.202099Z",
-      "validationPerformedAt": "2026-08-08T16:40:11.633+02:00",
+      "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "unit:PERCENT for relative-humidity observations",
         "physical RH range from 0 to 100 percent",
@@ -103,7 +103,7 @@
       "targetProperty": "tmf:property/air-temperature",
       "sourceRecordId": "M-L01-20250626T002555202Z",
       "observationTimestamp": "2025-06-26T00:25:55.202099Z",
-      "validationPerformedAt": "2026-08-08T16:40:11.633+02:00",
+      "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "unit:DEG_C for air-temperature observations",
         "project-defined indoor temperature plausibility range",
@@ -138,7 +138,7 @@
       "targetType": "Sensor",
       "targetRecord": "tmf:sensor/MC-L01-01",
       "relatedInstallation": "tmf:installation/INST-L01-01",
-      "validationPerformedAt": "2026-08-08T16:40:11.633+02:00",
+      "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "deployedSystem recorded in INST-L01-01",
         "manufacturer timber MC calibration basis",
@@ -179,7 +179,7 @@
         "start": "2025-06-26T00:25:55.202099Z",
         "end": "2025-06-27T23:46:50.857321Z"
       },
-      "validationPerformedAt": "2026-08-08T16:40:11.633+02:00",
+      "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "ordered timestamps within MS-L01-001",
         "declared PT1H sampling interval with logger-clock tolerance",

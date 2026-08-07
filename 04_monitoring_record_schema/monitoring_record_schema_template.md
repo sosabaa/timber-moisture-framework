@@ -24,7 +24,7 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 | Sensor ID | Identifies the physical sensor or sensor channel. |
 | Installation ID | Identifies a specific installation of a sensor at a location. Useful if a sensor is replaced or recalibrated. |
 | Series ID | Identifies the whole monitoring time series for a location, sensor installation, and period. |
-| Measurement ID | Identifies one timestamped per-property observation. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T130000000+0200`. When a logger row contains several properties, use one observation ID per property and preserve the original logger-row ID as a source record ID. |
+| Measurement ID | Identifies one timestamped per-property observation. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T110000000Z`. When a logger row contains several properties, use one observation ID per property and preserve the original logger-row ID as a source record ID. |
 | Event ID | Identifies a moisture-related event, such as a threshold exceedance, leakage, inspection, repair, maintenance action, recalibration, or sensor replacement. |
 
 ## JSON-LD implementation
@@ -71,7 +71,7 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Sensor placement description | Required | Below sink/dishwasher connection zone, near panel edge | Descriptive placement. |
 | Calibration basis | Required where available | Manufacturer timber MC calibration | Needed for later interpretation. |
 | Correction method | Required where available | Temperature correction applied/not applied | Important for comparability. |
-| Installation date | Required | 2026-08-06T09:00:00.000+02:00 | Date of installation. |
+| Installation date | Required | 2026-08-06T07:00:00.000Z | Date of installation. |
 | Installation condition | Required | Installed after floor enclosure, before cabinetry | Construction/use context. |
 | Protection/access arrangement | Optional | Cable protected behind service access panel | Practical access and protection information. |
 | Sensor status | Required | Active/replaced/failed/removed | Supports long-term traceability. |
@@ -85,19 +85,19 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Installation ID | Required | INST-L01-01 | Links the time series to the sensor installation. |
 | Sensor ID | Required | MC-L01-01 | Sensor or channel producing the time series. |
 | Observed properties | Required | moisture content; relative humidity; air temperature | Properties contained in the time series. |
-| Series start | Required | 2026-08-07T13:00:00.000+02:00 | First timestamp represented in the time series. |
-| Series end | Required | 2026-08-07T14:00:00.000+02:00 | Last timestamp represented in the time series. |
+| Series start | Required | 2026-08-07T11:00:00.000Z | First timestamp represented in the time series. |
+| Series end | Required | 2026-08-07T12:00:00.000Z | Last timestamp represented in the time series. |
 | Sampling interval | Required | PT1H | Logging frequency as an ISO 8601 duration. |
 | Observation data file | Required | monitoring_timeseries_MS-L01-001.json | File containing the per-property observations for the time series. In JSON-LD, link this through `hasObservation`. |
 
 ## Observation data file
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|
-| Measurement ID | Optional | M-L01-MC-20260807T130000000+0200 | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
-| Source record ID | Optional | M-L01-20260807T130000000+0200 | Original logger-row identifier when one logger row generates several observations. |
+| Measurement ID | Optional | M-L01-MC-20260807T110000000Z | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
+| Source record ID | Optional | M-L01-20260807T110000000Z | Original logger-row identifier when one logger row generates several observations. |
 | Sensor ID | Required | MC-L01-01 | Sensor or channel producing the observation. |
 | Observed property | Required | tmf:property/moisture-content | The property measured by this observation, such as moisture content, relative humidity, or temperature. |
-| Timestamp | Required | 2026-08-06T16:40:11.633+02:00 | Date and time of observation. |
+| Timestamp | Required | 2026-08-06T14:40:11.633Z | Date and time of observation. |
 | Simple result | Required | 16.2 % | Human-readable SOSA simple result. |
 | Result quantity | Required | 16.2 unit:PERCENT | QUDT quantity value containing numeric value and unit reference. |
 | Data-quality flag | Optional | Usable/uncertain/invalid | Quality status for this observation, copied or summarized from a validation record where available. |
@@ -113,9 +113,9 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Validation target observation ID(s) | Optional | M-L01-MC-20250626T002555202Z | Observation records assessed by the validation record. In JSON-LD, link these through `validationTargetObservation`. |
 | Validation target sensor ID(s) | Optional | MC-L01-01 | Sensor records assessed by the validation record. In JSON-LD, link these through `validationTargetSensor`. |
 | Validation target series ID(s) | Optional | MS-L01-001 | Whole monitoring series assessed by the validation record. In JSON-LD, link these through `validationTargetSeries`. |
-| Validation performed at | Optional | 2026-08-08T16:40:11.633+02:00 | Time at which the validation assessment was carried out. In JSON-LD, record as `validationPerformedAt`. |
+| Validation performed at | Optional | 2026-08-08T14:40:11.633Z | Time at which the validation assessment was carried out. In JSON-LD, record as `validationPerformedAt`. |
 | Validation basis | Optional | Unit consistency; plausibility range; drift review | What the target was checked against. Use this to distinguish observation checks, sensor checks, and whole-series checks. |
-| Timestamp or period | Required | 2026-08-07T16:40:11.633+02:00 or 2026-08-07T00:00:00.003+02:00 to 2026-08-08T16:40:11.633+02:00 | Can apply to one reading or a period. |
+| Timestamp or period | Required | 2026-08-07T14:40:11.633Z or 2026-08-06T22:00:00.003Z to 2026-08-08T14:40:11.633Z | Can apply to one reading or a period. |
 | Data-quality flag | Required | Usable/uncertain/invalid | Overall quality status. |
 | Missing-data flag | Required | No gap detected | Data continuity check. |
 | Implausible-value flag | Required | No implausible value detected | Physical/sensor plausibility check. |
@@ -132,7 +132,7 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Location ID | Required | L-01 | Links event to risk location. |
 | Affected sensor ID | Optional | MC-L01-01 | Use where the event affects, inspects, replaces, or recalibrates a sensor. |
 | Event type | Required | moisture-threshold-exceedance; leakage-detected; inspection | Event category or categories. |
-| Event period | Required where known | Start: 2026-08-07T12:00:00.000+02:00; End: 2026-08-09T18:00:00.000+02:00 | Time period of the interpreted moisture condition, reported event, intervention, or combined lifecycle event. In JSON-LD, record this as `eventPeriod.eventStart` and `eventPeriod.eventEnd`. |
+| Event period | Required where known | Start: 2026-08-07T10:00:00.000Z; End: 2026-08-09T16:00:00.000Z | Time period of the interpreted moisture condition, reported event, intervention, or combined lifecycle event. In JSON-LD, record this as `eventPeriod.eventStart` and `eventPeriod.eventEnd`. |
 | Event description | Required | Moisture anomaly associated with dishwasher leakage report and subsequent inspection | Short description. |
 | Evidence sensor ID(s) | Optional | MC-L01-01; MC-L01-02 | Sensors whose readings support the event interpretation. |
 | Evidence observation ID(s) or file URL | Optional | monitoring_timeseries_MS-L01-001.json | Observations or linked observation file used as event evidence. |
@@ -154,7 +154,7 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Element ID | Required | CLT-FP-01 | Links to timber element or BIM object. |
 | Linked sensor ID(s) | Optional | MC-L01-01; MC-L01-02 | Sensor records retained in the lifecycle information system. |
 | Linked monitoring series ID(s) | Optional | MS-L01-001 | Whole time-series records retained in the lifecycle information system. |
-| Linked observation ID(s) | Optional | M-L01-MC-20260807T130000000+0200; M-L01-RH-20260807T130000000+0200 | Observation records retained in the lifecycle information system. |
+| Linked observation ID(s) | Optional | M-L01-MC-20260807T110000000Z; M-L01-RH-20260807T110000000Z | Observation records retained in the lifecycle information system. |
 | Linked validation record ID(s) | Optional | VAL-L01-001 | Validation records retained in the lifecycle information system. |
 | Linked event ID | Optional | EVT-L01-001 | Moisture-related event retained in the lifecycle information system. |
 | Generated-by lifecycle event ID | Optional | EVT-L01-001 | Event record that generated or motivated the integration record. |
