@@ -213,14 +213,6 @@
     "partOfSeries": {
       "@id": "schema:isPartOf",
       "@type": "@id"
-    },
-    "ObservationDataFile": "tmf:ObservationDataFile",
-    "DigitalDocument": "schema:DigitalDocument",
-    "fileName": "schema:name",
-    "encodingFormat": "schema:encodingFormat",
-    "evidenceMonitoringSeries": {
-      "@id": "tmf:evidenceMonitoringSeries",
-      "@type": "@id"
     }
   }
 }

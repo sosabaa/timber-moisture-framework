@@ -569,7 +569,6 @@
       "qualityAssessmentRecord",
       "evidenceSensor",
       "evidenceObservation",
-      "evidenceMonitoringSeries",
       "affectedSensor",
       "linkedSensor",
       "linkedObservation",
@@ -768,16 +767,6 @@
                   "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json"
             },
             {
-                  "id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
-                  "type": [
-                        "ObservationDataFile",
-                        "DigitalDocument"
-                  ],
-                  "fileName": "monitoring_timeseries_MS-L01-001.json",
-                  "encodingFormat": "application/json",
-                  "description": "External JSON file containing per-property observations for monitoring series MS-L01-001."
-            },
-            {
                   "id": "tmf:validation/VAL-L01-001",
                   "type": [
                         "ValidationRecord",
@@ -814,8 +803,7 @@
                   "moistureDose": "Repeated short exceedances",
                   "dryingBehaviour": "Delayed drying",
                   "anomalyIndicator": "Localised anomaly compared with L-05 reference",
-                  "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy",
-                  "evidenceMonitoringSeries": "tmf:monitoring-series/MS-L01-001"
+                  "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
             },
             {
                   "id": "tmf:lifecycle-event/EVT-L01-001",
@@ -1041,8 +1029,6 @@
       if (
         typeSet.has("MonitoringTimeSeries") ||
         typeSet.has("Dataset") ||
-        typeSet.has("ObservationDataFile") ||
-        typeSet.has("DigitalDocument") ||
         typeSet.has("MeasurementRecord") ||
         typeSet.has("Observation")
       ) {
@@ -1075,7 +1061,6 @@
     function getLabel(item) {
       return (
         item.sensorId ||
-        item.fileName ||
         item.installationId ||
         item.measurementId ||
         item.seriesId ||
