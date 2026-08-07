@@ -6,6 +6,12 @@
       "type": ["MoistureRiskLocation", "FeatureOfInterest", "Zone"],
       "locationId": "L-01",
       "description": "Sink/dishwasher zone below plumbing and appliance connections",
+      "lifecycleContext": "Operational monitoring",
+      "monitoringPurpose": [
+        "Maintenance",
+        "Post-event assessment",
+        "Future reuse-related evidence"
+      ]      
       "buildingZone": "Kitchen",
       "assemblyDetail": "CLT floor below sink and dishwasher",
       "hasElement": "tmf:element/CLT-FP-01",
@@ -30,6 +36,12 @@
       "type": ["MoistureRiskLocation", "ReferenceLocation", "FeatureOfInterest", "Zone"],
       "locationId": "L-05",
       "description": "Reference floor area away from appliance, plumbing, and junction risk zones",
+      "lifecycleContext": "Operational monitoring",
+      "monitoringPurpose": [
+        "Maintenance",
+        "Post-event assessment",
+        "Future reuse-related evidence"
+      ]      
       "buildingZone": "Kitchen",
       "assemblyDetail": "Open CLT floor area outside main moisture-risk zones.",
       "hasElement": "tmf:element/CLT-FP-02",
