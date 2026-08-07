@@ -58,9 +58,6 @@
           "$ref": "#/$defs/validationRecord"
         },
         {
-          "$ref": "#/$defs/exposureEvent"
-        },
-        {
           "$ref": "#/$defs/lifecycleEvent"
         },
         {
@@ -210,22 +207,6 @@
           "type": "array",
           "contains": {
             "const": "ValidationRecord"
-          },
-          "items": {
-            "$ref": "#/$defs/text"
-          }
-        }
-      ]
-    },
-    "classExposureEvent": {
-      "oneOf": [
-        {
-          "const": "ExposureEvent"
-        },
-        {
-          "type": "array",
-          "contains": {
-            "const": "ExposureEvent"
           },
           "items": {
             "$ref": "#/$defs/text"
@@ -692,67 +673,6 @@
       },
       "additionalProperties": true
     },
-    "exposureEvent": {
-      "type": "object",
-      "required": [
-        "id",
-        "type",
-        "exposureEventId",
-        "location",
-        "eventStart",
-        "eventEnd"
-      ],
-      "properties": {
-        "id": {
-          "$ref": "#/$defs/id"
-        },
-        "type": {
-          "$ref": "#/$defs/classExposureEvent"
-        },
-        "exposureEventId": {
-          "$ref": "#/$defs/text"
-        },
-        "location": {
-          "$ref": "#/$defs/id"
-        },
-        "evidenceSensor": {
-          "$ref": "#/$defs/idOrIdArray"
-        },
-        "evidenceObservation": {
-          "$ref": "#/$defs/idOrIdArray"
-        },
-        "eventStart": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "eventEnd": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "thresholdExceedance": {
-          "$ref": "#/$defs/text"
-        },
-        "exceedanceDuration": {
-          "$ref": "#/$defs/text"
-        },
-        "moistureDose": {
-          "$ref": "#/$defs/text"
-        },
-        "dryingBehaviour": {
-          "$ref": "#/$defs/text"
-        },
-        "anomalyIndicator": {
-          "$ref": "#/$defs/text"
-        },
-        "confidenceOrUncertainty": {
-          "$ref": "#/$defs/text"
-        },
-        "hasExposureLog": {
-          "$ref": "#/$defs/id"
-        }
-      },
-      "additionalProperties": true
-    },
     "lifecycleEvent": {
       "type": "object",
       "required": [
@@ -779,7 +699,7 @@
           "$ref": "#/$defs/idOrIdArray"
         },
         "eventType": {
-          "$ref": "#/$defs/text"
+          "$ref": "#/$defs/textOrTextArray"
         },
         "eventPeriod": {
           "type": "object",
@@ -801,8 +721,29 @@
         "actionTaken": {
           "$ref": "#/$defs/text"
         },
-        "informedByExposureEvent": {
-          "$ref": "#/$defs/id"
+        "evidenceSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "evidenceObservation": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "thresholdExceedance": {
+          "$ref": "#/$defs/text"
+        },
+        "exceedanceDuration": {
+          "$ref": "#/$defs/text"
+        },
+        "moistureDose": {
+          "$ref": "#/$defs/text"
+        },
+        "dryingBehaviour": {
+          "$ref": "#/$defs/text"
+        },
+        "anomalyIndicator": {
+          "$ref": "#/$defs/text"
+        },
+        "confidenceOrUncertainty": {
+          "$ref": "#/$defs/text"
         },
         "outcome": {
           "$ref": "#/$defs/text"
@@ -844,8 +785,8 @@
         "linkedObservation": {
           "$ref": "#/$defs/idOrIdArray"
         },
-        "linkedExposureEvent": {
-          "$ref": "#/$defs/id"
+        "linkedEvent": {
+          "$ref": "#/$defs/idOrIdArray"
         },
         "linkedValidationRecord": {
           "$ref": "#/$defs/idOrIdArray"

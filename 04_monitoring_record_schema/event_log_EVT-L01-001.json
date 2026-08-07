@@ -1,18 +1,60 @@
 {
   "eventId": "EVT-L01-001",
   "eventIri": "tmf:lifecycle-event/EVT-L01-001",
+  "eventType": [
+    "moisture-threshold-exceedance",
+    "leakage-detected",
+    "inspection"
+  ],
   "location": "tmf:location/L-01",
+  "referenceLocation": "tmf:location/L-05",
   "affectedSensor": "tmf:sensor/MC-L01-01",
-  "informedByExposureEvent": "tmf:exposure-event/EXP-L01-001",
-  "eventType": "Leakage and inspection",
+  "monitoringSeries": "tmf:monitoring-series/MS-L01-001",
+  "validationRecord": "tmf:validation/VAL-L01-001",
+  "evidenceObservationDataFile": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
   "eventPeriod": {
-    "start": "2026-08-08T19:00:00.000+02:00",
-    "end": "2026-08-08T21:00:00.000+02:00"
+    "start": "2026-08-07T12:00:00.000+02:00",
+    "end": "2026-08-09T18:00:00.000+02:00"
   },
-  "entries": [
+  "moistureInterpretation": {
+    "thresholdExceedance": "MC above project-defined threshold",
+    "exceedanceDuration": "54 hours",
+    "moistureDose": "Repeated short exceedances",
+    "dryingBehaviour": "Delayed drying",
+    "anomalyIndicator": "Localised anomaly compared with L-05 reference",
+    "confidenceOrUncertainty": "Medium confidence due to complete data but limited redundancy"
+  },
+  "indicators": [
+    {
+      "indicatorType": "threshold-exceedance",
+      "result": "MC above project-defined threshold"
+    },
+    {
+      "indicatorType": "exceedance-duration",
+      "result": "54 hours"
+    },
+    {
+      "indicatorType": "moisture-dose",
+      "result": "Repeated short exceedances"
+    },
+    {
+      "indicatorType": "drying-behaviour",
+      "result": "Delayed drying"
+    },
+    {
+      "indicatorType": "reference-location-comparison",
+      "result": "Localised anomaly compared with L-05 reference"
+    }
+  ],
+  "eventEntries": [
+    {
+      "timestamp": "2026-08-07T12:00:00.000+02:00",
+      "entryType": "moisture-threshold-exceedance",
+      "description": "Monitoring series indicates MC above the project-defined threshold."
+    },
     {
       "timestamp": "2026-08-08T19:00:00.000+02:00",
-      "entryType": "reported-event",
+      "entryType": "leakage-detected",
       "description": "Dishwasher leakage reported."
     },
     {
@@ -22,8 +64,9 @@
     },
     {
       "timestamp": "2026-08-08T21:00:00.000+02:00",
-      "entryType": "outcome",
+      "entryType": "decision-recorded",
       "description": "Continued monitoring recommended."
     }
-  ]
+  ],
+  "outcome": "Continued monitoring recommended."
 }
