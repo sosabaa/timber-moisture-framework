@@ -52,6 +52,9 @@
           "$ref": "#/$defs/monitoringTimeSeries"
         },
         {
+          "$ref": "#/$defs/observationDataFile"
+        },
+        {
           "$ref": "#/$defs/measurementRecord"
         },
         {
@@ -727,6 +730,9 @@
         },
         "confidenceOrUncertainty": {
           "$ref": "#/$defs/text"
+        },
+        "evidenceMonitoringSeries": {
+          "$ref": "#/$defs/idOrIdArray"
         }
       },
       "additionalProperties": true
@@ -931,6 +937,49 @@
         },
         "hasObservation": {
           "$ref": "#/$defs/idOrIdArray"
+        }
+      },
+      "additionalProperties": true
+    },
+    "classObservationDataFile": {
+      "oneOf": [
+        {
+          "const": "ObservationDataFile"
+        },
+        {
+          "type": "array",
+          "contains": {
+            "const": "ObservationDataFile"
+          },
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "observationDataFile": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "fileName",
+        "encodingFormat"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/classObservationDataFile"
+        },
+        "fileName": {
+          "$ref": "#/$defs/text"
+        },
+        "encodingFormat": {
+          "const": "application/json"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
         }
       },
       "additionalProperties": true

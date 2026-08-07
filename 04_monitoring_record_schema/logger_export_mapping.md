@@ -16,9 +16,9 @@ Each CSV row is retained as a source logger record and expanded into one observa
 - `logger_rh_percent` becomes an RH observation with `observedProperty` set to `tmf:property/relative-humidity`.
 - `logger_temperature_c` becomes a temperature observation with `observedProperty` set to `tmf:property/air-temperature`.
 
-The generated observations share the same parent time series, timestamp, source record ID, and data-quality context. The parent `MonitoringTimeSeries` carries the shared sensor, installation, location, reference location, observed-property set, and sampling interval. Each observation links back to that parent with `partOfSeries` and carries the property-specific timestamp, `observedProperty`, simple SOSA result string, and QUDT `QuantityValue`.
+The generated observations are stored in an external JSON observation data file. The parent `MonitoringTimeSeries` carries the shared sensor, installation, location, reference location, observed-property set, and sampling interval. Its `hasObservation` field links to the JSON file containing the property-specific timestamp, `observedProperty`, simple result string, value, unit, and data-quality flag.
 
-The whole logger export or selected time-series window is represented by a parent `MonitoringTimeSeries` node. It stores the series start and end time, sampling interval, observed properties, sensor installation, and `hasObservation` links to the generated per-property observations.
+The whole logger export or selected time-series window is represented by a parent `MonitoringTimeSeries` node. It stores the series start and end time, sampling interval, observed properties, sensor installation, and a `hasObservation` link to the generated observation data file.
 
 ## Column mapping
 
@@ -44,59 +44,25 @@ The whole logger export or selected time-series window is represented by a paren
 
 ## Minimal mapped JSON-LD observations
 
-The first CSV row maps to three observation nodes like this:
+The first CSV row maps to three observation objects in `monitoring_timeseries_MS-L01-001.json`:
 
 ```json
-[
-  {
-    "id": "tmf:observation/M-L01-MC-20260807T130000000+0200",
-    "type": ["MeasurementRecord", "Observation"],
-    "measurementId": "M-L01-MC-20260807T130000000+0200",
-    "sourceRecordId": "M-L01-20260807T130000000+0200",
-    "partOfSeries": "tmf:monitoring-series/MS-L01-001",
-    "observedProperty": "tmf:property/moisture-content",
-    "timestamp": "2026-08-07T13:00:00.000+02:00",
-    "hasSimpleResult": "16.2 %",
-    "resultQuantity": {
-      "type": "QuantityValue",
-      "numericValue": 16.2,
-      "unitRef": "unit:PERCENT"
-    },
-    "samplingInterval": "PT1H"
-  },
-  {
-    "id": "tmf:observation/M-L01-RH-20260807T130000000+0200",
-    "type": ["MeasurementRecord", "Observation"],
-    "measurementId": "M-L01-RH-20260807T130000000+0200",
-    "sourceRecordId": "M-L01-20260807T130000000+0200",
-    "partOfSeries": "tmf:monitoring-series/MS-L01-001",
-    "observedProperty": "tmf:property/relative-humidity",
-    "timestamp": "2026-08-07T13:00:00.000+02:00",
-    "hasSimpleResult": "62.0 %",
-    "resultQuantity": {
-      "type": "QuantityValue",
-      "numericValue": 62.0,
-      "unitRef": "unit:PERCENT"
-    },
-    "samplingInterval": "PT1H"
-  },
-  {
-    "id": "tmf:observation/M-L01-T-20260807T130000000+0200",
-    "type": ["MeasurementRecord", "Observation"],
-    "measurementId": "M-L01-T-20260807T130000000+0200",
-    "sourceRecordId": "M-L01-20260807T130000000+0200",
-    "partOfSeries": "tmf:monitoring-series/MS-L01-001",
-    "observedProperty": "tmf:property/air-temperature",
-    "timestamp": "2026-08-07T13:00:00.000+02:00",
-    "hasSimpleResult": "21.4 degC",
-    "resultQuantity": {
-      "type": "QuantityValue",
-      "numericValue": 21.4,
-      "unitRef": "unit:DEG_C"
-    },
-    "samplingInterval": "PT1H"
-  }
-]
+{
+  "seriesId": "MS-L01-001",
+  "sensorLabel": "core_short",
+  "observations": [
+    {
+      "observationId": "M-L01-MC-20250626T002555202Z",
+      "sourceRecordId": "M-L01-20250626T002555202Z",
+      "timestamp": "2025-06-26T00:25:55.202099Z",
+      "observedProperty": "tmf:property/moisture-content",
+      "resultValue": 13.6,
+      "resultUnit": "unit:PERCENT",
+      "simpleResult": "13.6 %",
+      "dataQualityFlag": "Usable"
+    }
+  ]
+}
 ```
 
 The parent time-series node links the observations into the whole monitoring record:
@@ -112,14 +78,7 @@ The parent time-series node links the observations into the whole monitoring rec
   "seriesStart": "2026-08-07T13:00:00.000+02:00",
   "seriesEnd": "2026-08-07T14:00:00.000+02:00",
   "samplingInterval": "PT1H",
-  "hasObservation": [
-    "tmf:observation/M-L01-MC-20260807T130000000+0200",
-    "tmf:observation/M-L01-RH-20260807T130000000+0200",
-    "tmf:observation/M-L01-T-20260807T130000000+0200",
-    "tmf:observation/M-L01-MC-20260807T140000000+0200",
-    "tmf:observation/M-L01-RH-20260807T140000000+0200",
-    "tmf:observation/M-L01-T-20260807T140000000+0200"
-  ]
+  "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json"
 }
 ```
 
