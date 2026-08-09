@@ -320,8 +320,14 @@
         "Entity"
       ],
       "integrationId": "LINK-L01-001",
-      "location": "tmf:location/L-01",
-      "hasElement": "tmf:element/CLT-FP-01",
+      "location": [
+        "tmf:location/L-01",
+        "tmf:location/L-05"
+        ]
+      "hasElement": [
+        "tmf:element/CLT-FP-01",
+        "tmf:element/CLT-FP-02"
+        ]
       "linkedSensor": [
         "tmf:sensor/MC-L01-01",
         "tmf:sensor/MC-L05-01"
