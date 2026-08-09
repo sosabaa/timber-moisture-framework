@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries.schema.json",
+  "title": "Timber Moisture Framework Monitoring Time Series",
+  "description": "Validation schema for linked JSON observation data files referenced from a compact MonitoringTimeSeries node through hasObservation.",
+  "type": "object",
+  "required": [
+    "seriesId",
+    "seriesIri",
+    "location",
+    "installation",
+    "madeBySensor",
+    "observedProperty",
+    "seriesStart",
+    "seriesEnd",
+    "samplingInterval",
+    "observations"
+  ],
+  "properties": {
+    "seriesId": {
+      "$ref": "#/$defs/text"
+    },
+    "seriesIri": {
+      "$ref": "#/$defs/id"
+    },
+    "location": {
+      "$ref": "#/$defs/id"
+    },
+    "hasReferenceLocation": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
+    "installation": {
+      "$ref": "#/$defs/id"
+    },
+    "madeBySensor": {
+      "$ref": "#/$defs/id"
+    },
+    "sensorLabel": {
+      "$ref": "#/$defs/text"
+    },
+    "observedProperty": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
+    "seriesStart": {
+      "$ref": "#/$defs/zonedDateTime"
+    },
+    "seriesEnd": {
+      "$ref": "#/$defs/zonedDateTime"
+    },
+    "samplingInterval": {
+      "$ref": "#/$defs/isoDuration"
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/observation"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:.+"
+    },
+    "idOrIdArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/id"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      ]
+    },
+    "zonedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$"
+    },
+    "isoDuration": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^P(?!$).+"
+    },
+    "qualityFlag": {
+      "enum": [
+        "Usable",
+        "Uncertain",
+        "Invalid"
+      ]
+    },
+    "observation": {
+      "type": "object",
+      "required": [
+        "observationId",
+        "sourceRecordId",
+        "timestamp",
+        "observedProperty",
+        "resultValue",
+        "resultUnit",
+        "simpleResult",
+        "dataQualityFlag"
+      ],
+      "properties": {
+        "observationId": {
+          "$ref": "#/$defs/text"
+        },
+        "sourceRecordId": {
+          "$ref": "#/$defs/text"
+        },
+        "timestamp": {
+          "$ref": "#/$defs/zonedDateTime"
+        },
+        "observedProperty": {
+          "$ref": "#/$defs/id"
+        },
+        "resultValue": {
+          "type": "number"
+        },
+        "resultUnit": {
+          "$ref": "#/$defs/id"
+        },
+        "simpleResult": {
+          "$ref": "#/$defs/text"
+        },
+        "dataQualityFlag": {
+          "$ref": "#/$defs/qualityFlag"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

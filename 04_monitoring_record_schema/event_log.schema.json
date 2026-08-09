@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log.schema.json",
+  "title": "Timber Moisture Framework Event Log",
+  "description": "Validation schema for linked JSON moisture-related event logs referenced from a compact LifecycleEvent node through hasEventLog.",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventIri",
+    "eventType",
+    "location",
+    "monitoringSeries",
+    "eventPeriod",
+    "eventEntries"
+  ],
+  "properties": {
+    "eventId": {
+      "$ref": "#/$defs/text"
+    },
+    "eventIri": {
+      "$ref": "#/$defs/id"
+    },
+    "eventType": {
+      "$ref": "#/$defs/textOrTextArray"
+    },
+    "location": {
+      "$ref": "#/$defs/id"
+    },
+    "hasReferenceLocation": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
+    "affectedSensor": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
+    "monitoringSeries": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
+    "validationRecord": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
+    "evidenceObservationDataFile": {
+      "$ref": "#/$defs/id"
+    },
+    "eventPeriod": {
+      "$ref": "#/$defs/period"
+    },
+    "moistureInterpretation": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "indicators": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/indicator"
+      }
+    },
+    "eventEntries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/eventEntry"
+      }
+    },
+    "outcome": {
+      "$ref": "#/$defs/text"
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:.+"
+    },
+    "idOrIdArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/id"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      ]
+    },
+    "textOrTextArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/text"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "zonedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$"
+    },
+    "period": {
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/zonedDateTime"
+        },
+        "end": {
+          "$ref": "#/$defs/zonedDateTime"
+        }
+      },
+      "additionalProperties": true
+    },
+    "indicator": {
+      "type": "object",
+      "required": [
+        "indicatorType",
+        "result"
+      ],
+      "properties": {
+        "indicatorType": {
+          "$ref": "#/$defs/text"
+        },
+        "result": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "eventEntry": {
+      "type": "object",
+      "required": [
+        "timestamp",
+        "entryType",
+        "description"
+      ],
+      "properties": {
+        "timestamp": {
+          "$ref": "#/$defs/zonedDateTime"
+        },
+        "entryType": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
