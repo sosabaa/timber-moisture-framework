@@ -214,8 +214,8 @@
     "Dataset": "schema:Dataset",
     "seriesId": "schema:identifier",
     "seriesDescription": "schema:description",
-    "referenceLocation": {
-      "@id": "tmf:referenceLocation",
+    "hasReferenceLocation": {
+      "@id": "tmf:hasReferenceLocation",
       "@type": "@id"
     },
     "hasObservation": {

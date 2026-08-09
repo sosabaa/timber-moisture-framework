@@ -386,7 +386,7 @@
         "monitoringPurpose": {
           "$ref": "#/$defs/textOrTextArray"
         },
-        "referenceLocation": {
+        "hasReferenceLocation": {
           "$ref": "#/$defs/idOrIdArray"
         }
       },
@@ -830,7 +830,7 @@
         "location": {
           "$ref": "#/$defs/id"
         },
-        "referenceLocation": {
+        "hasReferenceLocation": {
           "$ref": "#/$defs/idOrIdArray"
         },
         "installation": {
