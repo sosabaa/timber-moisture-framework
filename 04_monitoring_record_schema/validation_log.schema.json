@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/validation_log.schema.json",
+  "title": "Timber Moisture Framework Validation Log",
+  "description": "Validation schema for linked JSON validation logs referenced from a compact ValidationRecord node through hasValidationLog.",
+  "type": "object",
+  "required": [
+    "validationId",
+    "validationIri",
+    "validationPerformedAt",
+    "validationPeriod",
+    "validationTargets",
+    "summary",
+    "validationEntries"
+  ],
+  "properties": {
+    "validationId": {
+      "$ref": "#/$defs/text"
+    },
+    "validationIri": {
+      "$ref": "#/$defs/id"
+    },
+    "validationPerformedAt": {
+      "$ref": "#/$defs/zonedDateTime"
+    },
+    "validationPeriod": {
+      "$ref": "#/$defs/period"
+    },
+    "validationTargets": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/idOrIdArray"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "overallDataQualityFlag",
+        "overallResult"
+      ],
+      "properties": {
+        "overallDataQualityFlag": {
+          "$ref": "#/$defs/qualityFlag"
+        },
+        "overallResult": {
+          "$ref": "#/$defs/checkStatus"
+        },
+        "notes": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "validationEntries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/validationEntry"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:.+"
+    },
+    "idOrIdArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/id"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      ]
+    },
+    "textOrTextArray": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/text"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      ]
+    },
+    "zonedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$"
+    },
+    "period": {
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/zonedDateTime"
+        },
+        "end": {
+          "$ref": "#/$defs/zonedDateTime"
+        }
+      },
+      "additionalProperties": true
+    },
+    "qualityFlag": {
+      "enum": [
+        "Usable",
+        "Uncertain",
+        "Invalid"
+      ]
+    },
+    "checkStatus": {
+      "enum": [
+        "pass",
+        "warning",
+        "fail",
+        "not-assessed"
+      ]
+    },
+    "check": {
+      "type": "object",
+      "required": [
+        "checkType",
+        "status",
+        "result"
+      ],
+      "properties": {
+        "checkType": {
+          "$ref": "#/$defs/text"
+        },
+        "status": {
+          "$ref": "#/$defs/checkStatus"
+        },
+        "result": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": true
+    },
+    "validationEntry": {
+      "type": "object",
+      "required": [
+        "validationEntryId",
+        "targetType",
+        "targetRecord",
+        "validationPerformedAt",
+        "validatedAgainst",
+        "checks"
+      ],
+      "properties": {
+        "validationEntryId": {
+          "$ref": "#/$defs/text"
+        },
+        "targetType": {
+          "$ref": "#/$defs/text"
+        },
+        "targetRecord": {
+          "$ref": "#/$defs/id"
+        },
+        "targetProperty": {
+          "$ref": "#/$defs/id"
+        },
+        "sourceRecordId": {
+          "$ref": "#/$defs/text"
+        },
+        "observationTimestamp": {
+          "$ref": "#/$defs/zonedDateTime"
+        },
+        "seriesPeriod": {
+          "$ref": "#/$defs/period"
+        },
+        "validationPerformedAt": {
+          "$ref": "#/$defs/zonedDateTime"
+        },
+        "validatedAgainst": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
+        "checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/check"
+          }
+        },
+        "validatedValue": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "dataQualityFlag": {
+          "$ref": "#/$defs/qualityFlag"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

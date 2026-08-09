@@ -20,6 +20,9 @@ The template is intended to be used after the risk-location classification and s
 - `validation_log_VAL-L01-001.json`, `event_log_EVT-L01-001.json`
   Linked JSON logs containing fuller validation checks, moisture-event interpretation details, and lifecycle-event entries referenced from the compact graph nodes.
 
+- `monitoring_timeseries.schema.json`, `validation_log.schema.json`, `event_log.schema.json`
+  JSON Schemas for checking the linked time-series observation file, validation audit log, and moisture-related event log.
+
 - `knowledge_graph_visualizer.html`
   Static browser visualizer for plotting the repository JSON-LD example or a user-supplied compacted monitoring-record graph.
 https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/knowledge_graph_visualizer.html
@@ -41,6 +44,8 @@ Use `monitoring_record_schema_context.jsonld` when creating compacted JSON-LD re
 
 Use `monitoring_record_schema.schema.json` to check whether a compacted JSON-LD file has the expected graph structure. A JSON Schema validator can be used to confirm that required nodes include identifiers, links, timestamps, observed properties, and QUDT quantity values where applicable.
 
+Use the linked-file schemas to check the detailed JSON files that sit behind the compact graph. `monitoring_timeseries.schema.json` validates the observation data file referenced through `hasObservation`; `validation_log.schema.json` validates the audit log referenced through `hasValidationLog`; and `event_log.schema.json` validates the moisture-related event log referenced through `hasEventLog`.
+
 Use `monitoring_record_schema_example.jsonld` as a minimal reference implementation. It shows how a risk location, reference location, timber elements, observable properties, sensors, installation, parent monitoring time series, a linked JSON observation data file, three illustrative timestamped observations, linked validation and event logs, and lifecycle-integration records are connected through persistent IDs.
 
 Open `knowledge_graph_visualizer.html` in a browser to inspect the graph visually. When opened through a local web server, the visualizer can load `monitoring_record_schema_example.jsonld` directly. When opened from the file system, use the file picker to load the JSON-LD example, or paste a compacted JSON-LD graph into the text area. Nodes can be moved by dragging them, and `Reset view` restores the automatic layout.
@@ -55,3 +60,4 @@ Recommended workflow:
 4. Store validation outcomes as sensor and observation properties where quick interpretation is needed, and keep fuller validation checks in a linked JSON log referenced from the `ValidationRecord` through `hasValidationLog`. The validation log should state exactly which observations, sensor, and monitoring series were validated, when the validation happened, and what each target was validated against.
 5. Add compact `LifecycleEvent` / `MoistureRelatedEvent` and `LifecycleIntegrationRecord` nodes where the monitoring record supports maintenance, post-event assessment, repair decisions, or future reuse-related assessment. Keep event-specific details such as threshold exceedance, moisture dose, drying behaviour, anomaly indicators, inspection actions, and outcomes in the linked event log referenced through `hasEventLog`.
 6. Validate the resulting compacted JSON-LD graph against `monitoring_record_schema.schema.json`.
+7. Validate linked JSON files against `monitoring_timeseries.schema.json`, `validation_log.schema.json`, and `event_log.schema.json` where those files are used.

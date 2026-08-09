@@ -7,6 +7,7 @@ This example shows how a simple logger export can be mapped into the compacted J
 - `logger_export_mapping_example.csv` contains two hourly logger rows from one sensor channel.
 - `monitoring_record_schema_example.jsonld` shows the linked graph that receives the generated observation records.
 - `monitoring_record_schema.schema.json` provides a validation target for compacted JSON-LD records.
+- `monitoring_timeseries.schema.json` provides a validation target for the linked JSON observation data file.
 
 ## Mapping pattern
 
@@ -26,9 +27,9 @@ The whole logger export or selected time-series window is represented by a paren
 | --- | --- | --- |
 | `logger_timestamp` | `timestamp` | Result time for each generated `sosa:Observation`. Use an ISO 8601 date-time with timezone. |
 | `sensor_channel` | Logger-specific metadata | Retain in platform metadata or `rawSensorOutput` where useful. |
-| `logger_mc_percent` | `resultQuantity.numericValue` | Used for the MC observation. Unit is `unit:PERCENT`. |
-| `logger_temperature_c` | `resultQuantity.numericValue` | Used for the temperature observation. Unit is `unit:DEG_C`. |
-| `logger_rh_percent` | `resultQuantity.numericValue` | Used for the RH observation. Unit is `unit:PERCENT`. |
+| `logger_mc_percent` | `resultValue`, `resultUnit` | Used for the MC observation. Unit is `unit:PERCENT`. |
+| `logger_temperature_c` | `resultValue`, `resultUnit` | Used for the temperature observation. Unit is `unit:DEG_C`. |
+| `logger_rh_percent` | `resultValue`, `resultUnit` | Used for the RH observation. Unit is `unit:PERCENT`. |
 | `data_quality_flag` | `dataQualityFlag` | Used on the generated observation when row-level quality is available and summarized in a separate `ValidationRecord` where a fuller quality check is retained. |
 | `location_id` | `location` | Expanded as `tmf:location/{location_id}`. |
 | `installation_id` | `installation` | Expanded as `tmf:installation/{installation_id}`. |
@@ -42,7 +43,7 @@ The whole logger export or selected time-series window is represented by a paren
 | `jsonld_temperature_property` | `observedProperty` | Observable property for temperature. |
 | `jsonld_samplingInterval` | `samplingInterval` | ISO 8601 duration such as `PT1H`. |
 
-## Minimal mapped JSON-LD observations
+## Minimal mapped JSON observations
 
 The first CSV row maps to three observation objects in `monitoring_timeseries_MS-L01-001.json`:
 
@@ -73,6 +74,7 @@ The parent time-series node links the observations into the whole monitoring rec
   "type": ["MonitoringTimeSeries", "Dataset"],
   "seriesId": "MS-L01-001",
   "location": "tmf:location/L-01",
+  "hasReferenceLocation": "tmf:location/L-05",
   "installation": "tmf:installation/INST-L01-01",
   "madeBySensor": "tmf:sensor/MC-L01-01",
   "seriesStart": "2026-08-07T11:00:00.000Z",
