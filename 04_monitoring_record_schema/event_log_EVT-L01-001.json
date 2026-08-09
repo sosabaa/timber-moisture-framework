@@ -7,7 +7,7 @@
     "inspection"
   ],
   "location": "tmf:location/L-01",
-  "referenceLocation": "tmf:location/L-05",
+  "hasReferenceLocation": "tmf:location/L-05",
   "affectedSensor": "tmf:sensor/MC-L01-01",
   "monitoringSeries": "tmf:monitoring-series/MS-L01-001",
   "validationRecord": "tmf:validation/VAL-L01-001",

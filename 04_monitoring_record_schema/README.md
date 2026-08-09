@@ -35,7 +35,7 @@ https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/
 
 ## Using and validating the data artifacts
 
-Use `monitoring_record_schema_template.md` to decide which location, sensor, measurement, validation, exposure, lifecycle-event, and lifecycle-integration fields need to be retained for a project. The Markdown template is the human-readable planning document.
+Use `monitoring_record_schema_template.md` to decide which location, sensor, measurement, validation, moisture-related event, lifecycle-event, and lifecycle-integration fields need to be retained for a project. The Markdown template is the human-readable planning document.
 
 Use `monitoring_record_schema_context.jsonld` when creating compacted JSON-LD records. The context defines the compact field names, identifier links, and datatypes used by the example graph.
 

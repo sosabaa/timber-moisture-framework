@@ -50,7 +50,7 @@ The example is illustrative and should be adapted to project-specific conditions
 <tr>
   <td rowspan="2">Data and metadata capture</td>
   <td>Monitoring variables</td>
-  <td>MC, RH, temperature, and relevant exposure data, such as room conditions, leakage events, appliance replacement, plumbing works, and maintenance records.</td>
+  <td>MC, RH, temperature, and relevant moisture-event context, such as room conditions, leakage events, appliance replacement, plumbing works, and maintenance records.</td>
 </tr>
 <tr>
   <td>Metadata</td>
@@ -78,7 +78,7 @@ The example is illustrative and should be adapted to project-specific conditions
 <tr>
   <td>Lifecycle integration</td>
   <td></td>
-  <td>Link exposure history, interpreted indicators, metadata, and quality flags to the relevant BIM element or panel/junction record, with selected lifecycle information referenced in a building logbook, product passport, or other lifecycle information system.</td>
+  <td>Link moisture-event history, interpreted indicators, metadata, and quality flags to the relevant BIM element or panel/junction record, with selected lifecycle information referenced in a building logbook, product passport, or other lifecycle information system.</td>
 </tr>
 
   </tbody>
@@ -307,7 +307,7 @@ The implementation below shows how the L-01 to L-05 locations are carried forwar
 
 The final implementation step is to structure the sensor readings and contextual information so that the monitoring record remains interpretable over time. The reusable monitoring-record schema template is located at [`04_monitoring_record_schema/monitoring_record_schema_template.md`](../04_monitoring_record_schema/monitoring_record_schema_template.md).
 
-For the CLT kitchen-floor example, the monitoring record should retain the link between each location ID, installed sensor, CLT panel or junction, measurement depth, measured values, validation flags, exposure indicators, and lifecycle decision context. This ensures that later users can interpret whether a recorded moisture event represents localised wetting, delayed drying, repeated exposure, background indoor-climate behaviour, or uncertain data quality.
+For the CLT kitchen-floor example, the monitoring record should retain the link between each location ID, installed sensor, CLT panel or junction, measurement depth, measured values, validation flags, moisture-event indicators, and lifecycle decision context. This ensures that later users can interpret whether a recorded moisture event represents localised wetting, delayed drying, repeated moisture exposure, background indoor-climate behaviour, or uncertain data quality.
 
 ## Example interpretation
 

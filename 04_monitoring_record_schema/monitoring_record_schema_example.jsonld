@@ -34,7 +34,7 @@
       "riskClass": "High",
       "decisionRelevance": "High",
       "locationNotes": "Near plumbing and appliance connection zone",
-      "referenceLocation": "tmf:location/L-05"
+      "hasReferenceLocation": "tmf:location/L-05"
     },
     {
       "id": "tmf:location/L-05",
@@ -193,7 +193,7 @@
       "seriesId": "MS-L01-001",
       "seriesDescription": "Two-day maximum one-sensor monitoring time series for the L-01 sink/dishwasher zone. Detailed per-property observations are stored in the linked JSON file.",
       "location": "tmf:location/L-01",
-      "referenceLocation": "tmf:location/L-05",
+      "hasReferenceLocation": "tmf:location/L-05",
       "installation": "tmf:installation/INST-L01-01",
       "madeBySensor": "tmf:sensor/MC-L01-01",
       "observedProperty": [
