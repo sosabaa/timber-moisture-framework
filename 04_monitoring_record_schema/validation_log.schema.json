@@ -28,6 +28,23 @@
     },
     "validationTargets": {
       "type": "object",
+      "required": [
+        "installation"
+      ],
+      "properties": {
+        "observations": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "sensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "monitoringSeries": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "installation": {
+          "$ref": "#/$defs/idOrIdArray"
+        }
+      },
       "minProperties": 1,
       "additionalProperties": {
         "$ref": "#/$defs/idOrIdArray"
@@ -174,6 +191,9 @@
         },
         "targetRecord": {
           "$ref": "#/$defs/id"
+        },
+        "relatedInstallation": {
+          "$ref": "#/$defs/idOrIdArray"
         },
         "targetProperty": {
           "$ref": "#/$defs/id"

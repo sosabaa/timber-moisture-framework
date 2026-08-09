@@ -32,6 +32,9 @@
     "affectedSensor": {
       "$ref": "#/$defs/idOrIdArray"
     },
+    "installation": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
     "monitoringSeries": {
       "$ref": "#/$defs/idOrIdArray"
     },
