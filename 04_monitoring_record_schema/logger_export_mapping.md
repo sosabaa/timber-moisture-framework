@@ -17,7 +17,7 @@ Each CSV row is retained as a source logger record and expanded into one observa
 - `logger_rh_percent` becomes an RH observation with `observedProperty` set to `tmf:property/relative-humidity`.
 - `logger_temperature_c` becomes a temperature observation with `observedProperty` set to `tmf:property/air-temperature`.
 
-The generated observations are stored in an external JSON observation data file. The parent `MonitoringTimeSeries` carries the shared sensor, installation, location, reference location, observed-property set, and sampling interval. Its `hasObservation` field links to the JSON file containing the property-specific timestamp, `observedProperty`, simple result string, value, unit, and data-quality flag.
+The generated observations are stored in an external JSON observation data file. The parent `MonitoringTimeSeries` carries the shared sensor, installation, location, reference location, optional reference sensor, observed-property set, and sampling interval. Its `hasObservation` field links to the JSON file containing the property-specific timestamp, `observedProperty`, simple result string, value, unit, and data-quality flag.
 
 The whole logger export or selected time-series window is represented by a parent `MonitoringTimeSeries` node. It stores the series start and end time, sampling interval, observed properties, sensor installation, and a `hasObservation` link to the generated observation data file.
 
@@ -75,6 +75,7 @@ The parent time-series node links the observations into the whole monitoring rec
   "seriesId": "MS-L01-001",
   "location": "tmf:location/L-01",
   "hasReferenceLocation": "tmf:location/L-05",
+  "usesReferenceSensor": "tmf:sensor/MC-L05-01",
   "installation": "tmf:installation/INST-L01-01",
   "madeBySensor": "tmf:sensor/MC-L01-01",
   "seriesStart": "2026-08-07T11:00:00.000Z",

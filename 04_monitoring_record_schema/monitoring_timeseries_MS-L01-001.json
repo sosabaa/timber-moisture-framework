@@ -3,6 +3,7 @@
   "seriesIri": "tmf:monitoring-series/MS-L01-001",
   "location": "tmf:location/L-01",
   "hasReferenceLocation": "tmf:location/L-05",
+  "usesReferenceSensor": "tmf:sensor/MC-L05-01",
   "installation": "tmf:installation/INST-L01-01",
   "madeBySensor": "tmf:sensor/MC-L01-01",
   "sensorLabel": "core_short",

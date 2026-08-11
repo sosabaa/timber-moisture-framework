@@ -105,14 +105,6 @@
       "@id": "tmf:validationTargetObservation",
       "@type": "@id"
     },
-    "validationReferenceSensor": {
-      "@id": "tmf:validationReferenceSensor",
-      "@type": "@id"
-    },
-    "validationReferenceLocation": {
-      "@id": "tmf:validationReferenceLocation",
-      "@type": "@id"
-    },
     "validationPerformedAt": {
       "@id": "tmf:validationPerformedAt",
       "@type": "xsd:dateTime"
@@ -224,6 +216,10 @@
     "seriesDescription": "schema:description",
     "hasReferenceLocation": {
       "@id": "tmf:hasReferenceLocation",
+      "@type": "@id"
+    },
+    "usesReferenceSensor": {
+      "@id": "tmf:usesReferenceSensor",
       "@type": "@id"
     },
     "hasObservation": {

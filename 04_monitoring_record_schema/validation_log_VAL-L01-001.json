@@ -14,9 +14,7 @@
     ],
     "sensor": "tmf:sensor/MC-L01-01",
     "monitoringSeries": "tmf:monitoring-series/MS-L01-001",
-    "installation": "tmf:installation/INST-L01-01",
-    "referenceSensor": "tmf:sensor/MC-L05-01",
-    "referenceLocation": "tmf:location/L-05"
+    "installation": "tmf:installation/INST-L01-01"
   },
   "summary": {
     "overallDataQualityFlag": "Usable",
