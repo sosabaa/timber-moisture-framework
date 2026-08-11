@@ -8,7 +8,7 @@ This repository accompanies the paper **“A Conceptual Framework for Reuse-Driv
 
 ## Repository contents
 
-- `01_worked_example/`  
+- `01_framework_implementation_example/`  
   Framework implementation example for a CLT kitchen-floor scenario.
 
 - `02_risk_location_classification/`  
