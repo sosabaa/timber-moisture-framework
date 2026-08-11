@@ -18,7 +18,7 @@ This repository accompanies the paper **“A Conceptual Framework for Reuse-Driv
   Template for translating risk classification into sensor placement, density, depth, redundancy, and protection decisions.
 
 - `04_monitoring_record_schema/`
-  Template and data-specification artifacts for structuring monitoring records, including a SOSA/QUDT-aligned JSON-LD context, example JSON-LD graph, JSON Schema validation files, and knowledge-graph visualizer.
+  Template and data-specification artifacts for structuring monitoring records, including JSON-LD schema files, RDF/Turtle schema files, example graphs, JSON Schema validation files, and a knowledge-graph visualizer.
 
 ## Knowledge graph visualizer
 The monitoring-record example can be explored through the live knowledge graph visualizer:

@@ -1,0 +1,300 @@
+@prefix tmf: <https://sosabaa.github.io/timber-moisture-framework/vocab#> .
+@prefix schema: <https://schema.org/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tmf:
+  a owl:Ontology ;
+  rdfs:label "Timber Moisture Framework monitoring-record vocabulary" ;
+  rdfs:comment "RDFS/OWL vocabulary for lifecycle-oriented moisture-monitoring records in mass-timber buildings." ;
+  owl:versionInfo "0.1.0" .
+
+tmf:MoistureRiskLocation
+  a owl:Class ;
+  rdfs:subClassOf sosa:FeatureOfInterest, bot:Zone ;
+  rdfs:label "Moisture risk location" ;
+  rdfs:comment "A building zone, assembly detail, or element feature selected for moisture-risk monitoring." .
+
+tmf:ReferenceLocation
+  a owl:Class ;
+  rdfs:subClassOf tmf:MoistureRiskLocation ;
+  rdfs:label "Reference location" ;
+  rdfs:comment "A monitoring location used as a baseline for interpreting whether moisture behaviour is local or general." .
+
+tmf:TimberElement
+  a owl:Class ;
+  rdfs:subClassOf bot:Element ;
+  rdfs:label "Timber element" ;
+  rdfs:comment "A mass-timber element, panel, beam, column, junction, or related element represented in the monitoring record." .
+
+tmf:SensorInstallation
+  a owl:Class ;
+  rdfs:subClassOf sosa:Deployment ;
+  rdfs:label "Sensor installation" ;
+  rdfs:comment "A record of a sensor deployed at a monitored location, including depth, position, calibration, status, and access context." .
+
+tmf:MeasurementRecord
+  a owl:Class ;
+  rdfs:subClassOf sosa:Observation ;
+  rdfs:label "Measurement record" ;
+  rdfs:comment "A timestamped per-property observation, such as moisture content, relative humidity, or air temperature." .
+
+tmf:ValidationRecord
+  a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Validation record" ;
+  rdfs:comment "A record of quality checks, plausibility checks, sensor checks, and whole-series validation for monitoring data." .
+
+tmf:MonitoringTimeSeries
+  a owl:Class ;
+  rdfs:subClassOf schema:Dataset ;
+  rdfs:label "Monitoring time series" ;
+  rdfs:comment "A dataset-level record for observations collected for a monitored location, sensor installation, and monitoring period." .
+
+tmf:MoistureRelatedEvent
+  a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Moisture-related event" ;
+  rdfs:comment "An interpreted event such as threshold exceedance, leakage, inspection, repair, or maintenance action." .
+
+tmf:LifecycleEvent
+  a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Lifecycle event" ;
+  rdfs:comment "An event or action that connects monitoring evidence to lifecycle decision support." .
+
+tmf:LifecycleIntegrationRecord
+  a owl:Class ;
+  rdfs:subClassOf prov:Entity ;
+  rdfs:label "Lifecycle integration record" ;
+  rdfs:comment "A record linking monitoring evidence to lifecycle information systems such as BIM models, product passports, digital twins, or building logbooks." .
+
+tmf:lifecycleContext
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "lifecycle context" .
+
+tmf:monitoringPurpose
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "monitoring purpose" .
+
+tmf:buildingZone
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "building zone" .
+
+tmf:assemblyDetail
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "assembly detail" .
+
+tmf:riskClass
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "risk class" .
+
+tmf:decisionRelevance
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "decision relevance" .
+
+tmf:hasReferenceLocation
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range tmf:ReferenceLocation ;
+  rdfs:label "has reference location" .
+
+tmf:sensorType
+  a owl:DatatypeProperty ;
+  rdfs:domain sosa:Sensor ;
+  rdfs:range xsd:string ;
+  rdfs:label "sensor type" .
+
+tmf:measurementPrinciple
+  a owl:DatatypeProperty ;
+  rdfs:domain sosa:Sensor ;
+  rdfs:range xsd:string ;
+  rdfs:label "measurement principle" .
+
+tmf:sensorValidationStatus
+  a owl:DatatypeProperty ;
+  rdfs:domain sosa:Sensor ;
+  rdfs:range xsd:string ;
+  rdfs:label "sensor validation status" .
+
+tmf:sensorValidationRecord
+  a owl:ObjectProperty ;
+  rdfs:domain sosa:Sensor ;
+  rdfs:range tmf:ValidationRecord ;
+  rdfs:label "sensor validation record" .
+
+tmf:installation
+  a owl:ObjectProperty ;
+  rdfs:range tmf:SensorInstallation ;
+  rdfs:label "installation" .
+
+tmf:measurementDepth
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:SensorInstallation ;
+  rdfs:range qudt:QuantityValue ;
+  rdfs:label "measurement depth" .
+
+tmf:sensorPlacementDescription
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:SensorInstallation ;
+  rdfs:range xsd:string ;
+  rdfs:label "sensor placement description" .
+
+tmf:calibrationBasis
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:SensorInstallation ;
+  rdfs:range xsd:string ;
+  rdfs:label "calibration basis" .
+
+tmf:correctionMethod
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:SensorInstallation ;
+  rdfs:range xsd:string ;
+  rdfs:label "correction method" .
+
+tmf:sensorStatus
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:SensorInstallation ;
+  rdfs:range xsd:string ;
+  rdfs:label "sensor status" .
+
+tmf:seriesStart
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MonitoringTimeSeries ;
+  rdfs:range xsd:dateTime ;
+  rdfs:label "series start" .
+
+tmf:seriesEnd
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MonitoringTimeSeries ;
+  rdfs:range xsd:dateTime ;
+  rdfs:label "series end" .
+
+tmf:samplingInterval
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MonitoringTimeSeries ;
+  rdfs:range xsd:duration ;
+  rdfs:label "sampling interval" .
+
+tmf:hasObservation
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:MonitoringTimeSeries ;
+  rdfs:label "has observation" .
+
+tmf:qualityAssessmentRecord
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:MeasurementRecord ;
+  rdfs:range tmf:ValidationRecord ;
+  rdfs:label "quality assessment record" .
+
+tmf:dataQualityFlag
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:label "data quality flag" .
+
+tmf:validationTargetSensor
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:ValidationRecord ;
+  rdfs:range sosa:Sensor ;
+  rdfs:label "validation target sensor" .
+
+tmf:validationTargetSeries
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:ValidationRecord ;
+  rdfs:range tmf:MonitoringTimeSeries ;
+  rdfs:label "validation target series" .
+
+tmf:validationTargetObservation
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:ValidationRecord ;
+  rdfs:range tmf:MeasurementRecord ;
+  rdfs:label "validation target observation" .
+
+tmf:validationPerformedAt
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:ValidationRecord ;
+  rdfs:range xsd:dateTime ;
+  rdfs:label "validation performed at" .
+
+tmf:hasValidationLog
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:ValidationRecord ;
+  rdfs:label "has validation log" .
+
+tmf:affectedSensor
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleEvent ;
+  rdfs:range sosa:Sensor ;
+  rdfs:label "affected sensor" .
+
+tmf:eventMonitoringSeries
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleEvent ;
+  rdfs:range tmf:MonitoringTimeSeries ;
+  rdfs:label "event monitoring series" .
+
+tmf:eventValidationRecord
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleEvent ;
+  rdfs:range tmf:ValidationRecord ;
+  rdfs:label "event validation record" .
+
+tmf:hasEventLog
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleEvent ;
+  rdfs:label "has event log" .
+
+tmf:linkedSensor
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleIntegrationRecord ;
+  rdfs:range sosa:Sensor ;
+  rdfs:label "linked sensor" .
+
+tmf:linkedValidationRecord
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleIntegrationRecord ;
+  rdfs:range tmf:ValidationRecord ;
+  rdfs:label "linked validation record" .
+
+tmf:linkedMonitoringSeries
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleIntegrationRecord ;
+  rdfs:range tmf:MonitoringTimeSeries ;
+  rdfs:label "linked monitoring series" .
+
+tmf:linkedEvent
+  a owl:ObjectProperty ;
+  rdfs:domain tmf:LifecycleIntegrationRecord ;
+  rdfs:range tmf:LifecycleEvent ;
+  rdfs:label "linked event" .
+
+tmf:linkedLifecycleInformationSystem
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:LifecycleIntegrationRecord ;
+  rdfs:range xsd:string ;
+  rdfs:label "linked lifecycle information system" .
+
+tmf:decisionUse
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:LifecycleIntegrationRecord ;
+  rdfs:range xsd:string ;
+  rdfs:label "decision use" .

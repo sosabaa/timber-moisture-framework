@@ -1,6 +1,6 @@
-# JSON and JSON-LD implementation
+# JSON-LD schema
 
-This folder contains the JSON-first implementation of the monitoring-record schema. The compact JSON-LD graph links static project context, sensor installations, representative observations, validation records, moisture-related events, and lifecycle-integration records. Detailed time-series observations, validation checks, and event entries are stored as linked JSON files.
+This folder contains the JSON-first schema files for the monitoring-record schema. The compact JSON-LD graph links static project context, sensor installations, representative observations, validation records, moisture-related events, and lifecycle-integration records. Detailed time-series observations, validation checks, and event entries are stored as linked JSON files.
 
 ## Files
 

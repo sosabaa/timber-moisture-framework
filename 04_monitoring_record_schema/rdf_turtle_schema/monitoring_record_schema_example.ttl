@@ -105,7 +105,7 @@ tmf-series:MS-L01-001
   tmf:seriesStart "2025-06-26T00:25:55.202099Z"^^xsd:dateTime ;
   tmf:seriesEnd "2025-06-27T23:46:50.857321Z"^^xsd:dateTime ;
   tmf:samplingInterval "PT1H"^^xsd:duration ;
-  tmf:hasObservation <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_jsonld_implementation/monitoring_timeseries_MS-L01-001.json> .
+  tmf:hasObservation <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/monitoring_timeseries_MS-L01-001.json> .
 
 tmf-observation:M-L01-MC-20250626T002555202Z
   a tmf:MeasurementRecord, sosa:Observation ;
@@ -168,7 +168,7 @@ tmf-validation:VAL-L01-001
   tmf:implausibleValueFlag "No implausible value detected" ;
   tmf:driftOrSensorDamageFlag "No drift suspected" ;
   tmf:communicationFlag "Normal transmission" ;
-  tmf:hasValidationLog <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_jsonld_implementation/validation_log_VAL-L01-001.json> .
+  tmf:hasValidationLog <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/validation_log_VAL-L01-001.json> .
 
 tmf-event:EVT-L01-001
   a tmf:LifecycleEvent, tmf:MoistureRelatedEvent, prov:Activity ;
@@ -177,7 +177,7 @@ tmf-event:EVT-L01-001
   tmf:affectedSensor tmf-sensor:MC-L01-01 ;
   tmf:eventMonitoringSeries tmf-series:MS-L01-001 ;
   tmf:eventValidationRecord tmf-validation:VAL-L01-001 ;
-  tmf:hasEventLog <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_jsonld_implementation/event_log_EVT-L01-001.json> .
+  tmf:hasEventLog <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/event_log_EVT-L01-001.json> .
 
 tmf-link:LINK-L01-001
   a tmf:LifecycleIntegrationRecord, prov:Entity ;
