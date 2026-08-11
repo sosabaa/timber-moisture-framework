@@ -1,59 +1,39 @@
 # Monitoring-record schema
 
-This folder contains a template for structuring moisture-monitoring records in mass-timber buildings. It supports the transition from sensor deployment to interpretable lifecycle records by linking SOSA observations, QUDT quantity values, sensor metadata, element information, validation flags, moisture-event indicators, and lifecycle decision context.
+This folder contains a template and implementation examples for structuring moisture-monitoring records in mass-timber buildings. It supports the transition from sensor deployment to interpretable lifecycle records by linking SOSA observations, QUDT quantity values, sensor metadata, element information, validation flags, moisture-event indicators, and lifecycle decision context.
 
 The template is intended to be used after the risk-location classification and sensor-deployment steps. It does not prescribe a specific database format, software platform, or digital twin structure. Users should adapt the schema to the selected sensor system, project data environment, BIM model, building logbook, product passport, or other lifecycle information system.
 
 ## Folder contents
 
 - `monitoring_record_schema_template.md`
-  Template for documenting the data fields required to preserve the meaning, quality, and later usability of moisture-monitoring records.
-- `monitoring_record_schema_context.jsonld`
-  JSON-LD context for the compacted monitoring-record graph.
+  Human-readable template for documenting the fields required to preserve the meaning, quality, and later usability of moisture-monitoring records.
 
-- `monitoring_record_schema_example.jsonld`
-  Example linked monitoring record for the CLT kitchen-floor application.
+- `json_jsonld_implementation/`
+  JSON and JSON-LD implementation files, including the compact JSON-LD graph, JSON-LD context, linked JSON time-series, validation and event logs, and JSON Schemas.
 
-- `monitoring_timeseries_MS-L01-001.json`
-  Linked observation data file containing the two-day one-sensor time series referenced from `MS-L01-001`.
-
-- `validation_log_VAL-L01-001.json`, `event_log_EVT-L01-001.json`
-  Linked JSON logs containing fuller validation checks, moisture-event interpretation details, and lifecycle-event entries referenced from the compact graph nodes.
-
-- `monitoring_timeseries.schema.json`, `validation_log.schema.json`, `event_log.schema.json`
-  JSON Schemas for checking the linked time-series observation file, validation audit log, and moisture-related event log.
+- `rdf_ttl_implementation/`
+  RDF/Turtle implementation of the compact monitoring-record graph for RDF tools, SPARQL engines, ontology workflows, or triple stores.
 
 - `knowledge_graph_visualizer.html`
   Static browser visualizer for plotting the repository JSON-LD example or a user-supplied compacted monitoring-record graph.
-https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/knowledge_graph_visualizer.html
-
-- `monitoring_record_schema.schema.json`
-  JSON Schema for checking the compacted JSON-LD graph structure, required identifiers, links, timestamps, SOSA observation fields, and QUDT quantity values.
+  https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/knowledge_graph_visualizer.html
 
 ## Using and validating the data artifacts
 
-Use `monitoring_record_schema_template.md` to decide which location, sensor, measurement, validation, moisture-related event, lifecycle-event, and lifecycle-integration fields need to be retained for a project. The Markdown template is the human-readable planning document.
+Use `monitoring_record_schema_template.md` to decide which location, sensor, measurement, validation, moisture-related event, lifecycle-event, and lifecycle-integration fields need to be retained for a project.
 
-Use `monitoring_record_schema_context.jsonld` when creating compacted JSON-LD records. The context defines the compact field names, identifier links, and datatypes used by the example graph.
+Use `json_jsonld_implementation/` when creating and validating monitoring records as JSON/JSON-LD. The compact JSON-LD graph links persistent identifiers for locations, elements, sensors, installations, observations, validation records, moisture-related events, and lifecycle-integration records. Detailed time-series observations, validation checks, and event entries are stored as linked JSON files.
 
-Use `monitoring_record_schema.schema.json` to check whether a compacted JSON-LD file has the expected graph structure. A JSON Schema validator can be used to confirm that required nodes include identifiers, links, timestamps, observed properties, and QUDT quantity values where applicable.
+Use `rdf_ttl_implementation/` when an RDF-native serialization is needed. The Turtle file expresses the same compact semantic structure in a form that can be loaded into RDF tooling.
 
-Use the linked-file schemas to check the detailed JSON files that sit behind the compact graph. `monitoring_timeseries.schema.json` validates the observation data file referenced through `hasObservation`; `validation_log.schema.json` validates the audit log referenced through `hasValidationLog`; and `event_log.schema.json` validates the moisture-related event log referenced through `hasEventLog`.
-
-Installation and reference links are retained where they are needed for interpretation. The time-series schema requires `installation` because the readings depend on deployment depth, position, and sensor status, and supports `usesReferenceSensor` where a series is interpreted against a reference sensor. The validation-log schema requires `validationTargets.installation` and supports `relatedInstallation`, `relatedReferenceSensor`, and `relatedReferenceLocation` on target-specific entries. The event-log schema supports an optional `installation` link, but events can also resolve installation and reference context through their linked monitoring series.
-
-Use `monitoring_record_schema_example.jsonld` as a minimal reference implementation. It shows how a risk location, reference location, timber elements, observable properties, sensors, installation, parent monitoring time series, reference sensor context, a linked JSON observation data file, three illustrative timestamped observations, linked validation and event logs, and lifecycle-integration records are connected through persistent IDs.
-
-Open `knowledge_graph_visualizer.html` in a browser to inspect the graph visually. When opened through a local web server, the visualizer can load `monitoring_record_schema_example.jsonld` directly. When opened from the file system, use the file picker to load the JSON-LD example, or paste a compacted JSON-LD graph into the text area. Nodes can be moved by dragging them, and `Reset view` restores the automatic layout.
-
-Record monitoring observations directly as JSON/JSON-LD records. Static entities such as locations, sensors, installations, and observable properties should be stored once and linked from each observation rather than repeated in every timestamped record.
+Open `knowledge_graph_visualizer.html` in a browser to inspect the compact graph visually. When opened through a local web server, the visualizer can load the JSON-LD example from `json_jsonld_implementation/` directly. When opened from the file system, use the file picker to load the JSON-LD example, or paste a compacted JSON-LD graph into the text area. Nodes can be moved by dragging them, and `Reset view` restores the automatic layout.
 
 Recommended workflow:
 
 1. Complete the risk-location and sensor-deployment templates.
-2. Define persistent IDs for locations, elements, sensors, installations, measurements, moisture-related events, and integration records. Record installation coordinates as compact WGS84 GPS-style DMS strings, for example `57°46'34.8" N`.
-3. Create a parent `MonitoringTimeSeries` node for the selected monitoring period, then store the detailed per-property observations directly in a linked JSON observation data file. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20250626T002555202Z`. A compact JSON-LD graph can also include one or a few representative timestamped observations as examples.
-4. Store validation outcomes as sensor and observation properties where quick interpretation is needed, and keep fuller validation checks in a linked JSON log referenced from the `ValidationRecord` through `hasValidationLog`. The validation log should state exactly which observations, sensor, and monitoring series were validated, when the validation happened, what each target was validated against, how surrounding RH/T context was used, and whether a reference sensor was used for triangulation.
-5. Add compact `LifecycleEvent` / `MoistureRelatedEvent` and `LifecycleIntegrationRecord` nodes where the monitoring record supports maintenance, post-event assessment, repair decisions, or future reuse-related assessment. Keep event-specific details such as threshold exceedance, moisture dose, drying behaviour, anomaly indicators, inspection actions, and outcomes in the linked event log referenced through `hasEventLog`.
-6. Validate the resulting compacted JSON-LD graph against `monitoring_record_schema.schema.json`.
-7. Validate linked JSON files against `monitoring_timeseries.schema.json`, `validation_log.schema.json`, and `event_log.schema.json` where those files are used.
+2. Define persistent IDs for locations, elements, sensors, installations, measurements, moisture-related events, and integration records.
+3. Create a parent `MonitoringTimeSeries` node for the selected monitoring period, then store detailed per-property observations directly in a linked JSON observation data file.
+4. Validate the compact JSON-LD graph against `json_jsonld_implementation/monitoring_record_schema.schema.json`.
+5. Validate linked JSON files against `json_jsonld_implementation/monitoring_timeseries.schema.json`, `json_jsonld_implementation/validation_log.schema.json`, and `json_jsonld_implementation/event_log.schema.json` where those files are used.
+6. Use the Turtle implementation where RDF-native tooling or SPARQL-based workflows are required.
