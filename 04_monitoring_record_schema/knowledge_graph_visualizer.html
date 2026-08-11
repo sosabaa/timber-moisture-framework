@@ -966,6 +966,11 @@
     document.getElementById("plotPasteButton").addEventListener("click", plotPastedJson);
     document.getElementById("resetButton").addEventListener("click", resetView);
     document.getElementById("fileInput").addEventListener("change", loadFile);
+    svg.addEventListener("click", (event) => {
+      if (event.target === svg || event.target.classList.contains("graph-background")) {
+        clearSelection();
+      }
+    });
     searchInput.addEventListener("input", () => {
       state.query = searchInput.value.trim().toLowerCase();
       render();
@@ -1042,7 +1047,7 @@
       state.edges = graph.edges;
       state.positions = new Map();
       state.drag = null;
-      state.selectedId = state.nodes[0]?.id || "";
+      state.selectedId = "";
       syncTypeFilterOptions();
       setStatus(message);
       render();
@@ -1055,7 +1060,7 @@
       state.typeFilter = "";
       state.positions = new Map();
       state.drag = null;
-      state.selectedId = state.nodes[0]?.id || "";
+      state.selectedId = "";
       render();
     }
 
@@ -1264,7 +1269,7 @@
       details.replaceChildren();
       if (!node) {
         inspectorTitle.textContent = "No node selected";
-        inspectorSubtitle.textContent = "Select a node in the graph or list.";
+        inspectorSubtitle.textContent = "All visible nodes are shown without a focus highlight.";
         return;
       }
 
@@ -1308,6 +1313,15 @@
       marker.appendChild(createSvg("path", { d: "M0,0 L0,6 L9,3 z", fill: "#9aa8b2" }));
       defs.appendChild(marker);
       svg.appendChild(defs);
+
+      svg.appendChild(createSvg("rect", {
+        class: "graph-background",
+        x: "0",
+        y: "0",
+        width,
+        height,
+        fill: "transparent"
+      }));
 
       const positions = layoutNodes(visibleNodes, width, height);
       const selectedNeighbors = getSelectedNeighbors();
@@ -1366,7 +1380,10 @@
           transform: `translate(${point.x}, ${point.y})`
         });
         group.addEventListener("pointerdown", (event) => startDrag(event, node.id));
-        group.addEventListener("click", () => selectNode(node.id));
+        group.addEventListener("click", (event) => {
+          event.stopPropagation();
+          selectNode(node.id);
+        });
         group.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
@@ -1478,6 +1495,9 @@
     }
 
     function getSelectedNeighbors() {
+      if (!state.selectedId) {
+        return new Set();
+      }
       const neighbors = new Set([state.selectedId]);
       for (const edge of state.edges) {
         if (edge.source === state.selectedId) {
@@ -1492,6 +1512,14 @@
 
     function selectNode(id) {
       state.selectedId = id;
+      render();
+    }
+
+    function clearSelection() {
+      if (!state.selectedId) {
+        return;
+      }
+      state.selectedId = "";
       render();
     }
 
