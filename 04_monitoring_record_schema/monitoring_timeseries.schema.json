@@ -29,6 +29,9 @@
     "hasReferenceLocation": {
       "$ref": "#/$defs/idOrIdArray"
     },
+    "usesReferenceSensor": {
+      "$ref": "#/$defs/idOrIdArray"
+    },
     "installation": {
       "$ref": "#/$defs/id"
     },

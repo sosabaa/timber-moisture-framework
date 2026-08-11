@@ -563,6 +563,7 @@
       "installation",
       "observedProperty",
       "hasReferenceLocation",
+      "usesReferenceSensor",
       "partOfSeries",
       "hasObservation",
       "sensorValidationRecord",
@@ -570,8 +571,6 @@
       "validationTargetSensor",
       "validationTargetSeries",
       "validationTargetObservation",
-      "validationReferenceSensor",
-      "validationReferenceLocation",
       "evidenceSensor",
       "evidenceObservation",
       "eventMonitoringSeries",
@@ -790,6 +789,7 @@
                       "seriesDescription": "Two-day maximum one-sensor monitoring time series for the L-01 sink/dishwasher zone. Detailed per-property observations are stored in the linked JSON file.",
                       "location": "tmf:location/L-01",
                       "hasReferenceLocation": "tmf:location/L-05",
+                      "usesReferenceSensor": "tmf:sensor/MC-L05-01",
                       "installation": "tmf:installation/INST-L01-01",
                       "madeBySensor": "tmf:sensor/MC-L01-01",
                       "observedProperty": [
@@ -877,8 +877,6 @@
                             "tmf:observation/M-L01-RH-20250626T002555202Z",
                             "tmf:observation/M-L01-T-20250626T002555202Z"
                       ],
-                      "validationReferenceSensor": "tmf:sensor/MC-L05-01",
-                      "validationReferenceLocation": "tmf:location/L-05",
                       "validationPerformedAt": "2026-08-08T14:40:11.633Z",
                       "validationBasis": [
                             "Sensor installation record",
