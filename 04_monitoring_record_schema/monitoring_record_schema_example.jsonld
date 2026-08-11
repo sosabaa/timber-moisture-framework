@@ -194,7 +194,6 @@
       "seriesDescription": "Two-day maximum one-sensor monitoring time series for the L-01 sink/dishwasher zone. Detailed per-property observations are stored in the linked JSON file.",
       "location": "tmf:location/L-01",
       "hasReferenceLocation": "tmf:location/L-05",
-      "usesReferenceSensor": "tmf:sensor/MC-L05-01",
       "installation": "tmf:installation/INST-L01-01",
       "madeBySensor": "tmf:sensor/MC-L01-01",
       "observedProperty": [
@@ -322,8 +321,14 @@
         "Entity"
       ],
       "integrationId": "LINK-L01-001",
-      "location": "tmf:location/L-01",
-      "hasElement": "tmf:element/CLT-FP-01",
+      "location": [
+        "tmf:location/L-01",
+        "tmf:location/L-05"
+        ],
+      "hasElement": [
+        "tmf:element/CLT-FP-01",
+        "tmf:element/CLT-FP-02"
+        ],
       "linkedSensor": [
         "tmf:sensor/MC-L01-01",
         "tmf:sensor/MC-L05-01"
