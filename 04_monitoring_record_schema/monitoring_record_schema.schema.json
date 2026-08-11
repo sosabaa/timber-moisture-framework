@@ -632,6 +632,12 @@
         "validationTargetObservation": {
           "$ref": "#/$defs/idOrIdArray"
         },
+        "validationReferenceSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "validationReferenceLocation": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
         "validationPerformedAt": {
           "type": "string",
           "format": "date-time"

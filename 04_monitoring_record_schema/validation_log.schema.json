@@ -43,6 +43,12 @@
         },
         "installation": {
           "$ref": "#/$defs/idOrIdArray"
+        },
+        "referenceSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "referenceLocation": {
+          "$ref": "#/$defs/idOrIdArray"
         }
       },
       "minProperties": 1,
@@ -192,7 +198,16 @@
         "targetRecord": {
           "$ref": "#/$defs/id"
         },
+        "relatedSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
         "relatedInstallation": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "relatedReferenceSensor": {
+          "$ref": "#/$defs/idOrIdArray"
+        },
+        "relatedReferenceLocation": {
           "$ref": "#/$defs/idOrIdArray"
         },
         "targetProperty": {
