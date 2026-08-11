@@ -1532,11 +1532,9 @@
       state.drag = {
         id,
         offsetX: point.x - current.x,
-        offsetY: point.y - current.y
+        offsetY: point.y - current.y,
+        moved: false
       };
-      state.selectedId = id;
-      event.preventDefault();
-      render();
     }
 
     function dragNode(event) {
@@ -1547,6 +1545,8 @@
       const rect = svg.getBoundingClientRect();
       const width = Math.max(320, Math.floor(rect.width || svg.clientWidth || 900));
       const height = Math.max(520, Math.floor(rect.height || svg.clientHeight || 620));
+      state.drag.moved = true;
+      state.selectedId = state.drag.id;
       state.positions.set(state.drag.id, {
         x: clamp(point.x - state.drag.offsetX, 38, width - 38),
         y: clamp(point.y - state.drag.offsetY, 52, height - 52)
@@ -1560,8 +1560,11 @@
       if (!state.drag) {
         return;
       }
+      if (state.drag.moved) {
+        state.selectedId = state.drag.id;
+      }
       state.drag = null;
-      renderGraph();
+      render();
     }
 
     function getPointerPosition(event) {
