@@ -88,7 +88,7 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Series start | Required | 2026-08-07T11:00:00.000Z | First timestamp represented in the time series. |
 | Series end | Required | 2026-08-07T12:00:00.000Z | Last timestamp represented in the time series. |
 | Sampling interval | Required | PT1H | Logging frequency as an ISO 8601 duration. |
-| Observation data file | Required | `json_jsonld_implementation/monitoring_timeseries_MS-L01-001.json` | File containing the per-property observations for the time series. In JSON-LD, link this through `hasObservation`. |
+| Observation data file | Required | `json_ld_schema/monitoring_timeseries_MS-L01-001.json` | File containing the per-property observations for the time series. In JSON-LD, link this through `hasObservation`. |
 
 ## Observation data file
 | Field | Required/optional | Example entry | Notes |
@@ -122,7 +122,7 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Communication flag | Required | Normal transmission | Battery/logging/transmission check. |
 | Redundancy agreement | Required where applicable | Shallow and deeper sensors show consistent trend | Comparison with duplicate, paired, or nearby sensors. |
 | Quality notes | Optional | Manual verification recommended after leakage report | Additional interpretation note. |
-| Validation log | Optional | `json_jsonld_implementation/validation_log_VAL-L01-001.json` | Linked JSON audit log containing target-specific checks for observations, sensors, and whole monitoring series. In JSON-LD, link this through `hasValidationLog`. |
+| Validation log | Optional | `json_ld_schema/validation_log_VAL-L01-001.json` | Linked JSON audit log containing target-specific checks for observations, sensors, and whole monitoring series. In JSON-LD, link this through `hasValidationLog`. |
 
 ## Moisture-related lifecycle event register
 | Field | Required/optional | Example entry | Notes |
@@ -132,14 +132,14 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Affected sensor ID(s) | Optional | MC-L01-01 | Sensor records associated with the event record. |
 | Event monitoring series ID(s) | Optional | MS-L01-001 | Monitoring series used by the event log. In JSON-LD, link this through `eventMonitoringSeries`. |
 | Event validation record ID(s) | Optional | VAL-L01-001 | Validation records used by the event log. In JSON-LD, link this through `eventValidationRecord`. |
-| Event log | Required where event details are retained | `json_jsonld_implementation/event_log_EVT-L01-001.json` | Linked JSON file containing event type, time period, moisture interpretation, event timeline, inspection, action, and outcome entries. In JSON-LD, link this through `hasEventLog`. |
+| Event log | Required where event details are retained | `json_ld_schema/event_log_EVT-L01-001.json` | Linked JSON file containing event type, time period, moisture interpretation, event timeline, inspection, action, and outcome entries. In JSON-LD, link this through `hasEventLog`. |
 
 ## Event log file
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|
 | Event type | Required | moisture-threshold-exceedance; leakage-detected; inspection | Event category or categories. |
 | Event period | Required where known | Start: 2026-08-07T10:00:00.000Z; End: 2026-08-09T16:00:00.000Z | Time period of the interpreted moisture condition, reported event, intervention, or combined lifecycle event. |
-| Evidence observation file URL | Optional | `json_jsonld_implementation/monitoring_timeseries_MS-L01-001.json` | Observations or linked observation file used as event evidence. |
+| Evidence observation file URL | Optional | `json_ld_schema/monitoring_timeseries_MS-L01-001.json` | Observations or linked observation file used as event evidence. |
 | Threshold exceedance | Optional | MC above project-defined threshold | Thresholds are interpretation triggers, not standalone criteria. |
 | Exceedance duration | Optional | 54 hours | Duration above threshold. |
 | Moisture dose | Optional | Repeated short exceedances | Use only where a dose metric is defined. |

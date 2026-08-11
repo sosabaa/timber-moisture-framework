@@ -1,0 +1,164 @@
+@prefix tmf: <https://sosabaa.github.io/timber-moisture-framework/vocab#> .
+@prefix schema: <https://schema.org/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tmf:MoistureRiskLocationShape
+  a sh:NodeShape ;
+  sh:targetClass tmf:MoistureRiskLocation ;
+  sh:property [
+    sh:path schema:identifier ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path schema:description ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path tmf:riskClass ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] .
+
+tmf:SensorInstallationShape
+  a sh:NodeShape ;
+  sh:targetClass tmf:SensorInstallation ;
+  sh:property [
+    sh:path schema:identifier ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path schema:location ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
+    sh:path ssn:deployedSystem ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
+    sh:path tmf:measurementDepth ;
+    sh:minCount 1
+  ] .
+
+tmf:MonitoringTimeSeriesShape
+  a sh:NodeShape ;
+  sh:targetClass tmf:MonitoringTimeSeries ;
+  sh:property [
+    sh:path schema:identifier ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path schema:location ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
+    sh:path tmf:installation ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
+    sh:path sosa:madeBySensor ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
+    sh:path sosa:observedProperty ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
+    sh:path tmf:seriesStart ;
+    sh:minCount 1 ;
+    sh:datatype xsd:dateTime
+  ] ;
+  sh:property [
+    sh:path tmf:seriesEnd ;
+    sh:minCount 1 ;
+    sh:datatype xsd:dateTime
+  ] ;
+  sh:property [
+    sh:path tmf:samplingInterval ;
+    sh:minCount 1 ;
+    sh:datatype xsd:duration
+  ] .
+
+tmf:MeasurementRecordShape
+  a sh:NodeShape ;
+  sh:targetClass tmf:MeasurementRecord ;
+  sh:targetClass sosa:Observation ;
+  sh:property [
+    sh:path schema:identifier ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path sosa:observedProperty ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
+    sh:path sosa:resultTime ;
+    sh:minCount 1 ;
+    sh:datatype xsd:dateTime
+  ] ;
+  sh:property [
+    sh:path sosa:hasSimpleResult ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path qudt:quantityValue ;
+    sh:minCount 1
+  ] .
+
+tmf:ValidationRecordShape
+  a sh:NodeShape ;
+  sh:targetClass tmf:ValidationRecord ;
+  sh:property [
+    sh:path schema:identifier ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path tmf:dataQualityFlag ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] .
+
+tmf:LifecycleEventShape
+  a sh:NodeShape ;
+  sh:targetClass tmf:LifecycleEvent ;
+  sh:property [
+    sh:path schema:identifier ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path schema:location ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] .
+
+tmf:LifecycleIntegrationRecordShape
+  a sh:NodeShape ;
+  sh:targetClass tmf:LifecycleIntegrationRecord ;
+  sh:property [
+    sh:path schema:identifier ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string
+  ] ;
+  sh:property [
+    sh:path tmf:linkedMonitoringSeries ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI
+  ] .

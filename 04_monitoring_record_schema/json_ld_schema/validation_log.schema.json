@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_jsonld_implementation/validation_log.schema.json",
+  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/validation_log.schema.json",
   "title": "Timber Moisture Framework Validation Log",
   "description": "Validation schema for linked JSON validation logs referenced from a compact ValidationRecord node through hasValidationLog.",
   "type": "object",
