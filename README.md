@@ -2,6 +2,10 @@
 
 This repository accompanies the paper **“A Conceptual Framework for Reuse-Driven Moisture Sensing and Data Acquisition in Mass-Timber Buildings”**. It provides a worked CLT kitchen-floor application and templates for applying the framework to risk-location classification, sensor deployment, and monitoring-record schema development.
 
+![Framework implementation example for reuse-driven moisture monitoring in mass-timber buildings](assets/TMF_Thumbnail.png)
+
+*Framework implementation example for reuse-driven moisture monitoring in mass-timber buildings.*
+
 ## Repository contents
 
 - `01_worked_example/`  
