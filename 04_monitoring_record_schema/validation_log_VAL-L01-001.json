@@ -14,12 +14,14 @@
     ],
     "sensor": "tmf:sensor/MC-L01-01",
     "monitoringSeries": "tmf:monitoring-series/MS-L01-001",
-    "installation": "tmf:installation/INST-L01-01"
+    "installation": "tmf:installation/INST-L01-01",
+    "referenceSensor": "tmf:sensor/MC-L05-01",
+    "referenceLocation": "tmf:location/L-05"
   },
   "summary": {
     "overallDataQualityFlag": "Usable",
     "overallResult": "pass",
-    "notes": "Validation separates observation-level checks, sensor-level checks, and whole-series checks so each validation target and basis is explicit."
+    "notes": "Validation separates observation-level checks, sensor-level checks, and whole-series checks. MC validation uses surrounding RH/T context and triangulation with the L-05 reference sensor."
   },
   "validationEntries": [
     {
@@ -33,7 +35,8 @@
       "validatedAgainst": [
         "unit:PERCENT for moisture-content observations",
         "project-defined plausible timber MC range",
-        "surrounding MC trend in MS-L01-001"
+        "surrounding RH and temperature observations from the same logger row",
+        "reference sensor MC trend from tmf:sensor/MC-L05-01 at L-05"
       ],
       "checks": [
         {
@@ -50,6 +53,16 @@
           "checkType": "series-context",
           "status": "pass",
           "result": "Value is consistent with the early-series MC baseline."
+        },
+        {
+          "checkType": "rh-temperature-context",
+          "status": "pass",
+          "result": "Surrounding RH and temperature values from the same logger row are mutually plausible for the MC reading."
+        },
+        {
+          "checkType": "reference-sensor-triangulation",
+          "status": "pass",
+          "result": "MC-L01-01 does not show an unexplained divergence from the L-05 reference sensor for this validation point."
         }
       ],
       "validatedValue": {
@@ -175,6 +188,8 @@
       "targetRecord": "tmf:monitoring-series/MS-L01-001",
       "relatedSensor": "tmf:sensor/MC-L01-01",
       "relatedInstallation": "tmf:installation/INST-L01-01",
+      "relatedReferenceSensor": "tmf:sensor/MC-L05-01",
+      "relatedReferenceLocation": "tmf:location/L-05",
       "seriesPeriod": {
         "start": "2025-06-26T00:25:55.202099Z",
         "end": "2025-06-27T23:46:50.857321Z"
@@ -185,7 +200,8 @@
         "declared PT1H sampling interval with logger-clock tolerance",
         "absence of unexplained data gaps",
         "whole-series drift review across MC, RH, and temperature",
-        "reference-location context from L-05 where available"
+        "surrounding RH and temperature context for MC interpretation",
+        "reference sensor triangulation with MC-L05-01 at L-05"
       ],
       "checks": [
         {
@@ -211,7 +227,12 @@
         {
           "checkType": "cross-channel-consistency",
           "status": "pass",
-          "result": "MC, RH, and temperature values remain mutually plausible across the reviewed window."
+          "result": "MC, surrounding RH, and surrounding temperature values remain mutually plausible across the reviewed window."
+        },
+        {
+          "checkType": "reference-sensor-triangulation",
+          "status": "pass",
+          "result": "The L-01 series is interpreted against the L-05 reference sensor to distinguish local moisture behaviour from broader background variation."
         }
       ],
       "dataQualityFlag": "Usable"

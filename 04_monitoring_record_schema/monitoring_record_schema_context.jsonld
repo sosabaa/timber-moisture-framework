@@ -105,6 +105,14 @@
       "@id": "tmf:validationTargetObservation",
       "@type": "@id"
     },
+    "validationReferenceSensor": {
+      "@id": "tmf:validationReferenceSensor",
+      "@type": "@id"
+    },
+    "validationReferenceLocation": {
+      "@id": "tmf:validationReferenceLocation",
+      "@type": "@id"
+    },
     "validationPerformedAt": {
       "@id": "tmf:validationPerformedAt",
       "@type": "xsd:dateTime"
