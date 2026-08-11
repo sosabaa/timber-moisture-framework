@@ -207,9 +207,6 @@
         "targetProperty": {
           "$ref": "#/$defs/id"
         },
-        "sourceRecordId": {
-          "$ref": "#/$defs/text"
-        },
         "observationTimestamp": {
           "$ref": "#/$defs/zonedDateTime"
         },

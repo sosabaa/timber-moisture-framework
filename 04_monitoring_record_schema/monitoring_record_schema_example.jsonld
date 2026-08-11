@@ -111,7 +111,7 @@
       ],
       "sensorId": "MC-L01-01",
       "sensorType": "MC sensor with RH/T context channel",
-      "measurementPrinciple": "Resistance-based MC with supporting RH/T logger output",
+      "measurementPrinciple": "Resistance-based MC with supporting RH/T output",
       "sensorValidationStatus": "Validated",
       "sensorValidationRecord": "tmf:validation/VAL-L01-001"
     },
@@ -213,7 +213,6 @@
         "Observation"
       ],
       "measurementId": "M-L01-MC-20250626T002555202Z",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "partOfSeries": "tmf:monitoring-series/MS-L01-001",
       "observedProperty": "tmf:property/moisture-content",
       "timestamp": "2025-06-26T00:25:55.202099Z",
@@ -233,7 +232,6 @@
         "Observation"
       ],
       "measurementId": "M-L01-RH-20250626T002555202Z",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "partOfSeries": "tmf:monitoring-series/MS-L01-001",
       "observedProperty": "tmf:property/relative-humidity",
       "timestamp": "2025-06-26T00:25:55.202099Z",
@@ -253,7 +251,6 @@
         "Observation"
       ],
       "measurementId": "M-L01-T-20250626T002555202Z",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "partOfSeries": "tmf:monitoring-series/MS-L01-001",
       "observedProperty": "tmf:property/air-temperature",
       "timestamp": "2025-06-26T00:25:55.202099Z",

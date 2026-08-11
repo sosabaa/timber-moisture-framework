@@ -38,7 +38,6 @@
     "sensorId": "schema:identifier",
     "installationId": "schema:identifier",
     "measurementId": "schema:identifier",
-    "sourceRecordId": "tmf:sourceRecordId",
     "validationId": "schema:identifier",
     "eventId": "schema:identifier",
     "integrationId": "schema:identifier",

@@ -24,7 +24,7 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 | Sensor ID | Identifies the physical sensor or sensor channel. |
 | Installation ID | Identifies a specific installation of a sensor at a location. Useful if a sensor is replaced or recalibrated. |
 | Series ID | Identifies the whole monitoring time series for a location, sensor installation, and period. |
-| Measurement ID | Identifies one timestamped per-property observation. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T110000000Z`. When a logger row contains several properties, use one observation ID per property and preserve the original logger-row ID as a source record ID. |
+| Measurement ID | Identifies one timestamped per-property observation. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20260807T110000000Z`. When a timestamp contains several measured properties, use one observation ID per property. |
 | Event ID | Identifies a moisture-related event, such as a threshold exceedance, leakage, inspection, repair, maintenance action, recalibration, or sensor replacement. |
 
 ## JSON-LD implementation
@@ -33,9 +33,9 @@ The schema can be implemented in JSON-LD by treating each table as a linked reso
 
 This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, moisture-related event, and lifecycle information system.
 
-The whole logger record should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data file through `hasObservation`. This keeps the knowledge graph compact while the detailed time-series values remain in a linked JSON file.
+The monitoring period should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data file through `hasObservation`. This keeps the knowledge graph compact while the detailed time-series values remain in a linked JSON file.
 
-For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A logger row containing MC, RH, and temperature therefore maps to three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
+For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A timestamp containing MC, RH, and temperature therefore contains three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
 
 The compact graph may include one representative MC, RH, and temperature observation to show the SOSA pattern, while the full time series remains in the linked observation data file. Validation and moisture-related event details can follow the same compact-plus-linked-file pattern through `hasValidationLog` and `hasEventLog`.
 
@@ -94,7 +94,6 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|
 | Measurement ID | Optional | M-L01-MC-20260807T110000000Z | Optional if Sensor ID + Timestamp + Observed Property is used as the unique key. |
-| Source record ID | Optional | M-L01-20260807T110000000Z | Original logger-row identifier when one logger row generates several observations. |
 | Sensor ID | Required | MC-L01-01 | Sensor or channel producing the observation. |
 | Observed property | Required | tmf:property/moisture-content | The property measured by this observation, such as moisture content, relative humidity, or temperature. |
 | Timestamp | Required | 2026-08-06T14:40:11.633Z | Date and time of observation. |

@@ -18,7 +18,6 @@
   "observations": [
     {
       "observationId": "M-L01-MC-20250626T002555202Z",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "timestamp": "2025-06-26T00:25:55.202099Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.6,
@@ -28,7 +27,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T002555202Z",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "timestamp": "2025-06-26T00:25:55.202099Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -38,7 +36,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T002555202Z",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "timestamp": "2025-06-26T00:25:55.202099Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.2,
@@ -48,7 +45,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T012621930Z",
-      "sourceRecordId": "M-L01-20250626T012621930Z",
       "timestamp": "2025-06-26T01:26:21.930329Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -58,7 +54,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T012621930Z",
-      "sourceRecordId": "M-L01-20250626T012621930Z",
       "timestamp": "2025-06-26T01:26:21.930329Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -68,7 +63,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T012621930Z",
-      "sourceRecordId": "M-L01-20250626T012621930Z",
       "timestamp": "2025-06-26T01:26:21.930329Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -78,7 +72,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T022648631Z",
-      "sourceRecordId": "M-L01-20250626T022648631Z",
       "timestamp": "2025-06-26T02:26:48.631785Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -88,7 +81,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T022648631Z",
-      "sourceRecordId": "M-L01-20250626T022648631Z",
       "timestamp": "2025-06-26T02:26:48.631785Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -98,7 +90,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T022648631Z",
-      "sourceRecordId": "M-L01-20250626T022648631Z",
       "timestamp": "2025-06-26T02:26:48.631785Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -108,7 +99,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T032715340Z",
-      "sourceRecordId": "M-L01-20250626T032715340Z",
       "timestamp": "2025-06-26T03:27:15.340065Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -118,7 +108,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T032715340Z",
-      "sourceRecordId": "M-L01-20250626T032715340Z",
       "timestamp": "2025-06-26T03:27:15.340065Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -128,7 +117,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T032715340Z",
-      "sourceRecordId": "M-L01-20250626T032715340Z",
       "timestamp": "2025-06-26T03:27:15.340065Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -138,7 +126,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T042742076Z",
-      "sourceRecordId": "M-L01-20250626T042742076Z",
       "timestamp": "2025-06-26T04:27:42.076279Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -148,7 +135,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T042742076Z",
-      "sourceRecordId": "M-L01-20250626T042742076Z",
       "timestamp": "2025-06-26T04:27:42.076279Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -158,7 +144,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T042742076Z",
-      "sourceRecordId": "M-L01-20250626T042742076Z",
       "timestamp": "2025-06-26T04:27:42.076279Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -168,7 +153,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T052808780Z",
-      "sourceRecordId": "M-L01-20250626T052808780Z",
       "timestamp": "2025-06-26T05:28:08.780356Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -178,7 +162,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T052808780Z",
-      "sourceRecordId": "M-L01-20250626T052808780Z",
       "timestamp": "2025-06-26T05:28:08.780356Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -188,7 +171,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T052808780Z",
-      "sourceRecordId": "M-L01-20250626T052808780Z",
       "timestamp": "2025-06-26T05:28:08.780356Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -198,7 +180,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T062835505Z",
-      "sourceRecordId": "M-L01-20250626T062835505Z",
       "timestamp": "2025-06-26T06:28:35.505148Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -208,7 +189,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T062835505Z",
-      "sourceRecordId": "M-L01-20250626T062835505Z",
       "timestamp": "2025-06-26T06:28:35.505148Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -218,7 +198,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T062835505Z",
-      "sourceRecordId": "M-L01-20250626T062835505Z",
       "timestamp": "2025-06-26T06:28:35.505148Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -228,7 +207,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T072902196Z",
-      "sourceRecordId": "M-L01-20250626T072902196Z",
       "timestamp": "2025-06-26T07:29:02.196453Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -238,7 +216,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T072902196Z",
-      "sourceRecordId": "M-L01-20250626T072902196Z",
       "timestamp": "2025-06-26T07:29:02.196453Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -248,7 +225,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T072902196Z",
-      "sourceRecordId": "M-L01-20250626T072902196Z",
       "timestamp": "2025-06-26T07:29:02.196453Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.4,
@@ -258,7 +234,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T082928939Z",
-      "sourceRecordId": "M-L01-20250626T082928939Z",
       "timestamp": "2025-06-26T08:29:28.939084Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -268,7 +243,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T082928939Z",
-      "sourceRecordId": "M-L01-20250626T082928939Z",
       "timestamp": "2025-06-26T08:29:28.939084Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -278,7 +252,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T082928939Z",
-      "sourceRecordId": "M-L01-20250626T082928939Z",
       "timestamp": "2025-06-26T08:29:28.939084Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -288,7 +261,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T092955667Z",
-      "sourceRecordId": "M-L01-20250626T092955667Z",
       "timestamp": "2025-06-26T09:29:55.667730Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -298,7 +270,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T092955667Z",
-      "sourceRecordId": "M-L01-20250626T092955667Z",
       "timestamp": "2025-06-26T09:29:55.667730Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -308,7 +279,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T092955667Z",
-      "sourceRecordId": "M-L01-20250626T092955667Z",
       "timestamp": "2025-06-26T09:29:55.667730Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -318,7 +288,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T103022520Z",
-      "sourceRecordId": "M-L01-20250626T103022520Z",
       "timestamp": "2025-06-26T10:30:22.520582Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -328,7 +297,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T103022520Z",
-      "sourceRecordId": "M-L01-20250626T103022520Z",
       "timestamp": "2025-06-26T10:30:22.520582Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -338,7 +306,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T103022520Z",
-      "sourceRecordId": "M-L01-20250626T103022520Z",
       "timestamp": "2025-06-26T10:30:22.520582Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -348,7 +315,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T113049283Z",
-      "sourceRecordId": "M-L01-20250626T113049283Z",
       "timestamp": "2025-06-26T11:30:49.283658Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -358,7 +324,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T113049283Z",
-      "sourceRecordId": "M-L01-20250626T113049283Z",
       "timestamp": "2025-06-26T11:30:49.283658Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -368,7 +333,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T113049283Z",
-      "sourceRecordId": "M-L01-20250626T113049283Z",
       "timestamp": "2025-06-26T11:30:49.283658Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -378,7 +342,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T123115972Z",
-      "sourceRecordId": "M-L01-20250626T123115972Z",
       "timestamp": "2025-06-26T12:31:15.972470Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -388,7 +351,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T123115972Z",
-      "sourceRecordId": "M-L01-20250626T123115972Z",
       "timestamp": "2025-06-26T12:31:15.972470Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -398,7 +360,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T123115972Z",
-      "sourceRecordId": "M-L01-20250626T123115972Z",
       "timestamp": "2025-06-26T12:31:15.972470Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -408,7 +369,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T133142709Z",
-      "sourceRecordId": "M-L01-20250626T133142709Z",
       "timestamp": "2025-06-26T13:31:42.709962Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -418,7 +378,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T133142709Z",
-      "sourceRecordId": "M-L01-20250626T133142709Z",
       "timestamp": "2025-06-26T13:31:42.709962Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -428,7 +387,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T133142709Z",
-      "sourceRecordId": "M-L01-20250626T133142709Z",
       "timestamp": "2025-06-26T13:31:42.709962Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -438,7 +396,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T143209443Z",
-      "sourceRecordId": "M-L01-20250626T143209443Z",
       "timestamp": "2025-06-26T14:32:09.443159Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -448,7 +405,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T143209443Z",
-      "sourceRecordId": "M-L01-20250626T143209443Z",
       "timestamp": "2025-06-26T14:32:09.443159Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -458,7 +414,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T143209443Z",
-      "sourceRecordId": "M-L01-20250626T143209443Z",
       "timestamp": "2025-06-26T14:32:09.443159Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -468,7 +423,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T153236138Z",
-      "sourceRecordId": "M-L01-20250626T153236138Z",
       "timestamp": "2025-06-26T15:32:36.138631Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -478,7 +432,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T153236138Z",
-      "sourceRecordId": "M-L01-20250626T153236138Z",
       "timestamp": "2025-06-26T15:32:36.138631Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -488,7 +441,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T153236138Z",
-      "sourceRecordId": "M-L01-20250626T153236138Z",
       "timestamp": "2025-06-26T15:32:36.138631Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -498,7 +450,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T163302846Z",
-      "sourceRecordId": "M-L01-20250626T163302846Z",
       "timestamp": "2025-06-26T16:33:02.846691Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -508,7 +459,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T163302846Z",
-      "sourceRecordId": "M-L01-20250626T163302846Z",
       "timestamp": "2025-06-26T16:33:02.846691Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -518,7 +468,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T163302846Z",
-      "sourceRecordId": "M-L01-20250626T163302846Z",
       "timestamp": "2025-06-26T16:33:02.846691Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -528,7 +477,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T173329589Z",
-      "sourceRecordId": "M-L01-20250626T173329589Z",
       "timestamp": "2025-06-26T17:33:29.589602Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -538,7 +486,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T173329589Z",
-      "sourceRecordId": "M-L01-20250626T173329589Z",
       "timestamp": "2025-06-26T17:33:29.589602Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -548,7 +495,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T173329589Z",
-      "sourceRecordId": "M-L01-20250626T173329589Z",
       "timestamp": "2025-06-26T17:33:29.589602Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.4,
@@ -558,7 +504,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T183356268Z",
-      "sourceRecordId": "M-L01-20250626T183356268Z",
       "timestamp": "2025-06-26T18:33:56.268031Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -568,7 +513,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T183356268Z",
-      "sourceRecordId": "M-L01-20250626T183356268Z",
       "timestamp": "2025-06-26T18:33:56.268031Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -578,7 +522,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T183356268Z",
-      "sourceRecordId": "M-L01-20250626T183356268Z",
       "timestamp": "2025-06-26T18:33:56.268031Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.4,
@@ -588,7 +531,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T193422985Z",
-      "sourceRecordId": "M-L01-20250626T193422985Z",
       "timestamp": "2025-06-26T19:34:22.985749Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -598,7 +540,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T193422985Z",
-      "sourceRecordId": "M-L01-20250626T193422985Z",
       "timestamp": "2025-06-26T19:34:22.985749Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -608,7 +549,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T193422985Z",
-      "sourceRecordId": "M-L01-20250626T193422985Z",
       "timestamp": "2025-06-26T19:34:22.985749Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -618,7 +558,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T203449694Z",
-      "sourceRecordId": "M-L01-20250626T203449694Z",
       "timestamp": "2025-06-26T20:34:49.694705Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -628,7 +567,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T203449694Z",
-      "sourceRecordId": "M-L01-20250626T203449694Z",
       "timestamp": "2025-06-26T20:34:49.694705Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -638,7 +576,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T203449694Z",
-      "sourceRecordId": "M-L01-20250626T203449694Z",
       "timestamp": "2025-06-26T20:34:49.694705Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -648,7 +585,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T213516219Z",
-      "sourceRecordId": "M-L01-20250626T213516219Z",
       "timestamp": "2025-06-26T21:35:16.219975Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -658,7 +594,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T213516219Z",
-      "sourceRecordId": "M-L01-20250626T213516219Z",
       "timestamp": "2025-06-26T21:35:16.219975Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -668,7 +603,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T213516219Z",
-      "sourceRecordId": "M-L01-20250626T213516219Z",
       "timestamp": "2025-06-26T21:35:16.219975Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -678,7 +612,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T223542924Z",
-      "sourceRecordId": "M-L01-20250626T223542924Z",
       "timestamp": "2025-06-26T22:35:42.924685Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -688,7 +621,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T223542924Z",
-      "sourceRecordId": "M-L01-20250626T223542924Z",
       "timestamp": "2025-06-26T22:35:42.924685Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -698,7 +630,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T223542924Z",
-      "sourceRecordId": "M-L01-20250626T223542924Z",
       "timestamp": "2025-06-26T22:35:42.924685Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -708,7 +639,6 @@
     },
     {
       "observationId": "M-L01-MC-20250626T233609624Z",
-      "sourceRecordId": "M-L01-20250626T233609624Z",
       "timestamp": "2025-06-26T23:36:09.624901Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -718,7 +648,6 @@
     },
     {
       "observationId": "M-L01-RH-20250626T233609624Z",
-      "sourceRecordId": "M-L01-20250626T233609624Z",
       "timestamp": "2025-06-26T23:36:09.624901Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -728,7 +657,6 @@
     },
     {
       "observationId": "M-L01-T-20250626T233609624Z",
-      "sourceRecordId": "M-L01-20250626T233609624Z",
       "timestamp": "2025-06-26T23:36:09.624901Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -738,7 +666,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T003636464Z",
-      "sourceRecordId": "M-L01-20250627T003636464Z",
       "timestamp": "2025-06-27T00:36:36.464205Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.5,
@@ -748,7 +675,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T003636464Z",
-      "sourceRecordId": "M-L01-20250627T003636464Z",
       "timestamp": "2025-06-27T00:36:36.464205Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -758,7 +684,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T003636464Z",
-      "sourceRecordId": "M-L01-20250627T003636464Z",
       "timestamp": "2025-06-27T00:36:36.464205Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -768,7 +693,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T013703058Z",
-      "sourceRecordId": "M-L01-20250627T013703058Z",
       "timestamp": "2025-06-27T01:37:03.058785Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -778,7 +702,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T013703058Z",
-      "sourceRecordId": "M-L01-20250627T013703058Z",
       "timestamp": "2025-06-27T01:37:03.058785Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -788,7 +711,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T013703058Z",
-      "sourceRecordId": "M-L01-20250627T013703058Z",
       "timestamp": "2025-06-27T01:37:03.058785Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -798,7 +720,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T023729751Z",
-      "sourceRecordId": "M-L01-20250627T023729751Z",
       "timestamp": "2025-06-27T02:37:29.751770Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -808,7 +729,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T023729751Z",
-      "sourceRecordId": "M-L01-20250627T023729751Z",
       "timestamp": "2025-06-27T02:37:29.751770Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -818,7 +738,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T023729751Z",
-      "sourceRecordId": "M-L01-20250627T023729751Z",
       "timestamp": "2025-06-27T02:37:29.751770Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -828,7 +747,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T033756584Z",
-      "sourceRecordId": "M-L01-20250627T033756584Z",
       "timestamp": "2025-06-27T03:37:56.584184Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -838,7 +756,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T033756584Z",
-      "sourceRecordId": "M-L01-20250627T033756584Z",
       "timestamp": "2025-06-27T03:37:56.584184Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -848,7 +765,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T033756584Z",
-      "sourceRecordId": "M-L01-20250627T033756584Z",
       "timestamp": "2025-06-27T03:37:56.584184Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -858,7 +774,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T043823163Z",
-      "sourceRecordId": "M-L01-20250627T043823163Z",
       "timestamp": "2025-06-27T04:38:23.163849Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -868,7 +783,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T043823163Z",
-      "sourceRecordId": "M-L01-20250627T043823163Z",
       "timestamp": "2025-06-27T04:38:23.163849Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -878,7 +792,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T043823163Z",
-      "sourceRecordId": "M-L01-20250627T043823163Z",
       "timestamp": "2025-06-27T04:38:23.163849Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -888,7 +801,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T053849881Z",
-      "sourceRecordId": "M-L01-20250627T053849881Z",
       "timestamp": "2025-06-27T05:38:49.881497Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -898,7 +810,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T053849881Z",
-      "sourceRecordId": "M-L01-20250627T053849881Z",
       "timestamp": "2025-06-27T05:38:49.881497Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -908,7 +819,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T053849881Z",
-      "sourceRecordId": "M-L01-20250627T053849881Z",
       "timestamp": "2025-06-27T05:38:49.881497Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -918,7 +828,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T063916723Z",
-      "sourceRecordId": "M-L01-20250627T063916723Z",
       "timestamp": "2025-06-27T06:39:16.723261Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -928,7 +837,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T063916723Z",
-      "sourceRecordId": "M-L01-20250627T063916723Z",
       "timestamp": "2025-06-27T06:39:16.723261Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -938,7 +846,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T063916723Z",
-      "sourceRecordId": "M-L01-20250627T063916723Z",
       "timestamp": "2025-06-27T06:39:16.723261Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -948,7 +855,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T073943289Z",
-      "sourceRecordId": "M-L01-20250627T073943289Z",
       "timestamp": "2025-06-27T07:39:43.289433Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -958,7 +864,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T073943289Z",
-      "sourceRecordId": "M-L01-20250627T073943289Z",
       "timestamp": "2025-06-27T07:39:43.289433Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -968,7 +873,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T073943289Z",
-      "sourceRecordId": "M-L01-20250627T073943289Z",
       "timestamp": "2025-06-27T07:39:43.289433Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.4,
@@ -978,7 +882,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T084010040Z",
-      "sourceRecordId": "M-L01-20250627T084010040Z",
       "timestamp": "2025-06-27T08:40:10.040280Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -988,7 +891,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T084010040Z",
-      "sourceRecordId": "M-L01-20250627T084010040Z",
       "timestamp": "2025-06-27T08:40:10.040280Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -998,7 +900,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T084010040Z",
-      "sourceRecordId": "M-L01-20250627T084010040Z",
       "timestamp": "2025-06-27T08:40:10.040280Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1008,7 +909,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T094037044Z",
-      "sourceRecordId": "M-L01-20250627T094037044Z",
       "timestamp": "2025-06-27T09:40:37.044795Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1018,7 +918,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T094037044Z",
-      "sourceRecordId": "M-L01-20250627T094037044Z",
       "timestamp": "2025-06-27T09:40:37.044795Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1028,7 +927,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T094037044Z",
-      "sourceRecordId": "M-L01-20250627T094037044Z",
       "timestamp": "2025-06-27T09:40:37.044795Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1038,7 +936,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T104103663Z",
-      "sourceRecordId": "M-L01-20250627T104103663Z",
       "timestamp": "2025-06-27T10:41:03.663682Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1048,7 +945,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T104103663Z",
-      "sourceRecordId": "M-L01-20250627T104103663Z",
       "timestamp": "2025-06-27T10:41:03.663682Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -1058,7 +954,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T104103663Z",
-      "sourceRecordId": "M-L01-20250627T104103663Z",
       "timestamp": "2025-06-27T10:41:03.663682Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1068,7 +963,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T114130362Z",
-      "sourceRecordId": "M-L01-20250627T114130362Z",
       "timestamp": "2025-06-27T11:41:30.362784Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1078,7 +972,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T114130362Z",
-      "sourceRecordId": "M-L01-20250627T114130362Z",
       "timestamp": "2025-06-27T11:41:30.362784Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1088,7 +981,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T114130362Z",
-      "sourceRecordId": "M-L01-20250627T114130362Z",
       "timestamp": "2025-06-27T11:41:30.362784Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.2,
@@ -1098,7 +990,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T124157100Z",
-      "sourceRecordId": "M-L01-20250627T124157100Z",
       "timestamp": "2025-06-27T12:41:57.100535Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1108,7 +999,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T124157100Z",
-      "sourceRecordId": "M-L01-20250627T124157100Z",
       "timestamp": "2025-06-27T12:41:57.100535Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1118,7 +1008,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T124157100Z",
-      "sourceRecordId": "M-L01-20250627T124157100Z",
       "timestamp": "2025-06-27T12:41:57.100535Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.2,
@@ -1128,7 +1017,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T134223834Z",
-      "sourceRecordId": "M-L01-20250627T134223834Z",
       "timestamp": "2025-06-27T13:42:23.834574Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1138,7 +1026,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T134223834Z",
-      "sourceRecordId": "M-L01-20250627T134223834Z",
       "timestamp": "2025-06-27T13:42:23.834574Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -1148,7 +1035,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T134223834Z",
-      "sourceRecordId": "M-L01-20250627T134223834Z",
       "timestamp": "2025-06-27T13:42:23.834574Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1158,7 +1044,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T144250531Z",
-      "sourceRecordId": "M-L01-20250627T144250531Z",
       "timestamp": "2025-06-27T14:42:50.531386Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1168,7 +1053,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T144250531Z",
-      "sourceRecordId": "M-L01-20250627T144250531Z",
       "timestamp": "2025-06-27T14:42:50.531386Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1178,7 +1062,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T144250531Z",
-      "sourceRecordId": "M-L01-20250627T144250531Z",
       "timestamp": "2025-06-27T14:42:50.531386Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1188,7 +1071,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T154317383Z",
-      "sourceRecordId": "M-L01-20250627T154317383Z",
       "timestamp": "2025-06-27T15:43:17.383574Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1198,7 +1080,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T154317383Z",
-      "sourceRecordId": "M-L01-20250627T154317383Z",
       "timestamp": "2025-06-27T15:43:17.383574Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1208,7 +1089,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T154317383Z",
-      "sourceRecordId": "M-L01-20250627T154317383Z",
       "timestamp": "2025-06-27T15:43:17.383574Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1218,7 +1098,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T164343954Z",
-      "sourceRecordId": "M-L01-20250627T164343954Z",
       "timestamp": "2025-06-27T16:43:43.954183Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1228,7 +1107,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T164343954Z",
-      "sourceRecordId": "M-L01-20250627T164343954Z",
       "timestamp": "2025-06-27T16:43:43.954183Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1238,7 +1116,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T164343954Z",
-      "sourceRecordId": "M-L01-20250627T164343954Z",
       "timestamp": "2025-06-27T16:43:43.954183Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1248,7 +1125,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T174410684Z",
-      "sourceRecordId": "M-L01-20250627T174410684Z",
       "timestamp": "2025-06-27T17:44:10.684824Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1258,7 +1134,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T174410684Z",
-      "sourceRecordId": "M-L01-20250627T174410684Z",
       "timestamp": "2025-06-27T17:44:10.684824Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1268,7 +1143,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T174410684Z",
-      "sourceRecordId": "M-L01-20250627T174410684Z",
       "timestamp": "2025-06-27T17:44:10.684824Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1278,7 +1152,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T184437426Z",
-      "sourceRecordId": "M-L01-20250627T184437426Z",
       "timestamp": "2025-06-27T18:44:37.426690Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1288,7 +1161,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T184437426Z",
-      "sourceRecordId": "M-L01-20250627T184437426Z",
       "timestamp": "2025-06-27T18:44:37.426690Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -1298,7 +1170,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T184437426Z",
-      "sourceRecordId": "M-L01-20250627T184437426Z",
       "timestamp": "2025-06-27T18:44:37.426690Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1308,7 +1179,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T194504163Z",
-      "sourceRecordId": "M-L01-20250627T194504163Z",
       "timestamp": "2025-06-27T19:45:04.163343Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1318,7 +1188,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T194504163Z",
-      "sourceRecordId": "M-L01-20250627T194504163Z",
       "timestamp": "2025-06-27T19:45:04.163343Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1328,7 +1197,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T194504163Z",
-      "sourceRecordId": "M-L01-20250627T194504163Z",
       "timestamp": "2025-06-27T19:45:04.163343Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1338,7 +1206,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T204530759Z",
-      "sourceRecordId": "M-L01-20250627T204530759Z",
       "timestamp": "2025-06-27T20:45:30.759738Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1348,7 +1215,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T204530759Z",
-      "sourceRecordId": "M-L01-20250627T204530759Z",
       "timestamp": "2025-06-27T20:45:30.759738Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 66.0,
@@ -1358,7 +1224,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T204530759Z",
-      "sourceRecordId": "M-L01-20250627T204530759Z",
       "timestamp": "2025-06-27T20:45:30.759738Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1368,7 +1233,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T214557437Z",
-      "sourceRecordId": "M-L01-20250627T214557437Z",
       "timestamp": "2025-06-27T21:45:57.437208Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1378,7 +1242,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T214557437Z",
-      "sourceRecordId": "M-L01-20250627T214557437Z",
       "timestamp": "2025-06-27T21:45:57.437208Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1388,7 +1251,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T214557437Z",
-      "sourceRecordId": "M-L01-20250627T214557437Z",
       "timestamp": "2025-06-27T21:45:57.437208Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.4,
@@ -1398,7 +1260,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T224624163Z",
-      "sourceRecordId": "M-L01-20250627T224624163Z",
       "timestamp": "2025-06-27T22:46:24.163739Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1408,7 +1269,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T224624163Z",
-      "sourceRecordId": "M-L01-20250627T224624163Z",
       "timestamp": "2025-06-27T22:46:24.163739Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1418,7 +1278,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T224624163Z",
-      "sourceRecordId": "M-L01-20250627T224624163Z",
       "timestamp": "2025-06-27T22:46:24.163739Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
@@ -1428,7 +1287,6 @@
     },
     {
       "observationId": "M-L01-MC-20250627T234650857Z",
-      "sourceRecordId": "M-L01-20250627T234650857Z",
       "timestamp": "2025-06-27T23:46:50.857321Z",
       "observedProperty": "tmf:property/moisture-content",
       "resultValue": 13.4,
@@ -1438,7 +1296,6 @@
     },
     {
       "observationId": "M-L01-RH-20250627T234650857Z",
-      "sourceRecordId": "M-L01-20250627T234650857Z",
       "timestamp": "2025-06-27T23:46:50.857321Z",
       "observedProperty": "tmf:property/relative-humidity",
       "resultValue": 65.0,
@@ -1448,7 +1305,6 @@
     },
     {
       "observationId": "M-L01-T-20250627T234650857Z",
-      "sourceRecordId": "M-L01-20250627T234650857Z",
       "timestamp": "2025-06-27T23:46:50.857321Z",
       "observedProperty": "tmf:property/air-temperature",
       "resultValue": 20.3,
