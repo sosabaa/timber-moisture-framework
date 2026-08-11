@@ -9,7 +9,7 @@ This repository accompanies the paper **“A Conceptual Framework for Reuse-Driv
 ## Repository contents
 
 - `01_worked_example/`  
-  Illustrative CLT kitchen-floor application of the framework.
+  Framework implementation example for a CLT kitchen-floor scenario.
 
 - `02_risk_location_classification/`  
   Template for identifying and classifying moisture-risk locations.
@@ -26,7 +26,7 @@ https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/
 
 ## Intended use
 
-The repository is intended as a practical companion to the framework. The worked example is illustrative and does not prescribe universal sensor spacing, fixed thresholds, or standardised layouts. Users should adapt the templates to project-specific moisture risks, monitoring objectives, and decision contexts.
+The repository is intended as a practical companion to the framework. The framework implementation example is illustrative and does not prescribe universal sensor spacing, fixed thresholds, or standardised layouts. Users should adapt the templates to project-specific moisture risks, monitoring objectives, and decision contexts.
 
 ## Citation
 
