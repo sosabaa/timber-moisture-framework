@@ -30,12 +30,6 @@ https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/
 - `monitoring_record_schema.schema.json`
   JSON Schema for checking the compacted JSON-LD graph structure, required identifiers, links, timestamps, SOSA observation fields, and QUDT quantity values.
 
-- `logger_export_mapping_example.csv`
-  Minimal logger-export table showing how raw logger rows can be mapped into per-property JSON-LD observation records.
-
-- `logger_export_mapping.md`
-  Short mapping note explaining how CSV columns become JSON-LD fields and linked identifiers.
-
 ## Using and validating the data artifacts
 
 Use `monitoring_record_schema_template.md` to decide which location, sensor, measurement, validation, moisture-related event, lifecycle-event, and lifecycle-integration fields need to be retained for a project. The Markdown template is the human-readable planning document.
@@ -52,13 +46,13 @@ Use `monitoring_record_schema_example.jsonld` as a minimal reference implementat
 
 Open `knowledge_graph_visualizer.html` in a browser to inspect the graph visually. When opened through a local web server, the visualizer can load `monitoring_record_schema_example.jsonld` directly. When opened from the file system, use the file picker to load the JSON-LD example, or paste a compacted JSON-LD graph into the text area. Nodes can be moved by dragging them, and `Reset view` restores the automatic layout.
 
-Use `logger_export_mapping_example.csv` together with `logger_export_mapping.md` when converting raw logger exports into JSON-LD observations. Static entities such as locations, sensors, installations, and observable properties should be stored once and linked from each observation rather than repeated in every row.
+Record monitoring observations directly as JSON/JSON-LD records. Static entities such as locations, sensors, installations, and observable properties should be stored once and linked from each observation rather than repeated in every timestamped record.
 
 Recommended workflow:
 
 1. Complete the risk-location and sensor-deployment templates.
 2. Define persistent IDs for locations, elements, sensors, installations, measurements, moisture-related events, and integration records. Record installation coordinates as compact WGS84 GPS-style DMS strings, for example `57°46'34.8" N`.
-3. Create a parent `MonitoringTimeSeries` node for the logger series or selected time window, then store the detailed per-property observations in a linked observation data file. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20250626T002555202Z`. A compact JSON-LD graph can also include one or a few representative timestamped observations as examples.
+3. Create a parent `MonitoringTimeSeries` node for the selected monitoring period, then store the detailed per-property observations directly in a linked JSON observation data file. Format observation IDs as `M-{LocationID}-{PropertyCode}-{Timestamp}`, for example `M-L01-MC-20250626T002555202Z`. A compact JSON-LD graph can also include one or a few representative timestamped observations as examples.
 4. Store validation outcomes as sensor and observation properties where quick interpretation is needed, and keep fuller validation checks in a linked JSON log referenced from the `ValidationRecord` through `hasValidationLog`. The validation log should state exactly which observations, sensor, and monitoring series were validated, when the validation happened, what each target was validated against, how surrounding RH/T context was used, and whether a reference sensor was used for triangulation.
 5. Add compact `LifecycleEvent` / `MoistureRelatedEvent` and `LifecycleIntegrationRecord` nodes where the monitoring record supports maintenance, post-event assessment, repair decisions, or future reuse-related assessment. Keep event-specific details such as threshold exceedance, moisture dose, drying behaviour, anomaly indicators, inspection actions, and outcomes in the linked event log referenced through `hasEventLog`.
 6. Validate the resulting compacted JSON-LD graph against `monitoring_record_schema.schema.json`.

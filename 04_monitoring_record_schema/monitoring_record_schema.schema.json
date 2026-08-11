@@ -554,9 +554,6 @@
         "measurementId": {
           "$ref": "#/$defs/text"
         },
-        "sourceRecordId": {
-          "$ref": "#/$defs/text"
-        },
         "madeBySensor": {
           "$ref": "#/$defs/id"
         },

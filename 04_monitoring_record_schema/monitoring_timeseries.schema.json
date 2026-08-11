@@ -107,7 +107,6 @@
       "type": "object",
       "required": [
         "observationId",
-        "sourceRecordId",
         "timestamp",
         "observedProperty",
         "resultValue",
@@ -117,9 +116,6 @@
       ],
       "properties": {
         "observationId": {
-          "$ref": "#/$defs/text"
-        },
-        "sourceRecordId": {
           "$ref": "#/$defs/text"
         },
         "timestamp": {

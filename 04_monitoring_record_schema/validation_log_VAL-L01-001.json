@@ -27,13 +27,12 @@
       "targetType": "Observation",
       "targetRecord": "tmf:observation/M-L01-MC-20250626T002555202Z",
       "targetProperty": "tmf:property/moisture-content",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "observationTimestamp": "2025-06-26T00:25:55.202099Z",
       "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "unit:PERCENT for moisture-content observations",
         "project-defined plausible timber MC range",
-        "surrounding RH and temperature observations from the same logger row",
+        "surrounding RH and temperature observations from the same timestamp",
         "reference sensor MC trend from tmf:sensor/MC-L05-01 at L-05"
       ],
       "checks": [
@@ -45,7 +44,7 @@
         {
           "checkType": "plausible-value",
           "status": "pass",
-          "result": "13.6 percent is plausible for the selected logger window."
+          "result": "13.6 percent is plausible for the selected observation window."
         },
         {
           "checkType": "series-context",
@@ -55,7 +54,7 @@
         {
           "checkType": "rh-temperature-context",
           "status": "pass",
-          "result": "Surrounding RH and temperature values from the same logger row are mutually plausible for the MC reading."
+          "result": "Surrounding RH and temperature values from the same timestamp are mutually plausible for the MC reading."
         },
         {
           "checkType": "reference-sensor-triangulation",
@@ -75,13 +74,12 @@
       "targetType": "Observation",
       "targetRecord": "tmf:observation/M-L01-RH-20250626T002555202Z",
       "targetProperty": "tmf:property/relative-humidity",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "observationTimestamp": "2025-06-26T00:25:55.202099Z",
       "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "unit:PERCENT for relative-humidity observations",
         "physical RH range from 0 to 100 percent",
-        "shared timestamp and source record for the paired logger row"
+        "shared timestamp for the paired observation set"
       ],
       "checks": [
         {
@@ -95,9 +93,9 @@
           "result": "66.0 percent is within the physical RH range."
         },
         {
-          "checkType": "logger-row-consistency",
+          "checkType": "timestamp-property-consistency",
           "status": "pass",
-          "result": "Timestamp and source record match the paired MC and temperature observations."
+          "result": "Timestamp and observed-property links match the paired MC and temperature observations."
         }
       ],
       "validatedValue": {
@@ -112,13 +110,12 @@
       "targetType": "Observation",
       "targetRecord": "tmf:observation/M-L01-T-20250626T002555202Z",
       "targetProperty": "tmf:property/air-temperature",
-      "sourceRecordId": "M-L01-20250626T002555202Z",
       "observationTimestamp": "2025-06-26T00:25:55.202099Z",
       "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "unit:DEG_C for air-temperature observations",
         "project-defined indoor temperature plausibility range",
-        "shared timestamp and source record for the paired logger row"
+        "shared timestamp for the paired observation set"
       ],
       "checks": [
         {
@@ -132,9 +129,9 @@
           "result": "20.2 degC is plausible for the monitored indoor environment."
         },
         {
-          "checkType": "logger-row-consistency",
+          "checkType": "timestamp-property-consistency",
           "status": "pass",
-          "result": "Timestamp and source record match the paired MC and RH observations."
+          "result": "Timestamp and observed-property links match the paired MC and RH observations."
         }
       ],
       "validatedValue": {
@@ -154,7 +151,7 @@
         "deployedSystem recorded in INST-L01-01",
         "manufacturer timber MC calibration basis",
         "active sensor status during the validation period",
-        "normal logger communication during the validation period"
+        "normal sensor communication during the validation period"
       ],
       "checks": [
         {
@@ -195,7 +192,7 @@
       "validationPerformedAt": "2026-08-08T14:40:11.633Z",
       "validatedAgainst": [
         "ordered timestamps within MS-L01-001",
-        "declared PT1H sampling interval with logger-clock tolerance",
+        "declared PT1H sampling interval with sensor-clock tolerance",
         "absence of unexplained data gaps",
         "whole-series drift review across MC, RH, and temperature",
         "surrounding RH and temperature context for MC interpretation",
@@ -210,7 +207,7 @@
         {
           "checkType": "sampling-interval",
           "status": "pass",
-          "result": "Hourly logger pattern retained within expected logger-clock tolerance."
+          "result": "Hourly observation pattern retained within expected sensor-clock tolerance."
         },
         {
           "checkType": "missing-data",
