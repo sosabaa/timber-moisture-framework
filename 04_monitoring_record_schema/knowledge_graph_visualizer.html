@@ -594,7 +594,7 @@
     };
 
     const fallbackGraph = {
-          "@context": "monitoring_record_schema_context.jsonld",
+          "@context": "json_jsonld_implementation/monitoring_record_schema_context.jsonld",
           "@graph": [
                 {
                       "id": "tmf:location/L-01",
@@ -800,7 +800,7 @@
                       "seriesStart": "2025-06-26T00:25:55.202099Z",
                       "seriesEnd": "2025-06-27T23:46:50.857321Z",
                       "samplingInterval": "PT1H",
-                      "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json"
+                      "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_jsonld_implementation/monitoring_timeseries_MS-L01-001.json"
                 },
                 {
                       "id": "tmf:observation/M-L01-MC-20250626T002555202Z",
@@ -891,7 +891,7 @@
                       "communicationFlag": "Normal transmission",
                       "redundancyAgreement": "Shallow and deeper sensors show consistent trend",
                       "qualityNotes": "Manual verification recommended after leakage report",
-                      "hasValidationLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/validation_log_VAL-L01-001.json"
+                      "hasValidationLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_jsonld_implementation/validation_log_VAL-L01-001.json"
                 },
                 {
                       "id": "tmf:lifecycle-event/EVT-L01-001",
@@ -905,7 +905,7 @@
                       "affectedSensor": "tmf:sensor/MC-L01-01",
                       "eventMonitoringSeries": "tmf:monitoring-series/MS-L01-001",
                       "eventValidationRecord": "tmf:validation/VAL-L01-001",
-                      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json"
+                      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_jsonld_implementation/event_log_EVT-L01-001.json"
                 },
                 {
                       "id": "tmf:lifecycle-integration/LINK-L01-001",
@@ -998,12 +998,12 @@
         if (window.location.protocol === "file:") {
           throw new Error("Browser file access cannot fetch adjacent JSON-LD files.");
         }
-        const response = await fetch("monitoring_record_schema_example.jsonld", { cache: "no-store" });
+        const response = await fetch("json_jsonld_implementation/monitoring_record_schema_example.jsonld", { cache: "no-store" });
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
         }
         const data = await response.json();
-        loadGraph(data, "Loaded monitoring_record_schema_example.jsonld");
+        loadGraph(data, "Loaded json_jsonld_implementation/monitoring_record_schema_example.jsonld");
       } catch (error) {
         loadGraph(fallbackGraph, "Loaded bundled fallback graph. Use file upload for the full local JSON-LD file.");
       }
