@@ -39,14 +39,6 @@ Supporting literature: Riggio et al. (2022).
 
 Avatar-Assisted Structural Health Monitoring connects sensor observations with contextual information and a persistent digital representation of a physical timber element. It is relevant across data and metadata capture, data validation, exposure interpretation, decision support, and lifecycle data integration. It therefore provides precedent for treating monitoring data as part of a broader information process rather than as isolated measurements.
 
-## Source accounting and publication-year policy
-
-The framework map and the reference list below contain exactly **20 unique retained publications**, consistent with the methodology. A publication may support more than one layer but is counted only once in the retained-study total.
-
-Author–year labels use the year of the version of record: the journal issue or published proceedings. Online-first dates are not counted as separate publications. Applying this policy resolves the earlier duplicate labels for Riggio and Dilmaghani (online in 2019; issue year 2020) and Baas et al. (online in 2020; volume year 2021).
-
-García Faura et al. (2021) supports both data validation and exposure interpretation; the former “Faura et al. (2024)” label referred to no separate publication. Olsson et al. (2023) is the verified source used for critical moisture conditions; no additional relevant Olsson (2024) record is included. The compound surname **García Faura** is used consistently.
-
 ## Full bibliographic references
 
 Baas, E. J., Riggio, M., & Barbosa, A. R. (2021). A methodological approach for structural health monitoring of mass-timber buildings under construction. *Construction and Building Materials, 268*, 121153. https://doi.org/10.1016/j.conbuildmat.2020.121153
