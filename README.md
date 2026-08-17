@@ -20,6 +20,9 @@ This repository accompanies the paper **“A Conceptual Framework for Reuse-Driv
 - `04_monitoring_record_schema/`
   Template and data-specification artifacts for structuring monitoring records, including a SOSA/QUDT-aligned JSON-LD context, example JSON-LD graph, JSON Schema validation files, and knowledge-graph visualizer.
 
+- [`05_framework_evidence_base/`](05_framework_evidence_base/)
+  Extended layer-by-layer evidence map and the framework figure with supporting literature.
+
 ## Knowledge graph visualizer
 The monitoring-record example can be explored through the live knowledge graph visualizer:
 https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/knowledge_graph_visualizer.html
