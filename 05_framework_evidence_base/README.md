@@ -1,4 +1,4 @@
-# Extended Evidence Base for the Conceptual Framework
+# Evidence Base for the Conceptual Framework
 
 This folder documents the extended literature evidence used in developing the conceptual framework presented in the accompanying conference paper, *A Conceptual Framework for Reuse-Driven Moisture Sensing and Data Acquisition in Mass-Timber Buildings*.
 
