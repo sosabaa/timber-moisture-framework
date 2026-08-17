@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log.schema.json",
+  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/event_log.schema.json",
   "title": "Timber Moisture Framework Event Log",
   "description": "Validation schema for linked JSON moisture-related event logs referenced from a compact LifecycleEvent node through hasEventLog.",
   "type": "object",

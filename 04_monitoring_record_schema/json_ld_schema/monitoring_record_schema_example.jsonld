@@ -204,7 +204,7 @@
       "seriesStart": "2025-06-26T00:25:55.202099Z",
       "seriesEnd": "2025-06-27T23:46:50.857321Z",
       "samplingInterval": "PT1H",
-      "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json"
+      "hasObservation": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/monitoring_timeseries_MS-L01-001.json"
     },
     {
       "id": "tmf:observation/M-L01-MC-20250626T002555202Z",
@@ -295,7 +295,7 @@
       "communicationFlag": "Normal transmission",
       "redundancyAgreement": "Shallow and deeper sensors show consistent trend",
       "qualityNotes": "Manual verification recommended after leakage report",
-      "hasValidationLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/validation_log_VAL-L01-001.json"
+      "hasValidationLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/validation_log_VAL-L01-001.json"
     },
     {
       "id": "tmf:lifecycle-event/EVT-L01-001",
@@ -309,7 +309,7 @@
       "affectedSensor": "tmf:sensor/MC-L01-01",
       "eventMonitoringSeries": "tmf:monitoring-series/MS-L01-001",
       "eventValidationRecord": "tmf:validation/VAL-L01-001",
-      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/event_log_EVT-L01-001.json"
+      "hasEventLog": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/event_log_EVT-L01-001.json"
     },
     {
       "id": "tmf:lifecycle-integration/LINK-L01-001",

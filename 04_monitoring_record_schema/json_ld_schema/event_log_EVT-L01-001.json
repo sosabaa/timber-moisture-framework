@@ -11,7 +11,7 @@
   "affectedSensor": "tmf:sensor/MC-L01-01",
   "monitoringSeries": "tmf:monitoring-series/MS-L01-001",
   "validationRecord": "tmf:validation/VAL-L01-001",
-  "evidenceObservationDataFile": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries_MS-L01-001.json",
+  "evidenceObservationDataFile": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/monitoring_timeseries_MS-L01-001.json",
   "eventPeriod": {
     "start": "2026-08-07T10:00:00.000Z",
     "end": "2026-08-09T16:00:00.000Z"

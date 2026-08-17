@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/monitoring_timeseries.schema.json",
+  "$id": "https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/monitoring_timeseries.schema.json",
   "title": "Timber Moisture Framework Monitoring Time Series",
   "description": "Validation schema for linked JSON observation data files referenced from a compact MonitoringTimeSeries node through hasObservation.",
   "type": "object",

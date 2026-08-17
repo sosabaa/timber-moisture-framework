@@ -1,0 +1,193 @@
+@prefix tmf: <https://sosabaa.github.io/timber-moisture-framework/vocab#> .
+@prefix tmf-location: <https://sosabaa.github.io/timber-moisture-framework/location/> .
+@prefix tmf-element: <https://sosabaa.github.io/timber-moisture-framework/element/> .
+@prefix tmf-sensor: <https://sosabaa.github.io/timber-moisture-framework/sensor/> .
+@prefix tmf-installation: <https://sosabaa.github.io/timber-moisture-framework/installation/> .
+@prefix tmf-property: <https://sosabaa.github.io/timber-moisture-framework/property/> .
+@prefix tmf-observation: <https://sosabaa.github.io/timber-moisture-framework/observation/> .
+@prefix tmf-validation: <https://sosabaa.github.io/timber-moisture-framework/validation/> .
+@prefix tmf-series: <https://sosabaa.github.io/timber-moisture-framework/monitoring-series/> .
+@prefix tmf-event: <https://sosabaa.github.io/timber-moisture-framework/lifecycle-event/> .
+@prefix tmf-link: <https://sosabaa.github.io/timber-moisture-framework/lifecycle-integration/> .
+@prefix schema: <https://schema.org/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tmf-location:L-01
+  a tmf:MoistureRiskLocation, sosa:FeatureOfInterest, bot:Zone ;
+  schema:identifier "L-01" ;
+  schema:description "Sink/dishwasher zone below plumbing and appliance connections" ;
+  tmf:lifecycleContext "Operational monitoring" ;
+  tmf:monitoringPurpose "Maintenance", "Post-event assessment", "Future reuse-related evidence" ;
+  tmf:buildingZone "Kitchen" ;
+  tmf:assemblyDetail "CLT floor below sink and dishwasher" ;
+  bot:hasElement tmf-element:CLT-FP-01 ;
+  tmf:riskClass "High" ;
+  tmf:decisionRelevance "High" ;
+  tmf:hasReferenceLocation tmf-location:L-05 .
+
+tmf-location:L-05
+  a tmf:MoistureRiskLocation, tmf:ReferenceLocation, sosa:FeatureOfInterest, bot:Zone ;
+  schema:identifier "L-05" ;
+  schema:description "Reference floor area away from appliance, plumbing, and junction risk zones" ;
+  tmf:lifecycleContext "Operational monitoring" ;
+  tmf:monitoringPurpose "Maintenance", "Post-event assessment", "Future reuse-related evidence" ;
+  tmf:buildingZone "Kitchen" ;
+  tmf:assemblyDetail "Open CLT floor area outside main moisture-risk zones." ;
+  bot:hasElement tmf-element:CLT-FP-02 ;
+  tmf:riskClass "Reference" ;
+  tmf:decisionRelevance "Reference baseline for interpreting localised wetting" .
+
+tmf-element:CLT-FP-01
+  a tmf:TimberElement, bot:Element ;
+  schema:identifier "CLT-FP-01" ;
+  schema:description "CLT floor panel associated with the kitchen sink/dishwasher zone" .
+
+tmf-element:CLT-FP-02
+  a tmf:TimberElement, bot:Element ;
+  schema:identifier "CLT-FP-02" ;
+  schema:description "CLT floor panel associated with the reference zone" .
+
+tmf-property:moisture-content
+  a sosa:ObservableProperty ;
+  schema:identifier "moisture-content" ;
+  schema:description "Timber moisture content" .
+
+tmf-property:relative-humidity
+  a sosa:ObservableProperty ;
+  schema:identifier "relative-humidity" ;
+  schema:description "Relative humidity near the monitored location" .
+
+tmf-property:air-temperature
+  a sosa:ObservableProperty ;
+  schema:identifier "air-temperature" ;
+  schema:description "Air temperature near the monitored location" .
+
+tmf-sensor:MC-L01-01
+  a sosa:Sensor, tmf:MoistureContentSensor ;
+  schema:identifier "MC-L01-01" ;
+  tmf:sensorType "MC sensor with RH/T context channel" ;
+  tmf:measurementPrinciple "Resistance-based MC with supporting RH/T output" ;
+  tmf:sensorValidationStatus "Validated" ;
+  tmf:sensorValidationRecord tmf-validation:VAL-L01-001 .
+
+tmf-installation:INST-L01-01
+  a tmf:SensorInstallation, sosa:Deployment ;
+  schema:identifier "INST-L01-01" ;
+  schema:location tmf-location:L-01 ;
+  ssn:deployedSystem tmf-sensor:MC-L01-01 ;
+  tmf:measurementDepth [
+    a qudt:QuantityValue ;
+    qudt:numericValue 20 ;
+    qudt:unit unit:MilliM
+  ] ;
+  tmf:sensorPlacementDescription "Below sink/dishwasher connection zone, near panel edge" ;
+  tmf:calibrationBasis "Manufacturer timber MC calibration" ;
+  tmf:correctionMethod "Temperature correction applied/not applied" ;
+  dcterms:date "2026-08-06T07:00:00.000Z"^^xsd:dateTime ;
+  tmf:sensorStatus "Active" .
+
+tmf-series:MS-L01-001
+  a tmf:MonitoringTimeSeries, schema:Dataset ;
+  schema:identifier "MS-L01-001" ;
+  schema:description "Two-day maximum one-sensor monitoring time series for the L-01 sink/dishwasher zone. Detailed per-property observations are stored in the linked JSON file." ;
+  schema:location tmf-location:L-01 ;
+  tmf:hasReferenceLocation tmf-location:L-05 ;
+  tmf:installation tmf-installation:INST-L01-01 ;
+  sosa:madeBySensor tmf-sensor:MC-L01-01 ;
+  sosa:observedProperty tmf-property:moisture-content, tmf-property:relative-humidity, tmf-property:air-temperature ;
+  tmf:seriesStart "2025-06-26T00:25:55.202099Z"^^xsd:dateTime ;
+  tmf:seriesEnd "2025-06-27T23:46:50.857321Z"^^xsd:dateTime ;
+  tmf:samplingInterval "PT1H"^^xsd:duration ;
+  tmf:hasObservation <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/monitoring_timeseries_MS-L01-001.json> .
+
+tmf-observation:M-L01-MC-20250626T002555202Z
+  a tmf:MeasurementRecord, sosa:Observation ;
+  schema:identifier "M-L01-MC-20250626T002555202Z" ;
+  schema:isPartOf tmf-series:MS-L01-001 ;
+  sosa:observedProperty tmf-property:moisture-content ;
+  sosa:resultTime "2025-06-26T00:25:55.202099Z"^^xsd:dateTime ;
+  sosa:hasSimpleResult "13.6 %" ;
+  qudt:quantityValue [
+    a qudt:QuantityValue ;
+    qudt:numericValue 13.6 ;
+    qudt:unit unit:PERCENT
+  ] ;
+  tmf:dataQualityFlag "Usable" ;
+  tmf:qualityAssessmentRecord tmf-validation:VAL-L01-001 .
+
+tmf-observation:M-L01-RH-20250626T002555202Z
+  a tmf:MeasurementRecord, sosa:Observation ;
+  schema:identifier "M-L01-RH-20250626T002555202Z" ;
+  schema:isPartOf tmf-series:MS-L01-001 ;
+  sosa:observedProperty tmf-property:relative-humidity ;
+  sosa:resultTime "2025-06-26T00:25:55.202099Z"^^xsd:dateTime ;
+  sosa:hasSimpleResult "66.0 %" ;
+  qudt:quantityValue [
+    a qudt:QuantityValue ;
+    qudt:numericValue 66.0 ;
+    qudt:unit unit:PERCENT
+  ] ;
+  tmf:dataQualityFlag "Usable" ;
+  tmf:qualityAssessmentRecord tmf-validation:VAL-L01-001 .
+
+tmf-observation:M-L01-T-20250626T002555202Z
+  a tmf:MeasurementRecord, sosa:Observation ;
+  schema:identifier "M-L01-T-20250626T002555202Z" ;
+  schema:isPartOf tmf-series:MS-L01-001 ;
+  sosa:observedProperty tmf-property:air-temperature ;
+  sosa:resultTime "2025-06-26T00:25:55.202099Z"^^xsd:dateTime ;
+  sosa:hasSimpleResult "20.2 degC" ;
+  qudt:quantityValue [
+    a qudt:QuantityValue ;
+    qudt:numericValue 20.2 ;
+    qudt:unit unit:DEG_C
+  ] ;
+  tmf:dataQualityFlag "Usable" ;
+  tmf:qualityAssessmentRecord tmf-validation:VAL-L01-001 .
+
+tmf-validation:VAL-L01-001
+  a tmf:ValidationRecord, prov:Activity ;
+  schema:identifier "VAL-L01-001" ;
+  tmf:installation tmf-installation:INST-L01-01 ;
+  tmf:validationTargetSensor tmf-sensor:MC-L01-01 ;
+  tmf:validationTargetSeries tmf-series:MS-L01-001 ;
+  tmf:validationTargetObservation
+    tmf-observation:M-L01-MC-20250626T002555202Z,
+    tmf-observation:M-L01-RH-20250626T002555202Z,
+    tmf-observation:M-L01-T-20250626T002555202Z ;
+  tmf:validationPerformedAt "2026-08-08T14:40:11.633Z"^^xsd:dateTime ;
+  tmf:dataQualityFlag "Usable" ;
+  tmf:missingDataFlag "No gap detected" ;
+  tmf:implausibleValueFlag "No implausible value detected" ;
+  tmf:driftOrSensorDamageFlag "No drift suspected" ;
+  tmf:communicationFlag "Normal transmission" ;
+  tmf:hasValidationLog <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/validation_log_VAL-L01-001.json> .
+
+tmf-event:EVT-L01-001
+  a tmf:LifecycleEvent, tmf:MoistureRelatedEvent, prov:Activity ;
+  schema:identifier "EVT-L01-001" ;
+  schema:location tmf-location:L-01 ;
+  tmf:affectedSensor tmf-sensor:MC-L01-01 ;
+  tmf:eventMonitoringSeries tmf-series:MS-L01-001 ;
+  tmf:eventValidationRecord tmf-validation:VAL-L01-001 ;
+  tmf:hasEventLog <https://sosabaa.github.io/timber-moisture-framework/04_monitoring_record_schema/json_ld_schema/event_log_EVT-L01-001.json> .
+
+tmf-link:LINK-L01-001
+  a tmf:LifecycleIntegrationRecord, prov:Entity ;
+  schema:identifier "LINK-L01-001" ;
+  schema:location tmf-location:L-01, tmf-location:L-05 ;
+  bot:hasElement tmf-element:CLT-FP-01, tmf-element:CLT-FP-02 ;
+  tmf:linkedSensor tmf-sensor:MC-L01-01 ;
+  tmf:linkedValidationRecord tmf-validation:VAL-L01-001 ;
+  tmf:linkedMonitoringSeries tmf-series:MS-L01-001 ;
+  tmf:linkedEvent tmf-event:EVT-L01-001 ;
+  tmf:linkedLifecycleInformationSystem "BIM model", "Product passport" ;
+  schema:identifier "BIM object CLT-FP-01" ;
+  tmf:decisionUse "Maintenance", "Post-event assessment", "Future reuse-related assessment" .
