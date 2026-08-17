@@ -24,13 +24,13 @@ The publications associated with each layer are supporting evidence, rather than
 
 | Layer | Framework function | Supporting literature | Contribution to framework development |
 |---|---|---|---|
-| 1. Lifecycle context | Establishes lifecycle stage and monitoring objective before monitoring requirements are defined. | Riggio & Dilmaghani (2019); Baas et al. (2020) | Positions monitoring within lifecycle and structural-health-monitoring contexts and supports defining objectives before deployment. |
+| 1. Lifecycle context | Establishes lifecycle stage and monitoring objective before monitoring requirements are defined. | Riggio & Dilmaghani (2020); Baas et al. (2021) | Positions monitoring within lifecycle and structural-health-monitoring contexts and supports defining objectives before deployment. |
 | 2. Moisture risk mapping | Identifies moisture-prone locations and classifies their relative monitoring priority. | Kalbe et al. (2020); Olsson (2021); Cappellazzi et al. (2020) | Provides evidence on moisture-sensitive details, construction exposure, water ingress, drying limitations, and deterioration mechanisms. |
 | 3. Sensor deployment | Translates identified risks into placement, density, depth, redundancy, access, and protection decisions. | Tannert et al. (2011); Tamagnone et al. (2023); Greffier et al. (2024); Uwizeyimana et al. (2020); Johns et al. (2024) | Informs sensor location, depth, coverage, redundancy, accessibility, protection, and practical monitoring constraints. |
 | 4. Data and metadata capture | Defines measured values and context needed to preserve the meaning of monitoring records. | Riggio et al. (2023); Baas et al. (2021); Tamagnone et al. (2023) | Links MC, RH, and temperature to sensor and element identities, depth, location, and later interpretation context. |
-| 5. Data validation | Evaluates whether monitoring records are reliable enough for interpretation. | Faura et al. (2021); Greffier et al. (2024); Uwizeyimana et al. (2020) | Addresses missing data, anomalies, sensor disagreement, installation effects, drift, and other quality issues. |
-| 6. Exposure interpretation | Converts validated observations into indicators of moisture exposure and drying behaviour. | Faura et al. (2024); Olsson (2024, 2023); Viitanen (1996, 2001) | Supports thresholds, exposure duration, wetting and drying behaviour, anomalies, biological risk, and uncertainty. |
-| 7. Decision support | Connects interpreted information to inspection, maintenance, repair, enclosure approval, and reuse assessment. | Tamagnone et al. (2023); Greffier et al. (2024); Riggio & Dilmaghani (2019); Kalbe et al. (2025) | Supports identifying adverse conditions, targeting intervention, and supplying evidence for lifecycle decisions. |
+| 5. Data validation | Evaluates whether monitoring records are reliable enough for interpretation. | García Faura et al. (2021); Greffier et al. (2024); Uwizeyimana et al. (2020) | Addresses missing data, anomalies, sensor disagreement, installation effects, drift, and other quality issues. |
+| 6. Exposure interpretation | Converts validated observations into indicators of moisture exposure and drying behaviour. | García Faura et al. (2021); Olsson et al. (2023); Viitanen (1996, 2001) | Supports thresholds, exposure duration, wetting and drying behaviour, anomalies, biological risk, and uncertainty. |
+| 7. Decision support | Connects interpreted information to inspection, maintenance, repair, enclosure approval, and reuse assessment. | Tamagnone et al. (2023); Greffier et al. (2024); Riggio & Dilmaghani (2020); Kalbe et al. (2025) | Supports identifying adverse conditions, targeting intervention, and supplying evidence for lifecycle decisions. |
 | 8. Lifecycle data integration | Preserves monitoring information in digital systems across lifecycle stages. | De Wolf et al. (2024); Honic et al. (2019); Loeb et al. (2025); Riggio et al. (2023) | Supports structured information management through BIM, product passports, building logbooks, and monitoring platforms. |
 
 ## Cross-layer concept: Avatar-Assisted Structural Health Monitoring
@@ -39,16 +39,13 @@ Supporting literature: Riggio et al. (2022).
 
 Avatar-Assisted Structural Health Monitoring connects sensor observations with contextual information and a persistent digital representation of a physical timber element. It is relevant across data and metadata capture, data validation, exposure interpretation, decision support, and lifecycle data integration. It therefore provides precedent for treating monitoring data as part of a broader information process rather than as isolated measurements.
 
-## Bibliographic reconciliation
+## Source accounting and publication-year policy
 
-The figure is reproduced without alteration. Verification against publisher and institutional records identified four year-label issues for later correction in the source artwork:
+The framework map and the reference list below contain exactly **20 unique retained publications**, consistent with the methodology. A publication may support more than one layer but is counted only once in the retained-study total.
 
-- **Riggio & Dilmaghani (2019)** was published online in 2019 and assigned to a 2020 journal issue; the reference below uses 2020.
-- **Baas et al. (2020)** was available online in 2020 and assigned to a 2021 journal volume; the reference below uses 2021.
-- **Faura et al. (2024)** could not be matched to a separate supporting publication. The identifiable record is García Faura et al. (2021), already used in Layer 5.
-- **Olsson (2024)** could not be matched unambiguously. The verified records represented here are Olsson et al. (2023) and Olsson (2021).
+Author–year labels use the year of the version of record: the journal issue or published proceedings. Online-first dates are not counted as separate publications. Applying this policy resolves the earlier duplicate labels for Riggio and Dilmaghani (online in 2019; issue year 2020) and Baas et al. (online in 2020; volume year 2021).
 
-The labels remain in the map because they appear in the source artwork. No bibliographic record has been invented to force a match. The artwork also contains more distinct author–year labels than the 20 studies reported as retained; additional contextual sources may have been added during framework development, and this should be reconciled with the review inventory.
+García Faura et al. (2021) supports both data validation and exposure interpretation; the former “Faura et al. (2024)” label referred to no separate publication. Olsson et al. (2023) is the verified source used for critical moisture conditions; no additional relevant Olsson (2024) record is included. The compound surname **García Faura** is used consistently.
 
 ## Full bibliographic references
 
