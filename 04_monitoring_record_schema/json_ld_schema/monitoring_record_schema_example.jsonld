@@ -25,14 +25,20 @@
         "Local fastener areas",
         "Concealed regions beneath cabinetry"
       ],
-      "moistureSourceOrMechanism": [
-        "Leakage",
+      "moistureSource": [
+        "Plumbing leakage",
+        "Dishwasher leakage or failure",
         "Repeated small leaks",
-        "Cleaning water",
-        "Trapped moisture beneath finishes"
+        "Cleaning water"
       ],
-      "riskClass": "High",
+      "moisturePathwayMechanism": "Liquid water may enter beneath cabinetry or finishes and migrate towards panel surfaces, edges, junctions, or fastener zones, where drying may be restricted.",
+      "exposureClass": "High",
+      "vulnerabilityClass": "High",
+      "moistureRiskClass": "High",
+      "inspectionLimitation": "High",
+      "sensorFailureRisk": "Medium",
       "decisionRelevance": "High",
+      "monitoringPriority": "Critical",
       "locationNotes": "Near plumbing and appliance connection zone",
       "hasReferenceLocation": "tmf:location/L-05"
     },
@@ -46,26 +52,25 @@
       ],
       "locationId": "L-05",
       "description": "Reference floor area away from appliance, plumbing, and junction risk zones",
-      "lifecycleContext": "Operational monitoring",
+      "lifecycleContext": "Operational reference monitoring",
       "monitoringPurpose": [
-        "Maintenance",
-        "Post-event assessment",
-        "Future reuse-related evidence"
+        "Reference comparison",
+        "Support interpretation of higher-risk locations"
       ],
       "buildingZone": "Kitchen",
       "assemblyDetail": "Open CLT floor area outside main moisture-risk zones.",
       "hasElement": "tmf:element/CLT-FP-02",
-      "elementMaterialFeature": [
-        "Panel surface",
-        "Local fastener areas"
-      ],
-      "moistureSourceOrMechanism": [
-        "Cleaning water",
-        "Trapped moisture beneath finishes"
-      ],
-      "riskClass": "Reference",
-      "decisionRelevance": "Reference baseline for interpreting localised wetting",
-      "locationNotes": "Open area in the kitchen"
+      "elementMaterialFeature": "Panel field away from appliances, plumbing, and junction concentrations",
+      "moistureSource": "General indoor-climate moisture and seasonal RH variation",
+      "moisturePathwayMechanism": "Background hygroscopic moisture exchange between the indoor air and the accessible panel field.",
+      "exposureClass": "Low",
+      "vulnerabilityClass": "Low",
+      "moistureRiskClass": "Low",
+      "inspectionLimitation": "Low",
+      "sensorFailureRisk": "Low",
+      "decisionRelevance": "Medium",
+      "monitoringPriority": "Low",
+      "locationNotes": "Reference baseline selected away from concentrated moisture-entry paths"
     },
     {
       "id": "tmf:element/CLT-FP-01",
@@ -176,7 +181,7 @@
         "latitude": "57°46'35.5\" N",
         "longitude": "14°09'34.2\" E"
       },
-      "sensorPlacementDescription": " Reference floor area away from appliance, plumbing, and junction risk zones",
+      "sensorPlacementDescription": "Reference floor area away from appliance, plumbing, and junction risk zones",
       "calibrationBasis": "Manufacturer timber MC calibration",
       "correctionMethod": "Temperature correction applied/not applied",
       "installationDate": "2026-08-06T07:00:00.000Z",
@@ -321,11 +326,11 @@
       "location": [
         "tmf:location/L-01",
         "tmf:location/L-05"
-        ],
+      ],
       "hasElement": [
         "tmf:element/CLT-FP-01",
         "tmf:element/CLT-FP-02"
-        ],
+      ],
       "linkedSensor": [
         "tmf:sensor/MC-L01-01",
         "tmf:sensor/MC-L05-01"
