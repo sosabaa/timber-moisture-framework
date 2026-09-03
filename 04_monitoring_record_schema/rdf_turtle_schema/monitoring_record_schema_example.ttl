@@ -28,21 +28,35 @@ tmf-location:L-01
   tmf:buildingZone "Kitchen" ;
   tmf:assemblyDetail "CLT floor below sink and dishwasher" ;
   bot:hasElement tmf-element:CLT-FP-01 ;
-  tmf:riskClass "High" ;
+  tmf:moistureSource "Plumbing leakage", "Dishwasher leakage or failure", "Repeated small leaks", "Cleaning water" ;
+  tmf:moisturePathwayMechanism "Liquid water may enter beneath cabinetry or finishes and migrate towards panel surfaces, edges, junctions, or fastener zones, where drying may be restricted." ;
+  tmf:exposureClass "High" ;
+  tmf:vulnerabilityClass "High" ;
+  tmf:moistureRiskClass "High" ;
+  tmf:inspectionLimitation "High" ;
+  tmf:sensorFailureRisk "Medium" ;
   tmf:decisionRelevance "High" ;
+  tmf:monitoringPriority "Critical" ;
   tmf:hasReferenceLocation tmf-location:L-05 .
 
 tmf-location:L-05
   a tmf:MoistureRiskLocation, tmf:ReferenceLocation, sosa:FeatureOfInterest, bot:Zone ;
   schema:identifier "L-05" ;
   schema:description "Reference floor area away from appliance, plumbing, and junction risk zones" ;
-  tmf:lifecycleContext "Operational monitoring" ;
-  tmf:monitoringPurpose "Maintenance", "Post-event assessment", "Future reuse-related evidence" ;
+  tmf:lifecycleContext "Operational reference monitoring" ;
+  tmf:monitoringPurpose "Reference comparison", "Support interpretation of higher-risk locations" ;
   tmf:buildingZone "Kitchen" ;
   tmf:assemblyDetail "Open CLT floor area outside main moisture-risk zones." ;
   bot:hasElement tmf-element:CLT-FP-02 ;
-  tmf:riskClass "Reference" ;
-  tmf:decisionRelevance "Reference baseline for interpreting localised wetting" .
+  tmf:moistureSource "General indoor-climate moisture and seasonal RH variation" ;
+  tmf:moisturePathwayMechanism "Background hygroscopic moisture exchange between the indoor air and the accessible panel field." ;
+  tmf:exposureClass "Low" ;
+  tmf:vulnerabilityClass "Low" ;
+  tmf:moistureRiskClass "Low" ;
+  tmf:inspectionLimitation "Low" ;
+  tmf:sensorFailureRisk "Low" ;
+  tmf:decisionRelevance "Medium" ;
+  tmf:monitoringPriority "Low" .
 
 tmf-element:CLT-FP-01
   a tmf:TimberElement, bot:Element ;
