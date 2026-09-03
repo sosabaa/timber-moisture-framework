@@ -335,7 +335,8 @@
         "type",
         "locationId",
         "description",
-        "riskClass"
+        "moistureRiskClass",
+        "monitoringPriority"
       ],
       "properties": {
         "id": {
@@ -362,20 +363,60 @@
         "elementMaterialFeature": {
           "$ref": "#/$defs/textOrTextArray"
         },
+        "moistureSource": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
+        "moisturePathwayMechanism": {
+          "$ref": "#/$defs/textOrTextArray"
+        },
         "moistureSourceOrMechanism": {
           "$ref": "#/$defs/textOrTextArray"
         },
-        "riskClass": {
+        "exposureClass": {
           "enum": [
-            "Reference",
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "vulnerabilityClass": {
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "moistureRiskClass": {
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "inspectionLimitation": {
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "sensorFailureRisk": {
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "decisionRelevance": {
+          "$ref": "#/$defs/text"
+        },
+        "monitoringPriority": {
+          "enum": [
             "Low",
             "Medium",
             "High",
             "Critical"
           ]
-        },
-        "decisionRelevance": {
-          "$ref": "#/$defs/text"
         },
         "locationNotes": {
           "$ref": "#/$defs/text"
