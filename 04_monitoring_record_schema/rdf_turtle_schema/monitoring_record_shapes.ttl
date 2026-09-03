@@ -20,9 +20,16 @@ tmf:MoistureRiskLocationShape
     sh:datatype xsd:string
   ] ;
   sh:property [
-    sh:path tmf:riskClass ;
+    sh:path tmf:moistureRiskClass ;
     sh:minCount 1 ;
-    sh:datatype xsd:string
+    sh:datatype xsd:string ;
+    sh:in ("Low" "Medium" "High")
+  ] ;
+  sh:property [
+    sh:path tmf:monitoringPriority ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:in ("Low" "Medium" "High" "Critical")
   ] .
 
 tmf:SensorInstallationShape

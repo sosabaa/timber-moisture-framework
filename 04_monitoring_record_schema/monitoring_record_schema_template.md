@@ -10,7 +10,7 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 
 | Data table | Data type | Purpose | Main linking field |
 |---|---|---|---|
-| Location register | Static/contextual data | Defines the monitored risk location, building zone, assembly, timber element, and moisture-risk context. | Location ID |
+| Location register | Static/contextual data | Defines the monitored location, building zone, assembly, timber element, moisture-risk class, and monitoring priority. | Location ID |
 | Sensor installation register | Semi-static sensor metadata | Defines the installed sensor or sensor channel, including sensor type, measurement depth, calibration basis, and installation context. | Sensor ID / Installation ID |
 | Monitoring time-series register | Dynamic dataset metadata | Defines the whole time-series record for a location, sensor installation, observed properties, time span, sampling interval, and linked observation data file. | Series ID |
 | Observation data file | Dynamic measurement data | Stores timestamped per-property observations for MC, RH, temperature, or raw sensor readings outside the compact JSON-LD graph. | Observation file URL / Observation ID |
@@ -31,6 +31,8 @@ The monitoring-record schema separates static, semi-static, dynamic, derived, an
 
 The schema can be implemented in JSON-LD by treating each table as a linked resource type. Static location data, sensor installation metadata, dynamic time-series observations, validation records, moisture-related lifecycle events, and lifecycle integration records are stored as separate entities in an `@graph`. These entities are connected through persistent identifiers such as `Location ID`, `Sensor ID`, `Installation ID`, `Measurement ID`, and `Event ID`.
 
+The location entity carries forward the key Layer 2 outputs needed to interpret the deployment later: the moisture source and pathway, exposure class, vulnerability class, moisture-risk class, inspection limitation, sensor failure risk, decision relevance, and monitoring priority. The detailed criterion-by-criterion assessment remains in the risk-location classification artefact rather than being repeated in every observation.
+
 This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, moisture-related event, and lifecycle information system.
 
 The monitoring period should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data file through `hasObservation`. This keeps the knowledge graph compact while the detailed time-series values remain in a linked JSON file.
@@ -50,11 +52,19 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Assembly/detail | Required | CLT floor below sink and dishwasher | Specific assembly or detail. |
 | Element ID | Required | CLT-FP-01 | Timber element, panel, beam, column, or BIM element ID. |
 | Element/material feature | Required | Panel surface, panel edge, local fastener areas, concealed regions beneath cabinetry | Specific feature being monitored. |
-| Moisture source or mechanism | Required | Leakage, repeated small leaks, cleaning water, trapped moisture beneath finishes | Expected moisture mechanism. |
-| Risk class | Required | High | Carried over from risk-location classification. |
-| Decision relevance | Required | High | Explains why the location matters for later decisions. |
+| Moisture source | Required | Plumbing leakage; dishwasher leakage or failure; cleaning water | Expected source or sources of moisture. |
+| Moisture pathway/mechanism | Required | Liquid water may migrate beneath cabinetry towards panel edges, junctions, or fastener zones | Expected route and mechanism by which moisture may reach, accumulate in, or remain at the location. |
+| Exposure class | Required | High | Summary Layer 2 exposure class. Detailed exposure criteria remain in the risk-location classification record. |
+| Vulnerability class | Required | High | Summary Layer 2 vulnerability class. Detailed vulnerability criteria remain in the risk-location classification record. |
+| Moisture-risk class | Required | High | Physical moisture-risk class derived from exposure and vulnerability. |
+| Inspection limitation | Required | High | Risk-oriented operationalisation of inspection access. Higher values indicate poorer observability. |
+| Sensor failure risk | Required | Medium | Risk-oriented operationalisation of sensor survivability used when the monitoring priority was assigned. |
+| Decision relevance | Required | High | Importance of the monitoring evidence for later decisions. |
+| Monitoring priority | Required | Critical | Low/Medium/High/Critical priority carried forward to sensor deployment and monitoring-record design. |
 | Reference location ID | Optional | L-05 | Baseline or reference location used to interpret whether moisture behaviour is local or general. |
 | Location notes | Optional | Near plumbing and appliance connection zone | Additional context. |
+
+The monitoring record carries the summary Layer 2 classifications rather than reproducing every Low/Medium/High criterion used to derive them. The full classification table remains the authoritative record of the underlying engineering judgement.
 
 ## Sensor installation register
 | Field | Required/optional | Example entry | Notes |
@@ -165,9 +175,11 @@ The compact graph may include one representative MC, RH, and temperature observa
 | Digital object reference | Optional | BIM object CLT-FP-01 | Object or database reference. |
 | Decision use | Required | Maintenance, post-event assessment, future reuse-related assessment | Explains why the record is retained. |
 | Notes | Optional | Selected event indicators retained for future recovery assessment | Additional lifecycle context. |
+
 ## Notes for use
 
 - Keep the `Location ID` consistent across the risk-location classification, sensor-deployment, and monitoring-record schema files.
+- Carry forward both the `Moisture-risk class` and `Monitoring priority`. They represent different concepts and should not be collapsed into a generic risk field.
 - Record both measured values and contextual metadata. A moisture reading without sensor depth, location, calibration basis, and data-quality information may be difficult to interpret later.
 - Treat MC thresholds as interpretation triggers rather than standalone decision criteria.
 - Preserve validation flags and uncertainty information, especially where the record may support later maintenance, repair, post-event assessment, durability evaluation, or reuse-related assessment.
