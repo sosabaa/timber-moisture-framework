@@ -19,9 +19,9 @@ The classification is carried out in two stages:
 
 **Stage B — Monitoring-priority classification**
 
-`Moisture risk + Inspection access/observability + Sensor survivability + Decision relevance → Monitoring priority`
+`Moisture risk + Inspection limitation + Sensor failure risk + Decision relevance → Monitoring priority`
 
-This organisation retains the decision factors used in the conceptual framework while distinguishing physical moisture risk from the need and feasibility of monitoring.
+This organisation retains the decision factors used in the conceptual framework while distinguishing physical moisture risk from the need and feasibility of monitoring. Risk-oriented operational labels are used where necessary so that **Low, Medium and High consistently represent increasing concern**.
 
 ---
 
@@ -59,14 +59,16 @@ Vulnerability describes how strongly the timber element or detail may be affecte
 | Vulnerability criterion | Low | Medium | High |
 |---|---|---|---|
 | Moisture uptake/retention potential | Detail has limited opportunity for water entry or retention. | Moisture can enter or remain locally, depending on geometry, interfaces, or finishes. | End grain, joints, penetrations, cavities, interfaces, horizontal surfaces, or other details can promote rapid uptake, trapping, or internal migration. |
-| Drying capacity | Open, ventilated, and readily able to dry after wetting. | Partial drying capacity; drying depends on finishes, cavities, ventilation, or local detailing. | Restricted drying due to membranes, finishes, concealed interfaces, low ventilation, moisture-trapping geometry, or enclosure. |
+| Drying limitation | Open, ventilated, or otherwise readily able to dry after wetting. | Drying is partly restricted and depends on finishes, cavities, ventilation, or local detailing. | Drying is strongly restricted by membranes, finishes, concealed interfaces, low ventilation, moisture-trapping geometry, or enclosure. |
 | Consequence of moisture exposure | Limited effect on durability, serviceability, maintenance, or later assessment. | May cause local deterioration, maintenance need, documentation uncertainty, or reduced confidence in future assessment. | May affect structural reliability, durability, concealed damage, repair scope, warranty, or future reuse-related assessment. |
 
 ### Suggested vulnerability class
 
 Assign **Low, Medium, or High vulnerability** from the combined interpretation of the vulnerability criteria.
 
-For structural timber and mass-timber elements, **Low vulnerability should be used cautiously**, because timber is moisture-sensitive. A low rating is most defensible where moisture uptake and retention are limited, drying is reliable, and the consequence of short-term exposure is low.
+**Drying limitation** is the risk-oriented operationalisation of the framework factor **drying capacity**. A high drying-limitation rating therefore represents low effective drying capacity and greater vulnerability.
+
+For structural timber and mass-timber elements, **Low vulnerability should be used cautiously**, because timber is moisture-sensitive. A low rating is most defensible where moisture uptake and retention are limited, drying limitation is low, and the consequence of short-term exposure is low.
 
 ## A4. Moisture-risk matrix
 
@@ -90,17 +92,19 @@ Moisture risk alone does not determine how intensively a location should be moni
 
 | Criterion | Low | Medium | High |
 |---|---|---|---|
-| Inspection access / observability | Easy visual access and manual measurement; condition can be checked without opening the assembly. | Access is limited or requires minor intervention, equipment, or partial opening. | Concealed or inaccessible after enclosure; condition cannot be verified without disruptive opening. |
-| Sensor survivability | Sensor is likely to remain protected, accessible, replaceable, and communicative. | Some risk of damage, drift, corrosion, communication loss, or access difficulty. | High risk of damage, drift, communication failure, corrosion, non-replaceability, or loss of interpretability. |
+| Inspection limitation | Easy visual access and manual measurement; condition can be checked without opening the assembly. | Access is limited or requires minor intervention, equipment, or partial opening. | Concealed or inaccessible after enclosure; condition cannot be verified without disruptive opening. |
+| Sensor failure risk | Sensor is likely to remain protected, accessible, replaceable, communicative, and interpretable. | Some risk of damage, drift, corrosion, communication loss, or access difficulty. | High risk of damage, drift, communication failure, corrosion, non-replaceability, or loss of interpretability. |
 | Decision relevance | Data mainly provide background or reference information. | Data may support maintenance planning, event assessment, or drying verification. | Data may support enclosure approval, targeted opening, repair, warranty, durability evaluation, or future reuse-related assessment. |
 
-### Interpreting sensor survivability
+### Interpreting sensor failure risk
 
-A **High sensor-survivability concern** does not necessarily mean that monitoring should be avoided. In a high-risk or decision-critical location, poor survivability may instead justify stronger protection, redundancy, replaceability, independent validation, or a different sensing method.
+A **High sensor-failure-risk rating** does not necessarily mean that monitoring should be avoided. In a high-risk or decision-critical location, poor sensor survivability may instead justify stronger protection, redundancy, replaceability, independent validation, or a different sensing method.
+
+**Inspection limitation** is the risk-oriented operationalisation of **inspection access**, while **sensor failure risk** operationalises **sensor survivability**. This preserves the original framework factors while keeping the operational rating direction consistent: higher ratings indicate greater concern.
 
 ## B2. Monitoring priority
 
-Assign a monitoring priority by considering the moisture-risk class together with inspection access, sensor survivability, and decision relevance.
+Assign a monitoring priority by considering the moisture-risk class together with inspection limitation, sensor failure risk, and decision relevance.
 
 | Monitoring priority | Typical interpretation | Possible monitoring response |
 |---|---|---|
@@ -109,7 +113,7 @@ Assign a monitoring priority by considering the moisture-risk class together wit
 | **High** | High moisture risk, poor observability, restricted drying, or strong decision relevance. | Local MC sensor group, depth-specific measurements, RH/T context, and reference comparison. |
 | **Critical** | Monitoring evidence is needed for a high-consequence or difficult-to-observe location and may directly support consequential lifecycle decisions. | Redundant MC measurements, shallow and deeper measurement points, RH/T context, reference location, protection/replaceability measures, and independent validation where feasible. |
 
-A location can therefore have, for example, **Medium moisture risk but High monitoring priority** if it is concealed and the information is important for a later decision. Conversely, a physically high-risk location may not require permanent monitoring where it is continuously visible and can be inspected reliably by simpler means.
+A location can therefore have, for example, **Medium moisture risk but High monitoring priority** if inspection limitation is high and the information is important for a later decision. Conversely, a physically high-risk location may not require permanent monitoring where inspection limitation is low and the condition can be verified reliably by simpler means.
 
 ---
 
@@ -130,12 +134,12 @@ A location can therefore have, for example, **Medium moisture risk but High moni
 | Environmental moisture severity | Severity of the moisture-related environment. This replaces the broader use of environmental aggressiveness for physical moisture-risk classification. |
 | Exposure class | Overall Low/Medium/High classification of moisture exposure. |
 | Moisture uptake/retention potential | Susceptibility of the detail to absorb, trap, or redistribute moisture. |
-| Drying capacity | Ability of the location to dry after wetting. Low drying capacity increases vulnerability. |
+| Drying limitation | Degree to which drying after wetting is restricted by enclosure, finishes, membranes, geometry, ventilation, or moisture-trapping interfaces. It operationalises the framework factor drying capacity in a risk-oriented direction. |
 | Consequence | Potential effect of moisture exposure on durability, serviceability, structural reliability, repair, documentation, or future reuse assessment. |
 | Vulnerability class | Overall Low/Medium/High classification of the location's vulnerability if wetting occurs. |
 | Moisture-risk class | Low/Medium/High classification derived primarily from exposure and vulnerability. |
-| Inspection access / observability | Ability to inspect, manually measure, repair, or open the location after enclosure. |
-| Sensor survivability | Likelihood that the sensor can remain functional, protected, accessible, replaceable, communicative, and interpretable over time. |
+| Inspection limitation | Degree to which visual inspection, manual measurement, repair, or opening is restricted after enclosure. It operationalises inspection access in a risk-oriented direction. |
+| Sensor failure risk | Likelihood that the sensor may be damaged, inaccessible, non-replaceable, unable to communicate, or otherwise lose interpretability over time. It operationalises sensor survivability in a risk-oriented direction. |
 | Decision relevance | Importance of the information for later decisions such as enclosure approval, inspection, drying verification, repair, warranty, post-event assessment, or reuse-related assessment. |
 | Monitoring priority | Low/Medium/High/Critical classification indicating the intensity and reliability of monitoring justified at the location. |
 | Monitoring reliability concern | Specific reason why data may be uncertain, incomplete, or difficult to interpret, such as localised wetting, sensor damage, drift, missing data, limited access, or lack of reference measurements. |
@@ -146,7 +150,7 @@ A location can therefore have, for example, **Medium moisture risk but High moni
 
 # Risk-location classification table
 
-| Location ID | Description | Lifecycle context | Building zone | Assembly/detail | Element/material feature | Moisture source | Moisture pathway/mechanism | Exposure likelihood | Exposure frequency/duration | Environmental moisture severity | Exposure class | Moisture uptake/retention potential | Drying capacity | Consequence | Vulnerability class | Moisture-risk class | Inspection access / observability | Sensor survivability | Decision relevance | Monitoring priority | Monitoring reliability concern | Suggested monitoring response | Justification |
+| Location ID | Description | Lifecycle context | Building zone | Assembly/detail | Element/material feature | Moisture source | Moisture pathway/mechanism | Exposure likelihood | Exposure frequency/duration | Environmental moisture severity | Exposure class | Moisture uptake/retention potential | Drying limitation | Consequence | Vulnerability class | Moisture-risk class | Inspection limitation | Sensor failure risk | Decision relevance | Monitoring priority | Monitoring reliability concern | Suggested monitoring response | Justification |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | L-01 | | | | | | | | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High/Critical | | | |
 | L-02 | | | | | | | | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High | Low/Medium/High/Critical | | | |
@@ -156,16 +160,16 @@ A location can therefore have, for example, **Medium moisture risk but High moni
 
 # Relationship to the original decision factors
 
-The conceptual framework identifies exposure likelihood, drying capacity, inspection access, consequence, environmental aggressiveness, sensor survivability, and decision relevance as decision factors for risk-informed monitoring. This implementation retains those concepts but organises them more explicitly:
+The conceptual framework identifies exposure likelihood, drying capacity, inspection access, consequence, environmental aggressiveness, sensor survivability, and decision relevance as decision factors for risk-informed monitoring. This implementation retains those concepts but organises and operationalises them more explicitly:
 
 | Original decision factor | Refined implementation |
 |---|---|
 | Exposure likelihood | Exposure assessment |
-| Drying capacity | Vulnerability assessment |
-| Inspection access | Monitoring-priority assessment as inspection access / observability |
+| Drying capacity | Vulnerability assessment, operationalised as **drying limitation** so higher ratings indicate greater risk |
+| Inspection access | Monitoring-priority assessment, operationalised as **inspection limitation** so higher ratings indicate poorer observability |
 | Consequence | Vulnerability assessment |
-| Environmental aggressiveness | Split into environmental moisture severity for physical risk and sensor survivability where the environment threatens the sensing system |
-| Sensor survivability | Monitoring-priority assessment |
+| Environmental aggressiveness | Split into environmental moisture severity for physical risk and sensor failure risk where the environment threatens the sensing system |
+| Sensor survivability | Monitoring-priority assessment, operationalised as **sensor failure risk** so higher ratings indicate greater reliability concern |
 | Decision relevance | Monitoring-priority assessment |
 
 This is an implementation refinement rather than a change to the eight-layer conceptual framework.
@@ -176,9 +180,11 @@ This is an implementation refinement rather than a change to the eight-layer con
 
 - Classify a **defined moisture scenario**, not merely a room or generic building element.
 - Record the source, pathway, susceptible feature, and expected drying behaviour before assigning ratings.
+- Use the operational criteria consistently so that **Low, Medium and High indicate increasing concern**.
 - Do not calculate the moisture-risk class by simply counting High ratings. Use the exposure-vulnerability logic and document the engineering judgement applied.
 - Do not use moisture risk and monitoring priority interchangeably.
 - Consider whether a location can be observed reliably without permanent sensing before increasing sensor density.
+- A high sensor-failure-risk rating should prompt consideration of protection, redundancy, replaceability, validation, or an alternative sensing approach rather than automatically reducing monitoring priority.
 - Where data are intended to support consequential decisions, prioritise redundancy, contextual RH/T measurements, reference locations, validation, traceable metadata, and sensor replaceability where feasible.
 - Revisit both classifications if the design, construction sequence, finishes, access conditions, lifecycle stage, sensor system, or monitoring objective changes.
 
