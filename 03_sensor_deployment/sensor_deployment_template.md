@@ -2,6 +2,8 @@
 
 This template supports Layer 3 of the framework: sensor deployment. It translates the risk-location classification into practical sensor implementation decisions.
 
+Layer 3 carries forward both the **moisture-risk class** and the **monitoring priority** from Layer 2. The moisture-risk class records the physical moisture concern at the location, while the monitoring priority indicates how strongly that location warrants targeted, continuous, redundant, or otherwise strengthened monitoring. Sensor deployment should therefore respond primarily to monitoring priority while remaining consistent with the underlying moisture-risk mechanism.
+
 The primary sensor type in this framework is a wood moisture-content sensor, since MC is the measured material response most directly linked to timber moisture exposure and durability. RH and temperature sensors are treated as supporting measurements that provide environmental context for interpreting MC variation, drying behaviour, and potential mould or decay risk.
 
 ## Field definitions
@@ -9,7 +11,8 @@ The primary sensor type in this framework is a wood moisture-content sensor, sin
 | Field | Explanation |
 |---|---|
 | Location ID | Identifier carried over from the risk-location classification table. |
-| Risk class | Risk class assigned during moisture-risk classification, such as low, medium, high, critical, or reference. |
+| Moisture-risk class | Low, Medium, or High physical moisture-risk class assigned from the exposure and vulnerability assessment in Layer 2. |
+| Monitoring priority | Low, Medium, High, or Critical priority assigned from moisture risk together with inspection limitation, sensor failure risk, and decision relevance. |
 | Monitoring objective | Intended purpose of monitoring at this location, such as maintenance, post-event assessment, drying verification, repair decision support, or future reuse-related evidence. |
 | Primary sensor type | Main sensor type used at the location. In this framework, this will normally be a wood moisture-content sensor. |
 | Supporting sensor type | Additional sensor type used to provide context, normally RH and temperature. |
@@ -25,8 +28,8 @@ The primary sensor type in this framework is a wood moisture-content sensor, sin
 
 ## Sensor deployment table
 
-| Location ID | Risk class | Monitoring objective | Primary sensor type | Supporting sensor type | Sensor placement | Measurement depth | Sensor density | Redundancy approach | Reference strategy | Protection and access | Validation approach | Metadata to record | Implementation note |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| L-01 |  |  | MC sensor | RH/T sensor |  |  |  |  |  |  |  |  |  |
-| L-02 |  |  | MC sensor | RH/T sensor |  |  |  |  |  |  |  |  |  |
-| L-03 |  |  | MC sensor | RH/T sensor |  |  |  |  |  |  |  |  |  |
+| Location ID | Moisture-risk class | Monitoring priority | Monitoring objective | Primary sensor type | Supporting sensor type | Sensor placement | Measurement depth | Sensor density | Redundancy approach | Reference strategy | Protection and access | Validation approach | Metadata to record | Implementation note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| L-01 |  |  |  | MC sensor | RH/T sensor |  |  |  |  |  |  |  |  |  |
+| L-02 |  |  |  | MC sensor | RH/T sensor |  |  |  |  |  |  |  |  |  |
+| L-03 |  |  |  | MC sensor | RH/T sensor |  |  |  |  |  |  |  |  |  |
