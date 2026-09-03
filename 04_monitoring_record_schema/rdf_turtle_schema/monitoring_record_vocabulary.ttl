@@ -100,17 +100,61 @@ tmf:assemblyDetail
   rdfs:range xsd:string ;
   rdfs:label "assembly detail" .
 
-tmf:riskClass
+tmf:moistureSource
   a owl:DatatypeProperty ;
   rdfs:domain tmf:MoistureRiskLocation ;
   rdfs:range xsd:string ;
-  rdfs:label "risk class" .
+  rdfs:label "moisture source" .
+
+tmf:moisturePathwayMechanism
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "moisture pathway or mechanism" .
+
+tmf:exposureClass
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "exposure class" .
+
+tmf:vulnerabilityClass
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "vulnerability class" .
+
+tmf:moistureRiskClass
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "moisture-risk class" ;
+  rdfs:comment "Low, Medium, or High physical moisture-risk class derived from exposure and vulnerability." .
+
+tmf:inspectionLimitation
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "inspection limitation" .
+
+tmf:sensorFailureRisk
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "sensor failure risk" .
 
 tmf:decisionRelevance
   a owl:DatatypeProperty ;
   rdfs:domain tmf:MoistureRiskLocation ;
   rdfs:range xsd:string ;
   rdfs:label "decision relevance" .
+
+tmf:monitoringPriority
+  a owl:DatatypeProperty ;
+  rdfs:domain tmf:MoistureRiskLocation ;
+  rdfs:range xsd:string ;
+  rdfs:label "monitoring priority" ;
+  rdfs:comment "Low, Medium, High, or Critical monitoring priority assigned from moisture risk, inspection limitation, sensor failure risk, and decision relevance." .
 
 tmf:hasReferenceLocation
   a owl:ObjectProperty ;
