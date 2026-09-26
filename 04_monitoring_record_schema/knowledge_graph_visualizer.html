@@ -589,12 +589,13 @@
       "generatedByLifecycleEvent"
     ]);
 
-    const roleOrder = ["Domain Entities", "Sensor", "Observation", "Interpretation", "Other"];
+    const roleOrder = ["Domain Entities", "Sensor", "Observation", "Interpretation", "Lifecycle Integration", "Other"];
     const roleColors = {
       "Domain Entities": "#24776b",
       Sensor: "#9b5c19",
       Observation: "#3565a8",
       Interpretation: "#7f4a75",
+      "Lifecycle Integration": "#5f6f3a",
       Other: "#5c6670"
     };
 
@@ -1164,10 +1165,12 @@
       if (typeSet.has("Sensor") || typeSet.has("SensorInstallation") || typeSet.has("Deployment")) {
         return "Sensor";
       }
+      if (typeSet.has("LifecycleIntegrationRecord")) {
+        return "Lifecycle Integration";
+      }
       if (
         typeSet.has("ValidationRecord") ||
-        typeSet.has("LifecycleEvent") ||
-        typeSet.has("LifecycleIntegrationRecord")
+        typeSet.has("LifecycleEvent")
       ) {
         return "Interpretation";
       }
