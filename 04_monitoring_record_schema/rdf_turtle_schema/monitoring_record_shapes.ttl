@@ -32,6 +32,33 @@ tmf:MoistureRiskLocationShape
     sh:in ("Low" "Medium" "High" "Critical")
   ] .
 
+tmf:SensorShape
+  a sh:NodeShape ;
+  sh:targetClass sosa:Sensor ;
+  sh:property [
+    sh:path tmf:deployedAtLocation ;
+    sh:class tmf:MoistureRiskLocation ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:sparql [
+    a sh:SPARQLConstraint ;
+    sh:message "A materialised deployedAtLocation value must match a SensorInstallation that deploys the sensor at that location." ;
+    sh:select """
+      PREFIX tmf: <https://sosabaa.github.io/timber-moisture-framework/vocab#>
+      PREFIX schema: <https://schema.org/>
+      PREFIX ssn: <http://www.w3.org/ns/ssn/>
+      SELECT $this ?location
+      WHERE {
+        $this tmf:deployedAtLocation ?location .
+        FILTER NOT EXISTS {
+          ?installation a tmf:SensorInstallation ;
+            ssn:deployedSystem $this ;
+            schema:location ?location .
+        }
+      }
+    """
+  ] .
+
 tmf:SensorInstallationShape
   a sh:NodeShape ;
   sh:targetClass tmf:SensorInstallation ;

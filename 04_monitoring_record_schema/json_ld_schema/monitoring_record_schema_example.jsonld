@@ -115,6 +115,7 @@
         "tmf:MoistureContentSensor"
       ],
       "sensorId": "MC-L01-01",
+      "deployedAtLocation": "tmf:location/L-01",
       "sensorType": "MC sensor with RH/T context channel",
       "measurementPrinciple": "Resistance-based MC with supporting RH/T output",
       "sensorValidationStatus": "Validated",
@@ -127,6 +128,7 @@
         "tmf:MoistureContentSensor"
       ],
       "sensorId": "MC-L05-01",
+      "deployedAtLocation": "tmf:location/L-05",
       "sensorType": "MC sensor",
       "measurementPrinciple": "Resistance-based MC",
       "sensorValidationStatus": "Not assessed"

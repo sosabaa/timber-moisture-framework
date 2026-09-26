@@ -86,6 +86,7 @@ tmf-property:air-temperature
 tmf-sensor:MC-L01-01
   a sosa:Sensor, tmf:MoistureContentSensor ;
   schema:identifier "MC-L01-01" ;
+  tmf:deployedAtLocation tmf-location:L-01 ;
   tmf:sensorType "MC sensor with RH/T context channel" ;
   tmf:measurementPrinciple "Resistance-based MC with supporting RH/T output" ;
   tmf:sensorValidationStatus "Validated" ;

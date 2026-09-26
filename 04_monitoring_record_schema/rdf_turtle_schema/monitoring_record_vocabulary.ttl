@@ -14,7 +14,7 @@ tmf:
   a owl:Ontology ;
   rdfs:label "Timber Moisture Framework monitoring-record vocabulary" ;
   rdfs:comment "RDFS/OWL vocabulary for lifecycle-oriented moisture-monitoring records in mass-timber buildings." ;
-  owl:versionInfo "0.1.0" .
+  owl:versionInfo "0.2.0" .
 
 tmf:MoistureRiskLocation
   a owl:Class ;
@@ -161,6 +161,17 @@ tmf:hasReferenceLocation
   rdfs:domain tmf:MoistureRiskLocation ;
   rdfs:range tmf:ReferenceLocation ;
   rdfs:label "has reference location" .
+
+tmf:deployedAtLocation
+  a owl:ObjectProperty ;
+  rdfs:domain sosa:Sensor ;
+  rdfs:range tmf:MoistureRiskLocation ;
+  rdfs:label "deployed at location" ;
+  rdfs:comment "A convenience relationship derived from a sensor's installation. The SensorInstallation record remains authoritative for deployment history and context." ;
+  owl:propertyChainAxiom (
+    [ owl:inverseOf ssn:deployedSystem ]
+    schema:location
+  ) .
 
 tmf:sensorType
   a owl:DatatypeProperty ;

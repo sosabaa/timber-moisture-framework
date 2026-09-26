@@ -498,6 +498,9 @@
         "sensorId": {
           "$ref": "#/$defs/text"
         },
+        "deployedAtLocation": {
+          "$ref": "#/$defs/id"
+        },
         "sensorType": {
           "$ref": "#/$defs/text"
         },

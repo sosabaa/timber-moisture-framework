@@ -29,6 +29,8 @@ Use `json_ld_schema/` when creating and validating monitoring records as JSON/JS
 
 Use `rdf_turtle_schema/` when RDF-native schema files are needed. The vocabulary defines classes and properties, the SHACL shapes express core constraints, and the Turtle example expresses the compact semantic structure in a form that can be loaded into RDF tooling.
 
+Sensor deployment remains authoritative through `SensorInstallation`, which links a sensor to its monitored location and retains depth, placement, calibration, status, and time context. Sensor nodes may also expose the derived `deployedAtLocation` convenience relationship for direct queries and graph display. That shortcut must agree with the corresponding installation record and must not replace it.
+
 Open `knowledge_graph_visualizer.html` in a browser to inspect the compact graph visually. When opened through a local web server, the visualizer can load the JSON-LD example from `json_ld_schema/` directly. When opened from the file system, use the file picker to load the JSON-LD example, or paste a compacted JSON-LD graph into the text area. Nodes can be moved by dragging them, and `Reset view` restores the automatic layout.
 
 Recommended workflow:
