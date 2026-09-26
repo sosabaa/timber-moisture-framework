@@ -41,6 +41,8 @@ For a more SOSA-idiomatic graph, each measured property is represented as its ow
 
 The compact graph may include one representative MC, RH, and temperature observation to show the SOSA pattern, while the full time series remains in the linked observation data file. Validation and moisture-related event details can follow the same compact-plus-linked-file pattern through `hasValidationLog` and `hasEventLog`.
 
+The sensor entity may include `deployedAtLocation` as a derived convenience relationship to the monitored location. The `SensorInstallation` entity remains authoritative because it retains the deployment-specific depth, placement, calibration, status, access, and time context. If `deployedAtLocation` is materialised in stored data, it must agree with the location referenced by the corresponding installation record.
+
 ## Location register
 | Field | Required/optional | Example entry | Notes |
 |---|---|---|---|

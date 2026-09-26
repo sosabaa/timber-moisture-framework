@@ -390,6 +390,10 @@
       stroke-width: 2.4;
     }
 
+    .edge.derived {
+      stroke-dasharray: 8 5;
+    }
+
     .edge-label {
       fill: #66737d;
       font-size: 11px;
@@ -494,7 +498,7 @@
     <header class="topbar">
       <div>
         <h1>Timber Moisture Knowledge Graph Visualizer</h1>
-        <p class="lead">Plot the JSON-LD monitoring record as linked locations, elements, sensors, observations, validation, moisture-related events, and lifecycle records.</p>
+        <p class="lead">Plot the JSON-LD monitoring record as linked locations, elements, sensors, observations, validation, moisture-related events, and lifecycle records. Dashed sensor-to-location links are derived from installation records.</p>
       </div>
       <div class="status" id="status" role="status">Ready</div>
     </header>
@@ -560,6 +564,7 @@
       "hasElement",
       "madeBySensor",
       "deployedSystem",
+      "deployedAtLocation",
       "installation",
       "observedProperty",
       "hasReferenceLocation",
@@ -710,6 +715,7 @@
             "tmf:MoistureContentSensor"
           ],
           "sensorId": "MC-L01-01",
+          "deployedAtLocation": "tmf:location/L-01",
           "sensorType": "MC sensor with RH/T context channel",
           "measurementPrinciple": "Resistance-based MC with supporting RH/T output",
           "sensorValidationStatus": "Validated",
@@ -722,6 +728,7 @@
             "tmf:MoistureContentSensor"
           ],
           "sensorId": "MC-L05-01",
+          "deployedAtLocation": "tmf:location/L-05",
           "sensorType": "MC sensor",
           "measurementPrinciple": "Resistance-based MC",
           "sensorValidationStatus": "Not assessed"
@@ -1109,6 +1116,29 @@
         }
       }
 
+      const edgeIds = new Set(edges.map((edge) => edge.id));
+      for (const installation of nodes) {
+        if (!installation.types.includes("SensorInstallation") && !installation.types.includes("tmf:SensorInstallation")) {
+          continue;
+        }
+        const sensors = collectRefs(installation.raw.deployedSystem, idSet);
+        const locations = collectRefs(installation.raw.location, idSet);
+        for (const sensor of sensors) {
+          for (const location of locations) {
+            const id = `${sensor}|deployedAtLocation|${location}`;
+            if (!edgeIds.has(id)) {
+              edges.push({
+                id,
+                source: sensor,
+                target: location,
+                label: "deployedAtLocation"
+              });
+              edgeIds.add(id);
+            }
+          }
+        }
+      }
+
       return { nodes, edges };
     }
 
@@ -1354,7 +1384,7 @@
           y1: source.y,
           x2: target.x,
           y2: target.y,
-          class: ["edge", selected ? "selected" : "", dimmed ? "dimmed" : ""].filter(Boolean).join(" ")
+          class: ["edge", edge.label === "deployedAtLocation" ? "derived" : "", selected ? "selected" : "", dimmed ? "dimmed" : ""].filter(Boolean).join(" ")
         });
         edgeLayer.appendChild(line);
 

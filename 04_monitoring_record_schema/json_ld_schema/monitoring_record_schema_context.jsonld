@@ -55,6 +55,10 @@
       "@id": "ssn:deployedSystem",
       "@type": "@id"
     },
+    "deployedAtLocation": {
+      "@id": "tmf:deployedAtLocation",
+      "@type": "@id"
+    },
     "installation": {
       "@id": "tmf:installation",
       "@type": "@id"
