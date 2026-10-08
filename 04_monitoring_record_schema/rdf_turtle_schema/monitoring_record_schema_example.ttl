@@ -92,6 +92,14 @@ tmf-sensor:MC-L01-01
   tmf:sensorValidationStatus "Validated" ;
   tmf:sensorValidationRecord tmf-validation:VAL-L01-001 .
 
+tmf-sensor:MC-L05-01
+  a sosa:Sensor, tmf:MoistureContentSensor ;
+  schema:identifier "MC-L05-01" ;
+  tmf:deployedAtLocation tmf-location:L-05 ;
+  tmf:sensorType "MC sensor" ;
+  tmf:measurementPrinciple "Resistance-based MC" ;
+  tmf:sensorValidationStatus "Not assessed" .
+
 tmf-installation:INST-L01-01
   a tmf:SensorInstallation, sosa:Deployment ;
   schema:identifier "INST-L01-01" ;
@@ -103,6 +111,22 @@ tmf-installation:INST-L01-01
     qudt:unit unit:MilliM
   ] ;
   tmf:sensorPlacementDescription "Below sink/dishwasher connection zone, near panel edge" ;
+  tmf:calibrationBasis "Manufacturer timber MC calibration" ;
+  tmf:correctionMethod "Temperature correction applied/not applied" ;
+  dcterms:date "2026-08-06T07:00:00.000Z"^^xsd:dateTime ;
+  tmf:sensorStatus "Active" .
+
+tmf-installation:INST-L05-01
+  a tmf:SensorInstallation, sosa:Deployment ;
+  schema:identifier "INST-L05-01" ;
+  schema:location tmf-location:L-05 ;
+  ssn:deployedSystem tmf-sensor:MC-L05-01 ;
+  tmf:measurementDepth [
+    a qudt:QuantityValue ;
+    qudt:numericValue 20 ;
+    qudt:unit unit:MilliM
+  ] ;
+  tmf:sensorPlacementDescription "Reference floor area away from appliance, plumbing, and junction risk zones" ;
   tmf:calibrationBasis "Manufacturer timber MC calibration" ;
   tmf:correctionMethod "Temperature correction applied/not applied" ;
   dcterms:date "2026-08-06T07:00:00.000Z"^^xsd:dateTime ;
@@ -199,7 +223,7 @@ tmf-link:LINK-L01-001
   schema:identifier "LINK-L01-001" ;
   schema:location tmf-location:L-01, tmf-location:L-05 ;
   bot:hasElement tmf-element:CLT-FP-01, tmf-element:CLT-FP-02 ;
-  tmf:linkedSensor tmf-sensor:MC-L01-01 ;
+  tmf:linkedSensor tmf-sensor:MC-L01-01, tmf-sensor:MC-L05-01 ;
   tmf:linkedValidationRecord tmf-validation:VAL-L01-001 ;
   tmf:linkedMonitoringSeries tmf-series:MS-L01-001 ;
   tmf:linkedEvent tmf-event:EVT-L01-001 ;
