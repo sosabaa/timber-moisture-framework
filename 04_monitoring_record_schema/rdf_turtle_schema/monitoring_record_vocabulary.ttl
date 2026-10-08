@@ -14,7 +14,7 @@ tmf:
   a owl:Ontology ;
   rdfs:label "Timber Moisture Framework monitoring-record vocabulary" ;
   rdfs:comment "RDFS/OWL vocabulary for lifecycle-oriented moisture-monitoring records in mass-timber buildings." ;
-  owl:versionInfo "0.2.0" .
+  owl:versionInfo "0.2.1" .
 
 tmf:MoistureRiskLocation
   a owl:Class ;
@@ -158,9 +158,9 @@ tmf:monitoringPriority
 
 tmf:hasReferenceLocation
   a owl:ObjectProperty ;
-  rdfs:domain tmf:MoistureRiskLocation ;
   rdfs:range tmf:ReferenceLocation ;
-  rdfs:label "has reference location" .
+  rdfs:label "has reference location" ;
+  rdfs:comment "Relates a moisture-risk location or monitoring time series to a reference location. The subject type is intentionally not constrained with rdfs:domain because the property is shared by both resource types." .
 
 tmf:deployedAtLocation
   a owl:ObjectProperty ;
