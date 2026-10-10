@@ -14,7 +14,7 @@ tmf:
   a owl:Ontology ;
   rdfs:label "Timber Moisture Framework monitoring-record vocabulary" ;
   rdfs:comment "RDFS/OWL vocabulary for lifecycle-oriented moisture-monitoring records in mass-timber buildings." ;
-  owl:versionInfo "0.2.1" .
+  owl:versionInfo "0.3.0" .
 
 tmf:MoistureRiskLocation
   a owl:Class ;
@@ -254,6 +254,11 @@ tmf:hasObservation
   a owl:ObjectProperty ;
   rdfs:domain tmf:MonitoringTimeSeries ;
   rdfs:label "has observation" .
+
+tmf:timeSeriesDataEndpoint
+  a owl:ObjectProperty ;
+  rdfs:label "time-series data endpoint" ;
+  rdfs:comment "Links a sensor or monitoring time series to an HTTP endpoint that provides its timestamped observation data. The subject type is intentionally not constrained because the property is shared by sensors and monitoring-series resources." .
 
 tmf:qualityAssessmentRecord
   a owl:ObjectProperty ;

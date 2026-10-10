@@ -236,6 +236,10 @@
       "@id": "tmf:hasObservation",
       "@type": "@id"
     },
+    "timeSeriesDataEndpoint": {
+      "@id": "tmf:timeSeriesDataEndpoint",
+      "@type": "@id"
+    },
     "seriesStart": {
       "@id": "tmf:seriesStart",
       "@type": "xsd:dateTime"

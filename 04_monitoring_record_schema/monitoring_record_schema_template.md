@@ -35,11 +35,11 @@ The location entity carries forward the key Layer 2 outputs needed to interpret 
 
 This structure prevents hourly measurements from repeating static metadata while preserving traceability from each sensor reading to the monitored location, timber element, sensor installation, validation record, moisture-related event, and lifecycle information system.
 
-The monitoring period should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data file through `hasObservation`. This keeps the knowledge graph compact while the detailed time-series values remain in a linked JSON file.
+The monitoring period should be represented by a parent `MonitoringTimeSeries` / `schema:Dataset` node. The parent stores the shared location, sensor installation, sensor, observed properties, start and end time, sampling interval, and links to the observation data through `timeSeriesDataEndpoint` or to individual RDF observations through `hasObservation`. This keeps the knowledge graph compact while detailed time-series values remain in the linked data store.
 
 For a more SOSA-idiomatic graph, each measured property is represented as its own `sosa:Observation`. A timestamp containing MC, RH, and temperature therefore contains three observation nodes, each with its own `observedProperty`, `hasSimpleResult`, and QUDT `resultQuantity`. Numeric values such as moisture content, relative humidity, temperature, and measurement depth are represented as `qudt:QuantityValue` objects with `numericValue` and `unitRef`.
 
-The compact graph may include one representative MC, RH, and temperature observation to show the SOSA pattern, while the full time series remains in the linked observation data file. Validation and moisture-related event details can follow the same compact-plus-linked-file pattern through `hasValidationLog` and `hasEventLog`.
+The compact graph may include one representative MC, RH, and temperature observation to show the SOSA pattern, while the full time series remains in the linked data store. Validation and moisture-related event details can follow the same compact-plus-linked-record pattern through `hasValidationLog` and `hasEventLog`.
 
 The sensor entity may include `deployedAtLocation` as a derived convenience relationship to the monitored location. The `SensorInstallation` entity remains authoritative because it retains the deployment-specific depth, placement, calibration, status, access, and time context. If `deployedAtLocation` is materialised in stored data, it must agree with the location referenced by the corresponding installation record.
 
@@ -100,7 +100,7 @@ The monitoring record carries the summary Layer 2 classifications rather than re
 | Series start | Required | 2026-08-07T11:00:00.000Z | First timestamp represented in the time series. |
 | Series end | Required | 2026-08-07T12:00:00.000Z | Last timestamp represented in the time series. |
 | Sampling interval | Required | PT1H | Logging frequency as an ISO 8601 duration. |
-| Observation data file | Required | `json_ld_schema/monitoring_timeseries_MS-L01-001.json` | File containing the per-property observations for the time series. In JSON-LD, link this through `hasObservation`. |
+| Time-series data endpoint | Required | `http://localhost:8000/api/v1/series/MS-L01-001/observations` | HTTP endpoint providing the per-property observations for the time series. Link this through `timeSeriesDataEndpoint`. |
 
 ## Observation data file
 | Field | Required/optional | Example entry | Notes |
