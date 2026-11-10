@@ -1,0 +1,29 @@
+@prefix tmf: <https://sosabaa.github.io/timber-moisture-framework/vocab#> .
+@prefix tmf-sensor: <https://sosabaa.github.io/timber-moisture-framework/sensor/> .
+@prefix tmf-series: <https://sosabaa.github.io/timber-moisture-framework/monitoring-series/> .
+@prefix schema: <https://schema.org/> .
+
+tmf-sensor:MC-L01-01
+  tmf:timeSeriesDataEndpoint
+    <http://localhost:8000/api/v1/sensors/MC-L01-01/observations> .
+
+tmf-sensor:MC-L05-01
+  tmf:timeSeriesDataEndpoint
+    <http://localhost:8000/api/v1/sensors/MC-L05-01/observations> .
+
+tmf-series:MS-L01-001
+  tmf:timeSeriesDataEndpoint
+    <http://localhost:8000/api/v1/series/MS-L01-001/observations> .
+
+<http://localhost:8000/api/v1/sensors/MC-L01-01/observations>
+  a schema:DataFeed ;
+  schema:name "MC-L01-01 time-series data" .
+
+<http://localhost:8000/api/v1/sensors/MC-L05-01/observations>
+  a schema:DataFeed ;
+  schema:name "MC-L05-01 time-series data" .
+
+<http://localhost:8000/api/v1/series/MS-L01-001/observations>
+  a schema:DataFeed ;
+  schema:name "MS-L01-001 time-series data" .
+

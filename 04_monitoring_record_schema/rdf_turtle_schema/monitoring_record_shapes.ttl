@@ -36,6 +36,11 @@ tmf:SensorShape
   a sh:NodeShape ;
   sh:targetClass sosa:Sensor ;
   sh:property [
+    sh:path tmf:timeSeriesDataEndpoint ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
+  sh:property [
     sh:path tmf:deployedAtLocation ;
     sh:class tmf:MoistureRiskLocation ;
     sh:nodeKind sh:IRI
@@ -85,6 +90,11 @@ tmf:SensorInstallationShape
 tmf:MonitoringTimeSeriesShape
   a sh:NodeShape ;
   sh:targetClass tmf:MonitoringTimeSeries ;
+  sh:property [
+    sh:path tmf:timeSeriesDataEndpoint ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI
+  ] ;
   sh:property [
     sh:path schema:identifier ;
     sh:minCount 1 ;

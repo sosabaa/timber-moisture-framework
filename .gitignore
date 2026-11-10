@@ -1,0 +1,5 @@
+04_monitoring_record_schema/timescaledb/.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
