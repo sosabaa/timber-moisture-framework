@@ -6,7 +6,7 @@ It preserves traceability between the literature synthesis and the framework lay
 
 ## Framework development
 
-The framework was developed through a targeted literature synthesis combining database searching, snowballing, and review of timber-moisture and monitoring studies. A total of 54 articles were assessed, of which 20 were retained because they provided extractable evidence concerning sensor location, deployment configuration, contextual data requirements, monitoring and data-quality issues, moisture-exposure interpretation, maintenance or reuse-related decision support, or lifecycle use of monitoring records.
+The framework was developed through a targeted literature synthesis combining database searching, snowballing, and review of timber-moisture and monitoring studies. A total of 54 articles were assessed, of which 20 studies were retained because they provided extractable evidence concerning sensor location, deployment configuration, contextual data requirements, monitoring and data-quality issues, moisture-exposure interpretation, maintenance or reuse-related decision support, or lifecycle use of monitoring records. The reference list additionally includes the companion Data in Brief article for the Baas et al. study because it documents the associated monitoring records and data platform; the methodological article and companion data article are distinguished as 2021a and 2021b.
 
 The retained studies were coded in NVivo using inductively developed codes covering lifecycle stage, monitoring purpose, building and member type, sensor location, risk drivers, sensor configuration and density, installation guidance, monitoring issues, risk prediction, contextual information, and recommended monitoring systems.
 
@@ -18,19 +18,21 @@ Framework development then proceeded through iterative synthesis of the coded ma
 
 *Conceptual framework for reuse-informed moisture sensing and data acquisition in mass-timber buildings, showing literature used to support development of the individual layers.*
 
+[Editable SVG source](assets/framework_with_supporting_literature.svg)
+
 The publications associated with each layer are supporting evidence, rather than direct sources of the complete layer. The eight-layer structure and the relationships between layers represent the authors' synthesis of evidence distributed across the reviewed literature.
 
 ## Framework-to-evidence map
 
 | Layer | Framework function | Supporting literature | Contribution to framework development |
 |---|---|---|---|
-| 1. Lifecycle context | Establishes lifecycle stage and monitoring objective before monitoring requirements are defined. | Riggio & Dilmaghani (2020); Baas et al. (2021) | Positions monitoring within lifecycle and structural-health-monitoring contexts and supports defining objectives before deployment. |
+| 1. Lifecycle context | Establishes lifecycle stage and monitoring objective before monitoring requirements are defined. | Riggio & Dilmaghani (2020); Baas et al. (2021a) | Positions monitoring within lifecycle and structural-health-monitoring contexts and supports defining objectives before deployment. |
 | 2. Moisture risk mapping | Identifies moisture-prone locations and classifies their relative monitoring priority. | Kalbe et al. (2020); Olsson (2021); Cappellazzi et al. (2020) | Provides evidence on moisture-sensitive details, construction exposure, water ingress, drying limitations, and deterioration mechanisms. |
 | 3. Sensor deployment | Translates identified risks into placement, density, depth, redundancy, access, and protection decisions. | Tannert et al. (2011); Tamagnone et al. (2023); Greffier et al. (2024); Uwizeyimana et al. (2020); Johns et al. (2024) | Informs sensor location, depth, coverage, redundancy, accessibility, protection, and practical monitoring constraints. |
-| 4. Data and metadata capture | Defines measured values and context needed to preserve the meaning of monitoring records. | Riggio et al. (2023); Baas et al. (2021); Tamagnone et al. (2023) | Links MC, RH, and temperature to sensor and element identities, depth, location, and later interpretation context. |
+| 4. Data and metadata capture | Defines measured values and context needed to preserve the meaning of monitoring records. | Riggio et al. (2023); Baas et al. (2021a, 2021b); Tamagnone et al. (2023) | Links MC, RH, and temperature to sensor and element identities, depth, location, and later interpretation context. |
 | 5. Data validation | Evaluates whether monitoring records are reliable enough for interpretation. | García Faura et al. (2021); Greffier et al. (2024); Uwizeyimana et al. (2020) | Addresses missing data, anomalies, sensor disagreement, installation effects, drift, and other quality issues. |
 | 6. Exposure interpretation | Converts validated observations into indicators of moisture exposure and drying behaviour. | García Faura et al. (2021); Olsson et al. (2023); Viitanen (1996, 2001) | Supports thresholds, exposure duration, wetting and drying behaviour, anomalies, biological risk, and uncertainty. |
-| 7. Decision support | Connects interpreted information to inspection, maintenance, repair, enclosure approval, and reuse assessment. | Tamagnone et al. (2023); Greffier et al. (2024); Riggio & Dilmaghani (2020); Kalbe et al. (2025) | Supports identifying adverse conditions, targeting intervention, and supplying evidence for lifecycle decisions. |
+| 7. Decision support | Connects interpreted information to inspection, maintenance, repair, enclosure approval, and reuse assessment. | Tamagnone et al. (2023); Greffier et al. (2024); Riggio & Dilmaghani (2020); Kalbe (2025) | Supports identifying adverse conditions, targeting intervention, and supplying evidence for lifecycle decisions. |
 | 8. Lifecycle data integration | Preserves monitoring information in digital systems across lifecycle stages. | De Wolf et al. (2024); Honic et al. (2019); Loeb et al. (2025); Riggio et al. (2023) | Supports structured information management through BIM, product passports, building logbooks, and monitoring platforms. |
 
 ## Cross-layer concept: Avatar-Assisted Structural Health Monitoring
@@ -41,7 +43,9 @@ Avatar-Assisted Structural Health Monitoring connects sensor observations with c
 
 ## References
 
-Baas, E. J., Riggio, M., & Barbosa, A. R. (2021). A methodological approach for structural health monitoring of mass-timber buildings under construction. *Construction and Building Materials, 268*, 121153. https://doi.org/10.1016/j.conbuildmat.2020.121153
+Baas, E. J., Riggio, M., & Barbosa, A. R. (2021a). A methodological approach for structural health monitoring of mass-timber buildings under construction. *Construction and Building Materials, 268*, 121153. https://doi.org/10.1016/j.conbuildmat.2020.121153
+
+Baas, E. J., Riggio, M., & Barbosa, A. R. (2021b). Structural health monitoring data collected during construction of a mass-timber building with a data platform for analysis. *Data in Brief, 35*, 106845. https://doi.org/10.1016/j.dib.2021.106845
 
 Cappellazzi, J., Konkler, M. J., Sinha, A., & Morrell, J. J. (2020). Potential for decay in mass timber elements: A review of the risks and identifying possible solutions. *Wood Material Science & Engineering, 15*(1), 1–10. https://doi.org/10.1080/17480272.2020.1720804
 
@@ -67,7 +71,7 @@ Olsson, L., Lång, L., Bok, G., & Mjörnell, K. (2023). Development of laborator
 
 Riggio, M., & Dilmaghani, M. (2020). Structural health monitoring of timber buildings: A literature survey. *Building Research & Information, 48*(8), 817–837. https://doi.org/10.1080/09613218.2019.1681253
 
-Riggio, M., Dilmaghani, M., & Sanchez, C. A. (2023). Understanding structural health monitoring data to support decision-making processes and service life management of mass timber buildings: A preliminary study on use of data scaffolding. *International Wood Products Journal, 14*(1), 22–34. https://doi.org/10.1080/20426445.2023.2177092
+Riggio, M., Dilmaghani, M., & Sanchez, C. A. (2023). Understanding structural health monitoring data to support decision-making processes and service life management of mass timber buildings: A preliminary study on use of data scaffolding. *International Wood Products Journal, 14*(1), 42–59. https://doi.org/10.1080/20426445.2023.2177092
 
 Riggio, M., Mrissa, M., Krész, M., Včelák, J., Sandak, J., & Sandak, A. (2022). Leveraging structural health monitoring data through avatars to extend the service life of mass timber buildings. *Frontiers in Built Environment, 8*, 887593. https://doi.org/10.3389/fbuil.2022.887593
 
